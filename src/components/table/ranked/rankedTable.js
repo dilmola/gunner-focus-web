@@ -88,7 +88,7 @@ const UserTablePage = () => {
 
   return (
     <div className="mb-20">
-      <h2 className="uppercase">Ranked</h2>
+      <h1 className="font-semibold uppercase mb-4">Ranked</h1>
       <div className="rounded-lg overflow-hidden bg-[#F2F2F2] h-20 flex justify-between mb-2">
         <div className="flex">
           <div className="flex items-center text-center px-8">
@@ -107,7 +107,7 @@ const UserTablePage = () => {
           </h3>
         </div>
       </div>
-      <CustomTable columns={userColumns} data={userData}/>
+      <CustomTable columns={userColumns} data={userData} />
     </div>
   );
 };

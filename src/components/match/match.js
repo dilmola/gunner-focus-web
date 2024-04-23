@@ -5,7 +5,7 @@ import CardUpcoming from "@/components/card/upcoming/cardUpcoming";
 const match = () => {
   return (
     <div className="mt-10">
-      <h1>Matches</h1>
+      <h1 className="uppercase font-semibold mb-4">Matches</h1>
       <div className="flex justify-between mb-20">
         <CardUpcoming />
         <CardResult />

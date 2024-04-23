@@ -14,8 +14,19 @@ const Table = ({ columns, data }) => (
         {data.map((row, rowIndex) => (
           <tr key={rowIndex} className="bg-[#fafafa] text-gray-800">
             {columns.map((col) => (
-              <td key={col.key} className="p-4">
-                {row[col.key]}
+              <td key={col.key} className="p-5">
+                {col.key === "player" && row.image ? (
+                  <div className="flex items-center">
+                    <img
+                      src={row.image}
+                      alt={row[col.key]}
+                      className="w-8 h-8 rounded mr-3 bg-[#D9D9D9]"
+                    />
+                    {row[col.key]}
+                  </div>
+                ) : (
+                  row[col.key]
+                )}
               </td>
             ))}
           </tr>

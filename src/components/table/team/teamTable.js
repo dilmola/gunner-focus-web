@@ -3,25 +3,43 @@
 
 import CustomTable from "../Table";
 
-const ProductTablePage = () => {
-  const productColumns = [
-    { key: "productId", label: "Product ID" },
-    { key: "productName", label: "Product Name" },
-    { key: "price", label: "Price" },
-    { key: "team", label: "team" },
+const TeamTablePage = () => {
+  const TeamColumns = [
+    { key: "player", label: "Player" },
+    { key: "nationality", label: "Nationality" },
+    { key: "position", label: "Position" },
   ];
 
-  const productData = [
-    { productId: 101, productName: "Widget", price: "$25", team: "arsenal" },
-    { productId: 102, productName: "Gadget", price: "$50", team: "arsenal" },
+  const TeamData = [
+    {
+      player: "Bukayo Saka",
+      nationality: "England",
+      position: "Midfielder",
+      image:
+        "https://resources.premierleague.com/premierleague/photos/players/250x250/p223340.png",
+    },
+    {
+      player: "Gabriel Martinelli",
+      nationality: "Brazil",
+      position: "Forward",
+      image:
+        "https://resources.premierleague.com/premierleague/photos/players/250x250/p444145.png",
+    },
+    {
+      player: "William Saliba",
+      nationality: "France",
+      position: "Defender",
+      image:
+        "https://resources.premierleague.com/premierleague/photos/players/250x250/p462424.png",
+    },
   ];
 
   return (
     <div>
-      <h2 className="uppercase">Team</h2>
-      <CustomTable columns={productColumns} data={productData} />
+      <h2 className="uppercase font-semibold mb-4">Team</h2>
+      <CustomTable columns={TeamColumns} data={TeamData} />
     </div>
   );
 };
 
-export default ProductTablePage;
+export default TeamTablePage;
