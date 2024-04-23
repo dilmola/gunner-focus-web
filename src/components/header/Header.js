@@ -10,12 +10,16 @@ const Navbar = () => {
         <img src={Logo.src} alt="Logo" className="h-10 mr-2" />
       </div>
       <div className="flex justify-between">
-        <button className="bg-[#E63946] hover:bg-[#ee6055] text-white font-bold py-2 px-4 rounded mr-4">
+        <a
+          className="bg-[#E63946] hover:bg-[#ee6055] text-white font-bold py-2 px-4 rounded mr-4"
+          href="https://github.com/dilmola/arsenal-website"
+          target="_blank"
+        >
           <img src={Github.src} alt="Github" className="h-6" />
-        </button>
-        <button className="bg-[#17263b] hover:bg-[#213551] text-white font-bold py-2 px-4 rounded">
+        </a>
+        <a className="bg-[#17263b] hover:bg-[#213551] text-white font-bold py-2 px-4 rounded">
           <img src={Light.src} alt="Github" className="h-5" />
-        </button>
+        </a>
       </div>
     </div>
   );
