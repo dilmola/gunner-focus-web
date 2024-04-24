@@ -2,6 +2,8 @@
 
 import CustomTable from "../Table";
 import Arsenal from "../../../../public/img/arsenal.png";
+import Ranked from "../../../../public/icons/ranked.png";
+
 const UserTablePage = () => {
   const userColumns = [
     { key: "pos", label: "POS" },
@@ -88,18 +90,23 @@ const UserTablePage = () => {
 
   return (
     <div className="mb-20">
-      <h1 className="font-semibold uppercase mb-4">Ranked</h1>
+      <div className="flex mb-4 items-center">
+        <div className="flex p-1 rounded bg-[#D9D9D9] mr-2">
+          <img src={Ranked.src} alt="Logo" className="h-6 " />
+        </div>
+        <h2 className="uppercase font-semibold leading-4">Ranked</h2>
+      </div>
       <div className="rounded-lg overflow-hidden bg-[#F2F2F2] h-20 flex justify-between mb-2">
         <div className="flex">
-          <div className="flex items-center text-center px-8">
+          <div className="flex items-center text-center px-8 md:px-3.5">
             <img src={Arsenal.src} alt="Arsenal" className="h-12" />
           </div>
-          <h3 className="flex items-center text-center px-12 uppercase">
+          <h3 className="flex items-center text-center px-12 uppercase font-semibold">
             Arsenal
           </h3>
         </div>
         <div className="flex">
-          <h3 className="flex items-center text-center uppercase px-8">
+          <h3 className="flex items-center text-center uppercase px-8 font-semibold">
             Current Ranked
           </h3>
           <h3 className="flex items-center text-center text-4xl font-semibold px-8">

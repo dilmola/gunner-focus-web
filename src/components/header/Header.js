@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center">
-        <img src={Logo.src} alt="Logo" className="h-10 mr-2" />
+        <img src={Logo.src} alt="Logo" className="h-6 mr-2" />
       </div>
       <div className="flex justify-between">
         <a

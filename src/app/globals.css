@@ -17,9 +17,13 @@
 }
 
 body {
-  font-size: 14px;
+  font-size: 12px;
   color: rgb(var(--background-end-rgb));
   font-weight: 500;
+}
+
+h2 {
+  @apply text-h2Size; /* Use the custom size from Tailwind CSS config */
 }
 
 @layer utilities {

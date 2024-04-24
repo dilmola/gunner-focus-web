@@ -13,7 +13,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontSize: {
-        base: "14px" /* Default font size for Tailwind */,
+        base: "12px" /* Default font size for Tailwind */,
+        "h2Size": ["1.5rem"],
       },
       fontWeight: {
         normal: "400" /* Define a default 'normal' font weight */,
