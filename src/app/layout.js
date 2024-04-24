@@ -15,7 +15,7 @@ export const metadata = {
   title: "Gunner Focus",
   description: "Gunner Focus",
   icons: {
-    icon: "/ico.ico",
+    icon: "/favicon.ico",
   },
 };
 
