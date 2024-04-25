@@ -2,9 +2,8 @@
 
 import CustomTable from "../Table";
 import Arsenal from "../../../../public/img/arsenal.png";
-import Ranked from "../../../../public/icons/ranked.png";
 
-const UserTablePage = () => {
+const RankedTablePage = () => {
   const userColumns = [
     { key: "pos", label: "POS" },
     { key: "team", label: "Team" },
@@ -91,9 +90,6 @@ const UserTablePage = () => {
   return (
     <div className="mb-20">
       <div className="flex mb-4 items-center">
-        <div className="flex p-1 rounded bg-[#D9D9D9] mr-2">
-          <img src={Ranked.src} alt="Logo" className="h-6 " />
-        </div>
         <h2 className="uppercase font-semibold leading-4">Ranked</h2>
       </div>
       <div className="rounded-lg overflow-hidden bg-[#F2F2F2] h-20 flex justify-between mb-2">
@@ -119,4 +115,4 @@ const UserTablePage = () => {
   );
 };
 
-export default UserTablePage;
+export default RankedTablePage;

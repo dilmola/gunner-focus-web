@@ -1,8 +1,6 @@
-// pages/product-table.js
 "use client";
 
 import CustomTable from "../Table";
-import Team from "../../../../public/icons/player.png";
 
 const TeamTablePage = () => {
   const TeamColumns = [
@@ -38,9 +36,6 @@ const TeamTablePage = () => {
   return (
     <div>
       <div className="flex mb-4 items-center">
-        <div className="flex p-1 rounded bg-[#D9D9D9] mr-2">
-          <img src={Team.src} alt="Logo" className="h-6" />
-        </div>
         <h2 className="uppercase font-semibold leading-4">Team</h2>
       </div>
       <CustomTable columns={TeamColumns} data={TeamData} />

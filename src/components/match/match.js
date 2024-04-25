@@ -7,9 +7,6 @@ const match = () => {
   return (
     <div className="mt-10">
       <div className="flex mb-4 items-center">
-        <div className="flex p-1 rounded bg-[#D9D9D9] mr-2">
-          <img src={Matches.src} alt="Logo" className="h-6" />
-        </div>
         <h2 className="uppercase font-semibold leading-4">Matches</h2>
       </div>
       <div className="flex justify-between mb-20">
