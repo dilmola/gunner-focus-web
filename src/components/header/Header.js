@@ -1,13 +1,15 @@
 "use client";
 import Logo from "../../../public/logos/logo.png";
-import Github from "../../../public/icons/github-icon.png";
-import Light from "../../../public/icons/light-icon.png";
+import LogoBeta from "../../../public/logos/logo_beta.png";
+
+import Github from "../../../public/icons/github_icon.png";
+import Light from "../../../public/icons/light_icon.png";
 
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center">
-        <img src={Logo.src} alt="Logo" className="h-6 mr-2" />
+        <img src={LogoBeta.src} alt="Logo" className="h-6 mr-2" />
       </div>
       <div className="flex justify-between">
         <a

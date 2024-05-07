@@ -1,79 +1,128 @@
 "use client";
-import Arsenal from "../../../public/img/arsenal.png";
 
 const Card = ({
   title,
   bgColor,
   textColor,
+  team1Logo,
+  team2Logo,
   team1,
   team2,
-  teams = [],
-  scores = [],
   date,
   time,
+  MatchResultArray,
 }) => {
   return (
-    <div className="w-[48%]" style={{ color: textColor }}>
-      <div
-        className={`rounded-lg h-[14rem]`}
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className="px-6 py-4">
-          <div className="font-bold mb-8 uppercase">{title}</div>
-          {scores.length > 0 ? (
-            <div className="grid grid-flow-row gap-4">
-              {scores.map((scorePair, index) => (
-                <div key={index} className="grid grid-flow-col">
-                  <div>
-                    <img
-                      src={Arsenal.src}
-                      alt={teams[index]}
-                      className="h-12"
-                    />
-                  </div>
-                  <h3 className="flex items-center text-center">
-                    {teams[index]}
-                  </h3>
-                  <div className="grid grid-flow-col rounded-lg bg-[#FFFFFF] items-center text-center">
-                    {scorePair.map((score, idx) => (
+    <>
+      <div style={{ color: textColor }}>
+        <div
+          className="rounded-lg h-[14.5rem] overflow-y-auto"
+          style={{ backgroundColor: bgColor }}
+        >
+          <div className="px-4 py-4">
+            <div className="flex flex-col items-center">
+              <div className="font-bold uppercase mb-8">{title} </div>
+            </div>
+            {MatchResultArray ? (
+              <div className="grid grid-flow-row gap-3">
+                {MatchResultArray.map((result, index) => (
+                  <div
+                    key={index}
+                    className="justify-between grid grid-flow-col place-items-center"
+                  >
+                    {result.homeTeam !== "Arsenal" && (
                       <>
-                        <p
-                          key={`score-${idx}`}
-                          className={`text-4xl font-bold ${
-                            idx === 1 ? "text-gray-600" : ""
-                          }`}
-                        >
-                          {score}
-                        </p>
-                        {idx === 0 && (
-                          <p className="text-4xl font-bold text-gray-600">-</p>
-                        )}
+                        <div className="grid grid-flow-col px-8">
+                          <div className="mr-4">
+                            <img
+                              src={result.homeLogo}
+                              alt={result.homeTeam}
+                              className="h-12"
+                            />
+                          </div>
+                          <h3 className="flex items-center text-center font-semibold">
+                            {result.homeTeam}
+                          </h3>
+                        </div>
+                        <div className="px-8">
+                          <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.homeGoals}
+                            </h4>
+                            <span className="mx-2 text-4xl font-bold text-gray-600">
+                              -
+                            </span>
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.awayGoals}
+                            </h4>
+                          </div>
+                        </div>
                       </>
-                    ))}
+                    )}
+
+                    {result.awayTeam !== "Arsenal" && (
+                      <>
+                        <div className="grid grid-flow-col px-8">
+                          <div className="mr-4">
+                            <img
+                              src={result.awayLogo}
+                              alt={result.awayTeam}
+                              className="h-12"
+                            />
+                          </div>
+                          <h3 className="flex items-center text-center font-semibold">
+                            {result.awayTeam}
+                          </h3>
+                        </div>
+                        <div className="px-8">
+                          <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.awayGoals}
+                            </h4>
+                            <span className="mx-2 text-4xl font-bold text-gray-600">
+                              -
+                            </span>
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.homeGoals}
+                            </h4>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div>
+                <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
+                  <div className="w-20">
+                    <div className="flex justify-center mb-4">
+                      <img src={team1Logo} alt={team1} className="h-14" />
+                    </div>
+                    <h3 className="text-center font-semibold">{team1}</h3>
+                  </div>
+                  <div className="flex flex-col	">
+                    <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
+                      {date}
+                    </p>
+                    <p className="text-center py-1">VS</p>
+                    <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
+                      {time}
+                    </p>
+                  </div>
+                  <div className="w-20">
+                    <div className="flex justify-center mb-4">
+                      <img src={team2Logo} alt={team2} className="h-14" />
+                    </div>
+                    <h3 className="text-center font-semibold">{team2}</h3>
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-flow-col gap-4 place-items-center">
-              <div>
-                <img src={Arsenal.src} alt={team1} className="h-20" />
-                <h3 className="text-center">{team1}</h3>
               </div>
-              <div className="flex flex-col	">
-                <p className="text-center py-2">{date}</p>
-                <p className="text-center py-2">VS</p>
-                <p className="text-center py-2">{time}</p>
-              </div>
-              <div>
-                <img src={Arsenal.src} alt={team2} className="h-20" />
-                <h3 className="text-center">{team2}</h3>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
