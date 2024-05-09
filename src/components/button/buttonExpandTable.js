@@ -11,7 +11,7 @@ const ButtonExpandTable = ({ isExpanded, toggleExpand }) => {
       <img
         src={isExpanded ? Less.src : More.src}
         alt={isExpanded ? "Collapse Table" : "Expand Table"}
-        className="h-1" // Optional: set image size
+        className="h-1" 
       />
     </button>
   );

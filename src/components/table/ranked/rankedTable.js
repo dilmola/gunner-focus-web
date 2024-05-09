@@ -1,39 +1,38 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchStandings from "../../../app/utils/getStandings"; // Adjust the import path if needed
-import CustomTable from "../Table";
+import fetchStandings from "../../../app/utils/getStandings";
+import CustomTable from "../table";
 import Arsenal from "../../../../public/img/arsenal.png";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; // Ensure this import is in place
+import "react-loading-skeleton/dist/skeleton.css";
 
-const SPECIFIC_TEAM_ID = "Arsenal"; // The ID of the team to get the rank for
+const SPECIFIC_TEAM_ID = "Arsenal";
 
 const RankedTablePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [teamRank, setTeamRank] = useState(null); // To store specific team's rank
+  const [teamRank, setTeamRank] = useState(null);
 
   useEffect(() => {
     const fetchStandingsData = async () => {
       try {
-        const response = await fetchStandings(); // Fetch the data
+        const response = await fetchStandings();
         if (response && Array.isArray(response)) {
           const formattedData = formatData(response);
-          console.log(formattedData);
 
           const specificTeam = formattedData.find(
-            (team) => team.team === SPECIFIC_TEAM_ID // Corrected condition
+            (team) => team.team === SPECIFIC_TEAM_ID
           );
 
           if (specificTeam) {
-            setTeamRank(specificTeam.pos); // Store the rank of the specific team
+            setTeamRank(specificTeam.pos);
           }
 
-          localStorage.setItem("standingsData", JSON.stringify(formattedData)); // Store data
-          localStorage.setItem("standingsLastFetch", Date.now()); // Store fetch time
+          localStorage.setItem("standingsData", JSON.stringify(formattedData));
+          localStorage.setItem("standingsLastFetch", Date.now());
           setData(formattedData);
         } else {
           throw new Error("Data is not in expected format");
@@ -50,15 +49,15 @@ const RankedTablePage = () => {
         localStorage.getItem("standingsLastFetch"),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchStandingsData(); // Fetch if last fetch was too long ago
+        fetchStandingsData();
       } else {
         const storedData = localStorage.getItem("standingsData");
         if (storedData) {
-          setData(JSON.parse(storedData)); // Load existing data
+          setData(JSON.parse(storedData));
           const specificTeam = JSON.parse(storedData).find(
             (team) => team.team === SPECIFIC_TEAM_ID
           );
@@ -80,15 +79,12 @@ const RankedTablePage = () => {
           <div className="flex mb-4 items-center">
             <h2 className="uppercase font-semibold leading-4">Ranked</h2>
           </div>
-          {/* Skeleton header with shimmer effect */}
           <div className="mb-4">
             <Skeleton height={100} />
           </div>
-          {/* Skeleton image or card content */}
           <div className="mb-6">
             <Skeleton height={300} className="rounded-md" />
           </div>
-          {/* Larger skeleton block for additional content */}{" "}
         </div>
       </SkeletonTheme>
     );
@@ -104,7 +100,7 @@ const RankedTablePage = () => {
           <strong>Error:</strong> {error}
         </div>
       </div>
-    ); // Display error message
+    );
   }
 
   return (
@@ -139,7 +135,7 @@ const RankedTablePage = () => {
 
 const getColumns = () => [
   { key: "pos", label: "POS" },
-  { key: "logo", },
+  { key: "logo" },
   { key: "team", label: "Team" },
   { key: "matchPlay", label: "MP" },
   { key: "win", label: "W" },
@@ -158,18 +154,16 @@ const formatData = (standings) => {
   }
 
   return standings.map((teamStanding) => {
-    // Use optional chaining to safely access nested properties
     const allMatches = teamStanding?.all;
 
-    // If 'all' is undefined, return a default structure or throw an error
     if (!allMatches) {
       throw new Error("Unexpected data structure: 'all' property is missing");
     }
 
     return {
       pos: teamStanding.rank,
-      logo: teamStanding?.team?.logo ?? "Unknown", // Safe access and default value
-      team: teamStanding?.team?.name ?? "Unknown", // Safe access and default value
+      logo: teamStanding?.team?.logo ?? "Unknown",
+      team: teamStanding?.team?.name ?? "Unknown",
       matchPlay: allMatches?.played ?? 0,
       win: allMatches?.win ?? 0,
       draw: allMatches?.draw ?? 0,

@@ -14,35 +14,30 @@ const UpcomingCard = () => {
     const fetchUpcomingData = async () => {
       try {
         const response = await fetchUpcoming();
-        console.log("Fetched data:", response);
 
         if (Array.isArray(response)) {
-          // Store data and last fetch time in local storage
-          const today = new Date().setHours(0, 0, 0, 0); // Start of today
+          const today = new Date().setHours(0, 0, 0, 0);
 
-          // Filter to get fixtures starting from today or later
           const upcomingMatches = response.filter((item) => {
             const fixtureDate = new Date(item?.fixture?.date);
-            return fixtureDate >= today; // Only include events from today or later
+            return fixtureDate >= today;
           });
 
           upcomingMatches.sort((a, b) => {
             const aDate = new Date(a?.fixture?.date);
             const bDate = new Date(b?.fixture?.date);
-            return aDate - bDate; // Sort in ascending order
+            return aDate - bDate;
           });
 
-          // Get the first match (earliest)
-          const firstMatch = upcomingMatches[0] || null; // If empty, set to null
+          const firstMatch = upcomingMatches[0] || null;
 
-          setData(firstMatch); // Set the fetched and filtered data to state
+          setData(firstMatch);
           localStorage.setItem("upcomingsData", JSON.stringify(firstMatch));
           localStorage.setItem("upcomingsLastFetch", Date.now().toString());
         } else {
           throw new Error("Unexpected response format");
         }
       } catch (err) {
-        console.error("Error fetching data:", err);
         setError(err.message || "An error occurred while fetching data.");
       } finally {
         setLoading(false);
@@ -54,22 +49,22 @@ const UpcomingCard = () => {
         localStorage.getItem("upcomingsLastFetch"),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchUpcomingData(); // Fetch if last fetch was too long ago
+        fetchUpcomingData();
       } else {
         const storedData = localStorage.getItem("upcomingsData");
         if (storedData) {
-          setData(JSON.parse(storedData)); // Load existing data from local storage
+          setData(JSON.parse(storedData));
         }
-        setLoading(false); // Data is loaded, set loading to false
+        setLoading(false);
       }
     };
 
-    checkLastFetchTime(); // Check if we need to fetch new data when the component is mounted
-  }, []); // Ensure it runs once when the component is mounted
+    checkLastFetchTime();
+  }, []);
 
   if (loading) {
     return (
@@ -83,7 +78,6 @@ const UpcomingCard = () => {
 
   if (error) {
     return (
-      // Add `return` to ensure this block renders
       <div>
         <h3 className="flex items-center text-center uppercase font-semibold">
           Error

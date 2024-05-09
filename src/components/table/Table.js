@@ -1,8 +1,7 @@
 import { useState } from "react";
-import ExpandButtonTable from "../../components/button/buttonExpandTable";
+import ExpandButtonTable from "../button/buttonExpandTable";
 
 const Table = ({ columns, data }) => {
-  // State to track whether the table is collapsed or expanded
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {

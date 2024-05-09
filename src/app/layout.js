@@ -1,7 +1,6 @@
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header/Header";
-
+import Header from "@/components/header/header";
 import Match from "@/components/match/match";
 import Ranked from "@/components/table/ranked/rankedTable";
 import Team from "@/components/table/team/teamTable";

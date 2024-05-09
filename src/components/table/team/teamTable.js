@@ -1,30 +1,26 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchTeams from "../../../app/utils/getTeams"; // Adjust the import path if needed
-import CustomTable from "../Table";
+import fetchTeams from "../../../app/utils/getTeams";
+import CustomTable from "../table";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css"; // Ensure this import is in place
-
+import "react-loading-skeleton/dist/skeleton.css";
 
 const TeamTablePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [scrollPos, setScrollPos] = useState(0);
 
   useEffect(() => {
     const fetchTeamsData = async () => {
       try {
-        const response = await fetchTeams(); // Fetch the data
-        console.log(response);
+        const response = await fetchTeams();
         if (response && Array.isArray(response)) {
           const formattedData = formatData(response);
-          console.log(formattedData);
 
-          localStorage.setItem("teamsData", JSON.stringify(formattedData)); // Store data
-          localStorage.setItem("teamsLastFetch", Date.now()); // Store fetch time
+          localStorage.setItem("teamsData", JSON.stringify(formattedData));
+          localStorage.setItem("teamsLastFetch", Date.now());
           setData(formattedData);
         } else {
           throw new Error("Data is not in expected format");
@@ -38,17 +34,17 @@ const TeamTablePage = () => {
 
     const checkLastFetchTime = () => {
       const lastFetch = parseInt(localStorage.getItem("teamsLastFetch"), 10);
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchTeamsData(); // Fetch if last fetch was too long ago
+        fetchTeamsData();
       } else {
         const storedData = localStorage.getItem("teamsData");
         if (storedData) {
-          setData(JSON.parse(storedData)); // Load existing data from local storage
+          setData(JSON.parse(storedData));
         }
-        setLoading(false); // Data is loaded, set loading to false
+        setLoading(false);
       }
     };
 
@@ -80,7 +76,7 @@ const TeamTablePage = () => {
           <strong>Error:</strong> {error}
         </div>
       </div>
-    ); // Display error message
+    );
   }
 
   return (

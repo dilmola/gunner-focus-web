@@ -13,26 +13,22 @@ const ResultsCard = () => {
   useEffect(() => {
     const fetchResultsData = async () => {
       try {
-        const response = await fetchUpcoming(); // Fetching data
+        const response = await fetchUpcoming();
         if (Array.isArray(response)) {
           const today = new Date();
-          today.setHours(0, 0, 0, 0); // Start of today
-
-          // Filter matches with dates before or on today
+          today.setHours(0, 0, 0, 0);
           const recentResults = response.filter((item) => {
             const fixtureDate = new Date(item?.fixture?.date);
-            return fixtureDate <= today; // Include only events today or earlier
+            return fixtureDate <= today;
           });
 
-          // Sort by date in descending order to get the most recent first
           recentResults.sort((a, b) => {
             const aDate = new Date(a?.fixture?.date);
             const bDate = new Date(b?.fixture?.date);
-            return bDate - aDate; // Sort in descending order
+            return bDate - aDate;
           });
 
-          // Get the first three most recent matches
-          const topResults = recentResults.slice(0, 2); // Slice the first three results
+          const topResults = recentResults.slice(0, 2);
           const matchData = topResults.map((item) => ({
             awayTeam: item?.teams?.away?.name || "N/A",
             homeTeam: item?.teams?.home?.name || "N/A",
@@ -43,14 +39,13 @@ const ResultsCard = () => {
             fixtureDate: item?.fixture?.date,
           }));
 
-          setData(matchData); // Store the data
+          setData(matchData);
           localStorage.setItem("resultsData", JSON.stringify(matchData));
           localStorage.setItem("resultsLastFetch", Date.now().toString());
         } else {
           throw new Error("Unexpected response format");
         }
       } catch (err) {
-        console.error("Error fetching data:", err);
         setError(err.message || "An error occurred while fetching data.");
       } finally {
         setLoading(false);
@@ -59,22 +54,22 @@ const ResultsCard = () => {
 
     const checkLastFetchTime = () => {
       const lastFetch = parseInt(localStorage.getItem("resultsLastFetch"), 10);
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchResultsData(); // Fetch if last fetch was too long ago
+        fetchResultsData();
       } else {
         const storedData = localStorage.getItem("resultsData");
         if (storedData) {
-          setData(JSON.parse(storedData)); // Load existing data from local storage
+          setData(JSON.parse(storedData));
         }
-        setLoading(false); // Data is loaded, set loading to false
+        setLoading(false);
       }
     };
 
-    checkLastFetchTime(); // Check if we need to fetch new data when the component is mounted
-  }, []); // Ensure it runs once when the component is mounted
+    checkLastFetchTime();
+  }, []);
 
   if (loading) {
     return (
@@ -97,13 +92,12 @@ const ResultsCard = () => {
     );
   }
 
-  // Pass the match data to the Card component
   return (
     <Card
       title="Match Results"
       bgColor="#F6F6F6"
       textColor="#000000"
-      MatchResultArray={data} // Pass the array of match results
+      MatchResultArray={data}
     />
   );
 };

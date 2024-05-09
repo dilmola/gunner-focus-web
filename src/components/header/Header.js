@@ -1,5 +1,4 @@
 "use client";
-import Logo from "../../../public/logos/logo.png";
 import LogoBeta from "../../../public/logos/logo_beta.png";
 
 import Github from "../../../public/icons/github_icon.png";
