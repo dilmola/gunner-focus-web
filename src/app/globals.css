@@ -26,8 +26,30 @@ h2 {
   @apply text-h2Size; /* Use the custom size from Tailwind CSS config */
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth; /* Enables smooth scrolling for internal links */
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200; /* Background color of the scrollbar track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#e25a65] rounded-full; /* Scrollbar thumb styling */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#E63946]; /* Hover effect on the scrollbar thumb */
   }
 }

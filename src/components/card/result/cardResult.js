@@ -1,21 +1,3 @@
-/*import Card from "../card";
-
-const ResultsCard = () => {
-  return (
-    <Card
-      title="Results Match:"
-      bgColor="#F6F6F6"
-      textColor="#000000"
-      teams={["Arsenal", "Chelsea"]}
-      scores={[
-        [2, 2],
-        [1, 3],
-      ]}
-    />
-  );
-};
-
-export default ResultsCard;*/
 "use client";
 import React, { useEffect, useState } from "react";
 import Card from "../card";
@@ -76,10 +58,7 @@ const ResultsCard = () => {
     };
 
     const checkLastFetchTime = () => {
-      const lastFetch = parseInt(
-        localStorage.getItem("resultsLastFetch"),
-        10
-      );
+      const lastFetch = parseInt(localStorage.getItem("resultsLastFetch"), 10);
       const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
       const currentTime = Date.now();
 

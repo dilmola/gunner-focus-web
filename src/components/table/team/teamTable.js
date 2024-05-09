@@ -7,10 +7,12 @@ import CustomTable from "../Table";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css"; // Ensure this import is in place
 
+
 const TeamTablePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [scrollPos, setScrollPos] = useState(0);
 
   useEffect(() => {
     const fetchTeamsData = async () => {
@@ -23,7 +25,7 @@ const TeamTablePage = () => {
 
           localStorage.setItem("teamsData", JSON.stringify(formattedData)); // Store data
           localStorage.setItem("teamsLastFetch", Date.now()); // Store fetch time
-         setData(formattedData);
+          setData(formattedData);
         } else {
           throw new Error("Data is not in expected format");
         }
@@ -92,8 +94,7 @@ const TeamTablePage = () => {
 };
 
 const getColumns = () => [
-  { key: "player", label: "Player" },
-  { key: "nationality", label: "Nationality" },
+  { key: "photo", label: "Player" },
   { key: "position", label: "Position" },
 ];
 
@@ -104,8 +105,8 @@ const formatData = (team) => {
 
   return team.map((teamsPlayers) => {
     return {
+      photo: teamsPlayers?.photo ?? 0,
       player: teamsPlayers?.name ?? 0,
-      nationality: teamsPlayers?.name ?? 0,
       position: teamsPlayers?.position ?? 0,
     };
   });
