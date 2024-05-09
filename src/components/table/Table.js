@@ -43,7 +43,6 @@ const Table = ({ columns, data }) => {
                               : result === "L"
                               ? "bg-red-500"
                               : "";
-
                           return (
                             <div
                               key={index}
@@ -57,7 +56,7 @@ const Table = ({ columns, data }) => {
                         <img
                           src={row.photo}
                           alt={row[col.key]}
-                          className="w-8 h-8 rounded mr-3 bg-[#D9D9D9]"
+                          className="w-8 h-8 rounded mr-6 bg-[#D9D9D9]"
                         />
                         <span className="text-sm text-gray-800">
                           {row.player}

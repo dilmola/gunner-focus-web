@@ -135,8 +135,8 @@ const RankedTablePage = () => {
 
 const getColumns = () => [
   { key: "pos", label: "POS" },
-  { key: "logo" },
-  { key: "team", label: "Team" },
+  { key: "logo", label: "Team" },
+  { key: "team" },
   { key: "matchPlay", label: "MP" },
   { key: "win", label: "W" },
   { key: "draw", label: "D" },
