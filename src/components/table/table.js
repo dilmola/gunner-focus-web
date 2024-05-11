@@ -1,13 +1,4 @@
-import { useState } from "react";
-import ExpandButtonTable from "../button/buttonExpandTable";
-
-const Table = ({ columns, data }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
+const Table = ({ columns, data, isExpanded }) => {
   const tableHeight = isExpanded ? "auto" : "25rem";
 
   return (
@@ -79,12 +70,6 @@ const Table = ({ columns, data }) => {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="flex justify-center">
-        <ExpandButtonTable
-          isExpanded={isExpanded}
-          toggleExpand={toggleExpand}
-        />
       </div>
     </div>
   );

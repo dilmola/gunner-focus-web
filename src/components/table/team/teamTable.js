@@ -6,11 +6,16 @@ import CustomTable from "../table";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import ExpandButtonTable from "../../button/buttonExpandTable";
 
 const TeamTablePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   useEffect(() => {
     const fetchTeamsData = async () => {
@@ -81,10 +86,14 @@ const TeamTablePage = () => {
 
   return (
     <div>
-      <div className="flex mb-4 items-center">
+      <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold leading-4">Team</h2>
+        <ExpandButtonTable
+          isExpanded={isExpanded}
+          toggleExpand={toggleExpand}
+        />
       </div>
-      <CustomTable columns={getColumns()} data={data} />
+      <CustomTable data={data} columns={getColumns()} isExpanded={isExpanded} />
     </div>
   );
 };

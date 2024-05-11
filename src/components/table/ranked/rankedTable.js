@@ -7,14 +7,36 @@ import Arsenal from "../../../../public/img/arsenal.png";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import ExpandButtonTable from "../../button/buttonExpandTable";
+import Search from "../../search/search";
+import Sort from "../../../../public/icons/sort.png";
 
 const SPECIFIC_TEAM_ID = "Arsenal";
 
 const RankedTablePage = () => {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [teamRank, setTeamRank] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false); 
+  const [query, setQuery] = useState(""); 
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const filterData = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = data.filter((team) =>
+      team.team.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredData(filtered);
+  };
+
+  useEffect(() => {
+    filterData(query);
+  }, [query, data]);
 
   useEffect(() => {
     const fetchStandingsData = async () => {
@@ -34,6 +56,7 @@ const RankedTablePage = () => {
           localStorage.setItem("standingsData", JSON.stringify(formattedData));
           localStorage.setItem("standingsLastFetch", Date.now());
           setData(formattedData);
+          setFilteredData(formattedData);
         } else {
           throw new Error("Data is not in expected format");
         }
@@ -72,6 +95,8 @@ const RankedTablePage = () => {
     checkLastFetchTime();
   }, []);
 
+  const tableData = filteredData;
+
   if (loading) {
     return (
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
@@ -105,10 +130,14 @@ const RankedTablePage = () => {
 
   return (
     <div className="mb-20">
-      <div className="flex mb-4 items-center">
+      <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold leading-4">Ranked</h2>
+        <ExpandButtonTable
+          isExpanded={isExpanded}
+          toggleExpand={toggleExpand}
+        />
       </div>
-      <div className="rounded-lg overflow-hidden bg-[#F2F2F2] h-20 flex justify-between mb-2 p-8">
+      <div className="rounded-lg overflow-hidden bg-[#F2F2F2] h-20 flex justify-between mb-6 p-8">
         <div className="flex">
           <div className="flex items-center text-center md:px-3.5">
             <img src={Arsenal.src} alt="Arsenal" className="h-12" />
@@ -126,8 +155,23 @@ const RankedTablePage = () => {
           </h3>
         </div>
       </div>
+      <div className="flex justify-between items-center mx-auto px-8 w-full bg-[#F2F2F2] h-16 rounded-lg ">
+        <div className="w-full">
+          <Search query={query} setQuery={setQuery} />
+        </div>
+        <div className="flex-none ">
+          <button className=" bg-[#F2F2F2] rounded p-3 text-white font-semibold ml-2 flex border-[0.01rem] border-gray-300">
+            <img src={Sort.src} alt="sort" className="h-4 px-1 " />
+            <div className="px-2 text-black">SORT</div>
+          </button>
+        </div>
+      </div>
       <div>
-        <CustomTable data={data} columns={getColumns()} />
+        <CustomTable
+          data={tableData}
+          columns={getColumns()}
+          isExpanded={isExpanded}
+        />
       </div>
     </div>
   );
