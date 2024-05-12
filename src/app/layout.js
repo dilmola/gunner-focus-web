@@ -24,7 +24,9 @@ export default function RootLayout({ children }) {
         className={`${Nunito_Sans_init.className}text-[#242423] bg-[#E9E9E9] selection:bg-[#242423] selection:text-white `}
       >
         <Header />
-        <div className="px-36 py-4 mx-auto max-w-screen-xl container">{children}</div>
+        <div className="px-36 py-4 mx-auto max-w-screen-xl container">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

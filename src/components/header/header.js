@@ -3,6 +3,14 @@ import LogoBeta from "../../../public/logos/logo_beta.png";
 
 import Github from "../../../public/icons/github_icon.png";
 import Light from "../../../public/icons/light_icon.png";
+import BMAC from "../../../public/icons/bmac.png";
+
+import dynamic from "next/dynamic";
+
+const DynamicBuyMeCoffeeScript = dynamic(
+  () => import("../button/buttonBuyMeACoffee"),
+  { ssr: false }
+);
 
 const Navbar = () => {
   return (
@@ -13,6 +21,13 @@ const Navbar = () => {
             <img src={LogoBeta.src} alt="Logo" className="h-6 mr-2" />
           </div>
           <div className="flex justify-between">
+            <a
+              className="mr-4"
+              href="https://buymeacoffee.com/aidilmaula"
+              target="_blank"
+            >
+              <img src={BMAC.src} alt="BMAC" className="h-11" />
+            </a>
             <a
               className="bg-[#E63946] hover:bg-[#ee6055] text-white font-bold py-2 px-4 rounded mr-4"
               href="https://github.com/dilmola/arsenal-website"
