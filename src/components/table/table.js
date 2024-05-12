@@ -11,7 +11,7 @@ const Table = ({ columns, data, isExpanded }) => {
           <thead>
             <tr className="bg-[#F2F2F2] text-gray-800">
               {columns.map((col) => (
-                <th key={col.key} className="p-4 border-b-2 border-gray-300">
+                <th key={col.key} className="p-4 border-b-2 border-gray-300 font-normal text-slate-700/60">
                   {col.label}
                 </th>
               ))}
@@ -19,7 +19,7 @@ const Table = ({ columns, data, isExpanded }) => {
           </thead>
           <tbody>
             {data.map((row, rowIndex) => (
-              <tr key={rowIndex} className="bg-[#fafafa] text-gray-800">
+              <tr key={rowIndex} className="bg-[#fafafa] text-gray-800 font-semibold">
                 {columns.map((col) => (
                   <td key={col.key} className="p-4">
                     {col.key === "lastFive" &&

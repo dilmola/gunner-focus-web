@@ -4,11 +4,18 @@ import Card from "../card";
 import fetchUpcoming from "../../../app/utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
-const ResultsCard = () => {
+const ResultsCard = ({}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/matches');
+  };
 
   useEffect(() => {
     const fetchResultsData = async () => {
@@ -96,8 +103,10 @@ const ResultsCard = () => {
     <Card
       title="Match Results"
       bgColor="#F6F6F6"
+      hoverColor="#f9f9f9"
       textColor="#000000"
       MatchResultArray={data}
+      handleClick={handleClick}
     />
   );
 };

@@ -7,15 +7,33 @@ import CustomTable from "../table";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
+import Search from "../../search/search";
 
 const TeamTablePage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [query, setQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const filterData = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = data.filter(
+      (teamplayer) =>
+        teamplayer.player.toLowerCase().includes(lowerCaseQuery) ||
+        teamplayer.position.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredData(filtered);
+  };
+
+  useEffect(() => {
+    filterData(query);
+  }, [query, data]);
 
   useEffect(() => {
     const fetchTeamsData = async () => {
@@ -27,6 +45,7 @@ const TeamTablePage = () => {
           localStorage.setItem("teamsData", JSON.stringify(formattedData));
           localStorage.setItem("teamsLastFetch", Date.now());
           setData(formattedData);
+          setFilteredData(formattedData);
         } else {
           throw new Error("Data is not in expected format");
         }
@@ -55,6 +74,8 @@ const TeamTablePage = () => {
 
     checkLastFetchTime();
   }, []);
+
+  const tableData = filteredData;
 
   if (loading) {
     return (
@@ -93,7 +114,18 @@ const TeamTablePage = () => {
           toggleExpand={toggleExpand}
         />
       </div>
-      <CustomTable data={data} columns={getColumns()} isExpanded={isExpanded} />
+      <div className="flex justify-between items-center mx-auto px-8 w-full bg-[#F2F2F2] h-16 rounded-lg ">
+        <div className="w-full">
+          <Search query={query} setQuery={setQuery} />
+        </div>
+      </div>
+      <div>
+        <CustomTable
+          data={tableData}
+          columns={getColumns()}
+          isExpanded={isExpanded}
+        />
+      </div>
     </div>
   );
 };

@@ -4,11 +4,18 @@ import React, { useEffect, useState } from "react";
 import fetchUpcoming from "../../../app/utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
 const UpcomingCard = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/upcoming");
+  };
 
   useEffect(() => {
     const fetchUpcomingData = async () => {
@@ -112,6 +119,7 @@ const UpcomingCard = () => {
       <Card
         title="Upcoming Match:"
         bgColor="#E63946"
+        hoverColor="#e84c58"
         textColor="#FFFFFF"
         team1Logo={team1Logo}
         team2Logo={team2Logo}
@@ -119,6 +127,7 @@ const UpcomingCard = () => {
         team2={homeTeamName}
         date={matchDate}
         time={matchTime}
+        handleClick={handleClick}
       />
     </div>
   );

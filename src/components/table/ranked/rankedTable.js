@@ -9,7 +9,6 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import Search from "../../search/search";
-import Sort from "../../../../public/icons/sort.png";
 
 const SPECIFIC_TEAM_ID = "Arsenal";
 
@@ -19,8 +18,8 @@ const RankedTablePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [teamRank, setTeamRank] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false); 
-  const [query, setQuery] = useState(""); 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [query, setQuery] = useState("");
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -28,8 +27,17 @@ const RankedTablePage = () => {
 
   const filterData = (query) => {
     const lowerCaseQuery = query.toLowerCase();
-    const filtered = data.filter((team) =>
-      team.team.toLowerCase().includes(lowerCaseQuery)
+    const filtered = data.filter(
+      (team) =>
+        team.team.toLowerCase().includes(lowerCaseQuery) ||
+        team.matchPlay.toString().includes(lowerCaseQuery) ||
+        team.win.toString().includes(lowerCaseQuery) ||
+        team.draw.toString().includes(lowerCaseQuery) ||
+        team.lose.toString().includes(lowerCaseQuery) ||
+        team.goalFor.toString().includes(lowerCaseQuery) ||
+        team.goalAgainst.toString().includes(lowerCaseQuery) ||
+        team.goalDifferent.toString().includes(lowerCaseQuery) ||
+        team.points.toString().includes(lowerCaseQuery)
     );
     setFilteredData(filtered);
   };
@@ -158,12 +166,6 @@ const RankedTablePage = () => {
       <div className="flex justify-between items-center mx-auto px-8 w-full bg-[#F2F2F2] h-16 rounded-lg ">
         <div className="w-full">
           <Search query={query} setQuery={setQuery} />
-        </div>
-        <div className="flex-none ">
-          <button className=" bg-[#F2F2F2] rounded p-3 text-white font-semibold ml-2 flex border-[0.01rem] border-gray-300">
-            <img src={Sort.src} alt="sort" className="h-4 px-1 " />
-            <div className="px-2 text-black">SORT</div>
-          </button>
         </div>
       </div>
       <div>
