@@ -171,15 +171,16 @@ const RankedTablePage = () => {
       <div>
         <CustomTable
           data={tableData}
-          columns={getColumns()}
+          columns={getColumnsFromRanked()}
           isExpanded={isExpanded}
+          clickableColumns={false}
         />
       </div>
     </div>
   );
 };
 
-const getColumns = () => [
+const getColumnsFromRanked = () => [
   { key: "pos", label: "POS" },
   { key: "logo", label: "Team" },
   { key: "team" },

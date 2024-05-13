@@ -122,15 +122,16 @@ const TeamTablePage = () => {
       <div>
         <CustomTable
           data={tableData}
-          columns={getColumns()}
+          columns={getColumnsFromTeam()}
           isExpanded={isExpanded}
+          clickableColumns={true}
         />
       </div>
     </div>
   );
 };
 
-const getColumns = () => [
+const getColumnsFromTeam = () => [
   { key: "photo", label: "Player" },
   { key: "position", label: "Position" },
 ];
