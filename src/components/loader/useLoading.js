@@ -6,7 +6,9 @@ const useLoading = () => {
 
   useEffect(() => {
     const handleLoad = () => {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000); 
     };
 
     if (document.readyState === "complete") {
