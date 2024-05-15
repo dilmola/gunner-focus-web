@@ -4,20 +4,20 @@ import LogoBeta from "../../../public/logos/logo_beta.png";
 import Github from "../../../public/icons/github_icon.png";
 import Light from "../../../public/icons/light_icon.png";
 import BMAC from "../../../public/icons/bmac.png";
-
-import dynamic from "next/dynamic";
-
-const DynamicBuyMeCoffeeScript = dynamic(
-  () => import("../button/buttonBuyMeACoffee"),
-  { ssr: false }
-);
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/");
+  };
+
   return (
     <div className="border-b-2 border-slate-950/20">
       <div className="py-4 px-36 mx-auto max-w-screen-xl container">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={handleClick}>
             <img src={LogoBeta.src} alt="Logo" className="h-6 mr-2" />
           </div>
           <div className="flex justify-between">

@@ -114,18 +114,20 @@ const TeamTablePage = () => {
           toggleExpand={toggleExpand}
         />
       </div>
-      <div className="flex justify-between items-center mx-auto px-8 w-full bg-[#F2F2F2] h-16 rounded-lg ">
-        <div className="w-full">
-          <Search query={query} setQuery={setQuery} />
+      <div className="bg-[#F2F2F2] p-4 rounded-lg">
+        <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">
+          <div className="w-full">
+            <Search query={query} setQuery={setQuery} />
+          </div>
         </div>
-      </div>
-      <div>
-        <CustomTable
-          data={tableData}
-          columns={getColumnsFromTeam()}
-          isExpanded={isExpanded}
-          clickableColumns={true}
-        />
+        <div>
+          <CustomTable
+            data={tableData}
+            columns={getColumnsFromTeam()}
+            isExpanded={isExpanded}
+            clickableColumns={true}
+          />
+        </div>
       </div>
     </div>
   );
@@ -143,6 +145,7 @@ const formatData = (team) => {
 
   return team.map((teamsPlayers) => {
     return {
+      idPlayer: teamsPlayers?.id ?? 0,
       photo: teamsPlayers?.photo ?? 0,
       player: teamsPlayers?.name ?? 0,
       position: teamsPlayers?.position ?? 0,

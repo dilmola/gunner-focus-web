@@ -32,7 +32,7 @@ const Table = ({ columns, data, isExpanded, clickableColumns }) => {
   return (
     <div>
       <div
-        className="rounded-lg overflow-hidden border"
+        className="rounded-lg overflow-hidden "
         style={{ height: tableHeight }}
       >
         <table className="w-full border-collapse text-left text-sm text-gray-700">
@@ -102,7 +102,7 @@ const Table = ({ columns, data, isExpanded, clickableColumns }) => {
                       </div>
                     ) : col.key === "position" && seemoreArrow.src ? (
                       <div className="flex justify-between">
-                        <div className="px-4 font-semibold	">{row.position}</div>
+                        <div className="pr-4 font-semibold">{row.position}</div>
                         <div>
                           <img
                             src={seemoreArrow.src}
