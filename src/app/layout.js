@@ -7,6 +7,7 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import useLoading from "@/components/loader/useLoading"; // Adjust the import path based on your project structure
 import { metadata } from "@/app/metadata"; // Adjust the path as necessary
+import Navigation from "@/components/navigation/navigation";
 
 const Nunito_Sans_init = Nunito_Sans({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
   const isLoading = useLoading();
 
   return (
-    <html lang="en">
+    <html lang="en" className={Nunito_Sans_init.className}>
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         ) : (
           <>
             <Header />
+            <Navigation />
             <div className="px-36 py-4 mx-auto max-w-screen-xl container">
               {children}
             </div>

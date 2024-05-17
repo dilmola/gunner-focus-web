@@ -126,11 +126,10 @@ const Table = ({ columns, data, isExpanded, clickableColumns }) => {
         </table>
       </div>
       {isModalOpen && (
-        <Modal onClose={closeModal}>
+        <Modal onClose={closeModal} selectedRowData={selectedRowData}>
           {/* Content of the modal */}
           <div>
             <h2>Selected Row Data</h2>
-            <pre>{JSON.stringify(selectedRowData, null, 2)}</pre>
           </div>
         </Modal>
       )}
