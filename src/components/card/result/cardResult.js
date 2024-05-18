@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Card from "../card";
-import fetchUpcoming from "../../../app/utils/getFixtures";
+import fetchUpcoming from "../../../utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ const ResultsCard = ({}) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/matches');
+    router.push("/matches");
   };
 
   useEffect(() => {

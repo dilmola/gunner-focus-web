@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchTeams from "../../../app/utils/getTeams";
+import fetchTeams from "../../../utils/getTeams";
 import CustomTable from "../table";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -109,16 +109,16 @@ const TeamTablePage = () => {
     <div>
       <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold leading-4">Team</h2>
-        <ExpandButtonTable
-          isExpanded={isExpanded}
-          toggleExpand={toggleExpand}
-        />
       </div>
       <div className="bg-[#F2F2F2] p-4 rounded-lg">
         <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">
-          <div className="w-full">
+          <div className="w-10/12">
             <Search query={query} setQuery={setQuery} />
           </div>
+          <ExpandButtonTable
+            isExpanded={isExpanded}
+            toggleExpand={toggleExpand}
+          />
         </div>
         <div>
           <CustomTable

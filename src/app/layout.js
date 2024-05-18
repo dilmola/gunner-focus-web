@@ -1,12 +1,12 @@
 "use client";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import { metadata } from "@/app/metadata"; // Adjust the path as necessary
 
 import LoaderAnimation from "@/components/loader/loader";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import useLoading from "@/components/loader/useLoading"; // Adjust the import path based on your project structure
-import { metadata } from "@/app/metadata"; // Adjust the path as necessary
+import useLoading from "@/components/loader/useLoading"; 
 import Navigation from "@/components/navigation/navigation";
 
 const Nunito_Sans_init = Nunito_Sans({

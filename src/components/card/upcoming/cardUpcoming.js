@@ -1,7 +1,7 @@
 "use client";
 import Card from "../card";
 import React, { useEffect, useState } from "react";
-import fetchUpcoming from "../../../app/utils/getFixtures";
+import fetchUpcoming from "../../../utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";

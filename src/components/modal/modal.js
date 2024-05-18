@@ -1,8 +1,7 @@
 "use client";
 
-
 import { useState, useEffect, useRef } from "react";
-import fetchPlayer from "../../app/utils/getPlayer";
+import fetchPlayer from "../../utils/getPlayer";
 
 const Modal = ({ onClose, selectedRowData }) => {
   const modalRef = useRef();
@@ -17,7 +16,10 @@ const Modal = ({ onClose, selectedRowData }) => {
         const player = await fetchPlayer(playerId);
 
         localStorage.setItem(`playerData_${playerId}`, JSON.stringify(player));
-        localStorage.setItem(`playersLastFetchandId_${playerId}`, Date.now().toString());
+        localStorage.setItem(
+          `playersLastFetchandId_${playerId}`,
+          Date.now().toString()
+        );
         setPlayerData(player);
 
         setLoading(false);
@@ -29,7 +31,10 @@ const Modal = ({ onClose, selectedRowData }) => {
 
     const checkLastFetchTime = () => {
       const playerId = selectedRowData?.idPlayer;
-      const lastFetch = parseInt(localStorage.getItem(`playersLastFetchandId_${playerId}`), 10);
+      const lastFetch = parseInt(
+        localStorage.getItem(`playersLastFetchandId_${playerId}`),
+        10
+      );
       const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
       const currentTime = Date.now();
 
@@ -73,11 +78,24 @@ const Modal = ({ onClose, selectedRowData }) => {
             ) : (
               <div>
                 <div>ID: {playerData?.player?.id}</div>
-                <div>firstname: {playerData?.player?.firstname ?? "Age not available"}</div>
-                <div>lastname: {playerData?.player?.lastname ?? "Age not available"}</div>
-                <div>name: {playerData?.player?.name ?? "Age not available"}</div>
-                <div>nationality: {playerData?.player?.nationality ?? "Age not available"}</div>
-                <div>weight: {playerData?.player?.weight ?? "Age not available"}</div>
+                <div>
+                  firstname:{" "}
+                  {playerData?.player?.firstname ?? "Age not available"}
+                </div>
+                <div>
+                  lastname:{" "}
+                  {playerData?.player?.lastname ?? "Age not available"}
+                </div>
+                <div>
+                  name: {playerData?.player?.name ?? "Age not available"}
+                </div>
+                <div>
+                  nationality:{" "}
+                  {playerData?.player?.nationality ?? "Age not available"}
+                </div>
+                <div>
+                  weight: {playerData?.player?.weight ?? "Age not available"}
+                </div>
               </div>
             )}
           </div>

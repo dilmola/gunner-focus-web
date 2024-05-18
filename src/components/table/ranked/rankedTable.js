@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchStandings from "../../../app/utils/getStandings";
+import fetchStandings from "../../../utils/getStandings";
 import CustomTable from "../table";
 import Arsenal from "../../../../public/img/arsenal.png";
 
@@ -140,10 +140,6 @@ const RankedTablePage = () => {
     <div className="mb-20">
       <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold leading-4">Ranked</h2>
-        <ExpandButtonTable
-          isExpanded={isExpanded}
-          toggleExpand={toggleExpand}
-        />
       </div>
       <div className="bg-[#F2F2F2] p-4 rounded-lg">
         <div className="rounded-lg overflow-hidden bg-[#eaeaea] h-20 flex justify-between mb-6 p-8">
@@ -165,9 +161,13 @@ const RankedTablePage = () => {
           </div>
         </div>
         <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">
-          <div className="w-full">
+          <div className="w-10/12">
             <Search query={query} setQuery={setQuery} />
           </div>
+          <ExpandButtonTable
+            isExpanded={isExpanded}
+            toggleExpand={toggleExpand}
+          />
         </div>
         <div>
           <CustomTable

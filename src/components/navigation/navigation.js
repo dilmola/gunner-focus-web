@@ -2,6 +2,10 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import home from "../../../public/icons/home.png";
+import club from "../../../public/icons/club.png";
+import upcoming from "../../../public/icons/upcoming.png";
+import result from "../../../public/icons/result.png";
+import player from "../../../public/icons/player.png";
 
 const Navbar = () => {
   const router = useRouter();
@@ -13,14 +17,14 @@ const Navbar = () => {
 
   return (
     <div className="py-4 px-36 mx-auto max-w-screen-xl container">
-      <ul className="flex flex-wrap justify-between	text-sm font-medium text-center text-gray-500">
-        <li className="me-2">
+      <ul className="flex flex-wrap justify-between	text-sm font-medium text-center text-gray-500 border-b-2 border-opacity-20	 border-gray-600">
+        <li>
           <a
             onClick={() => handleNavigation("/")}
-            className={`inline-block p-4 rounded-lg cursor-pointer ${
+            className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
               pathname === "/"
-                ? "bg-orange-500 text-white"
-                : "hover:text-gray-600 hover:bg-gray-50"
+                ? "font-semibold text-black border-b-2 border-[#E63946]"
+                : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
             <div className="flex h-4 ">
@@ -29,62 +33,62 @@ const Navbar = () => {
             </div>
           </a>
         </li>
-        <li className="me-2">
+        <li>
           <a
-            onClick={() => handleNavigation("/test")}
-            className={`inline-block p-4 rounded-lg cursor-pointer ${
-              pathname === "/test"
-                ? "bg-orange-500 text-white"
-                : "hover:text-gray-600 hover:bg-gray-50"
+            onClick={() => handleNavigation("/club")}
+            className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
+              pathname === "/club"
+                ? "font-semibold text-black border-b-2 border-[#E63946]"
+                : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
             <div className="flex h-4 ">
-              <img src={home.src} alt="home" className="pr-2" />
-              <span>About</span>
+              <img src={club.src} alt="club" className="pr-2" />
+              <span>Club</span>
             </div>
           </a>
         </li>
-        <li className="me-2">
+        <li>
           <a
             onClick={() => handleNavigation("/upcoming")}
-            className={`inline-block p-4 rounded-lg cursor-pointer ${
+            className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
               pathname === "/upcoming"
-                ? "bg-orange-500 text-white"
-                : "hover:text-gray-600 hover:bg-gray-50"
+                ? "font-semibold text-black border-b-2 border-[#E63946]"
+                : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
             <div className="flex h-4 ">
-              <img src={home.src} alt="home" className="pr-2" />
+              <img src={upcoming.src} alt="upcoming" className="pr-2" />
               <span> Upcoming matches</span>
             </div>
           </a>
         </li>
-        <li className="me-2">
+        <li>
           <a
             onClick={() => handleNavigation("/matches")}
-            className={`inline-block p-4 rounded-lg cursor-pointer ${
+            className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
               pathname === "/matches"
-                ? "bg-orange-500 text-white"
-                : "hover:text-gray-600 hover:bg-gray-50"
+                ? "font-semibold text-black border-b-2 border-[#E63946]"
+                : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
             <div className="flex h-4 ">
-              <img src={home.src} alt="home" className="pr-2" />
-              <span> Match results</span>
+              <img src={result.src} alt="result" className="pr-2" />
+              <span>Match results</span>
             </div>
           </a>
         </li>
-        <li className="me-2">
+        <li>
           <a
             onClick={() => handleNavigation("/player")}
-            className={`inline-block p-4 rounded-lg cursor-pointer ${
+            className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
               pathname === "/player"
-                ? "bg-orange-500 text-white"
-                : "hover:text-gray-600 hover:bg-gray-50"
+                ? "font-semibold text-black border-b-2 border-[#E63946]"
+                : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
             <div className="flex h-4 ">
-              <img src={home.src} alt="home" className="pr-2" />
+              <img src={player.src} alt="player" className="pr-2" />
               <span>Player</span>
             </div>
           </a>
