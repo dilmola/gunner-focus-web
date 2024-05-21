@@ -70,13 +70,13 @@ const Modal = ({ onClose, selectedRowData }) => {
       <div className="absolute inset-0 bg-gray-500 opacity-65"></div>
       <div className="p-8 rounded z-50 px-36 py-4 mx-auto max-w-screen-xl container">
         <div ref={modalRef} className="bg-[#E63946] rounded-lg p-5">
-          <div className="mt-4">
+          <div>
             {loading ? (
-              <div>Loading...</div>
+              <div className="w-4 h-4 border-2 border-t-2 border-gray-200 border-t-black rounded-full spin"></div>
             ) : error ? (
               <div>Error: {error}</div>
             ) : (
-              <div>
+              <div className="mt-4">
                 <div>ID: {playerData?.player?.id}</div>
                 <div>
                   firstname:{" "}

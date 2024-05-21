@@ -29,14 +29,14 @@ const Header = () => {
               <img src={BMAC.src} alt="BMAC" className="h-11" />
             </a>
             <a
-              className="bg-[#E63946] hover:bg-[#ee6055] text-white font-bold py-2 px-4 rounded mr-4"
+              className="bg-[#E63946] hover:bg-[#ee6055] text-white font-bold py-2 px-4 rounded mr-4 flex items-center"
               href="https://github.com/dilmola/arsenal-website"
               target="_blank"
             >
-              <img src={Github.src} alt="Github" className="h-6" />
+              <img src={Github.src} alt="Github" className="h-5" />
             </a>
-            <a className="bg-[#17263b] hover:bg-[#213551] text-white font-bold py-2 px-4 rounded">
-              <img src={Light.src} alt="Github" className="h-5" />
+            <a className="bg-[#17263b] hover:bg-[#213551] text-white font-bold py-2 px-4 rounded flex items-center cursor-pointer">
+              <img src={Light.src} alt="Github" className="h-4" />
             </a>
           </div>
         </div>

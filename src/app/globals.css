@@ -46,10 +46,23 @@ h2 {
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-[#e25a65] rounded-full; /* Scrollbar thumb styling */
+    @apply bg-[#9f9d9d] rounded-full; /* Scrollbar thumb styling */
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-[#E63946]; /* Hover effect on the scrollbar thumb */
+    @apply bg-[#807e7e]; /* Hover effect on the scrollbar thumb */
   }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
 }

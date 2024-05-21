@@ -45,9 +45,9 @@ const Card = ({
       >
         <div className="px-4 py-4 h-[12.5rem]">
           <div className="flex flex-col items-center">
-            <div className="font-bold uppercase mb-8">{title} </div>
+            <div className="font-bold uppercase mb-8">{title}</div>
           </div>
-          {MatchResultArray ? (
+          {MatchResultArray && MatchResultArray.length > 0 ? (
             <div className="grid grid-flow-row gap-3">
               {MatchResultArray.map((result, index) => (
                 <div
@@ -117,34 +117,14 @@ const Card = ({
               ))}
             </div>
           ) : (
-            <div>
-              <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
-                <div className="w-20">
-                  <div className="flex justify-center mb-4">
-                    <img src={team1Logo} alt={team1} className="h-14" />
-                  </div>
-                  <h3 className="text-center font-semibold">{team1}</h3>
-                </div>
-                <div className="flex flex-col	">
-                  <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
-                    {date}
-                  </p>
-                  <p className="text-center py-1">VS</p>
-                  <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
-                    {time}
-                  </p>
-                </div>
-                <div className="w-20">
-                  <div className="flex justify-center mb-4">
-                    <img src={team2Logo} alt={team2} className="h-14" />
-                  </div>
-                  <h3 className="text-center font-semibold">{team2}</h3>
-                </div>
+            <div className="flex items-center justify-center">
+              <div className="text-center">
+                <p className="text-xl font-bold">Season Break</p>
               </div>
             </div>
           )}
         </div>
-        <div className="absolute px-4 font-semibold	" style={seeMoreStyles}>
+        <div className="absolute px-4 font-semibold" style={seeMoreStyles}>
           <span>See more</span>
         </div>
       </div>

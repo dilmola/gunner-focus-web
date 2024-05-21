@@ -96,10 +96,6 @@ const UpcomingCard = () => {
     );
   }
 
-  if (data.length === 0) {
-    return <div>No upcoming fixtures available</div>;
-  }
-
   const team1Logo = data?.teams?.away?.logo || "N/A";
   const team2Logo = data?.teams?.home?.logo || "N/A";
   const awayTeamName = data?.teams?.away?.name || "N/A";
