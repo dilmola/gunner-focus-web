@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import fetchStandings from "../../../utils/getStandings";
 import CustomTable from "../table";
-import Arsenal from "../../../../public/img/arsenal.png";
+import Arsenal from "../../../../public/img/arsenal_img.png";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
