@@ -6,7 +6,7 @@ import Home from "../../../public/img/home_img.png";
 import Away from "../../../public/img/away_img.png";
 import Third from "../../../public/img/third_img.png";
 import Trophy from "../../../public/icons/trophy.png";
-import Map from "../../components/Map/map";
+// import Map from "../../components/Map/map";
 
 export default function ClubPage() {
   return (
@@ -190,7 +190,7 @@ export default function ClubPage() {
         <div className="rounded-lg overflow-hidden">
           <div className="h-72">
             <div className="flex items-center justify-center">
-              <Map />
+              {/* <Map /> */}
             </div>
           </div>
         </div>
