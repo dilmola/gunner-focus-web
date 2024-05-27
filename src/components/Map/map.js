@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import mapStyles from "../Map/map.json"; // Import the JSON object
+import mapStyles from "../Map/map.json"; 
 
 function Map() {
   useEffect(() => {

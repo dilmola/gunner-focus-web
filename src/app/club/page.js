@@ -190,7 +190,7 @@ export default function ClubPage() {
         <div className="rounded-lg overflow-hidden">
           <div className="h-72">
             <div className="flex items-center justify-center">
-              {/* <Map /> */}
+              <Map />
             </div>
           </div>
         </div>
