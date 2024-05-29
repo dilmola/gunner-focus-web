@@ -109,6 +109,7 @@ const UpcomingCard = () => {
         minute: "2-digit",
       })
     : "N/A";
+  const nameStadium = data?.teams?.home?.name || "N/A";
 
   return (
     <div>
@@ -147,7 +148,7 @@ const UpcomingCard = () => {
           ) : (
             <div className="flex items-center justify-center">
               <div className="text-center">
-                <p className="text-xl font-bold">No Games</p>
+                <p className="text-xl font-bold">Season Break</p>
               </div>
             </div>
           )}

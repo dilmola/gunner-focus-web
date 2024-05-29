@@ -82,7 +82,7 @@ const TeamTablePage = () => {
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
         <div className="mb-20">
           <div className="flex mb-4 items-center">
-            <h2 className="uppercase font-semibold leading-4">Team</h2>
+            <h2 className="uppercase font-semibold">Team</h2>
           </div>
           <div className="mb-6">
             <Skeleton height={300} className="rounded-md" />
@@ -96,7 +96,7 @@ const TeamTablePage = () => {
     return (
       <div>
         <div className="flex mb-4 items-center">
-          <h2 className="uppercase font-semibold leading-4">Team</h2>
+          <h2 className="uppercase font-semibold">Team</h2>
         </div>
         <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
           <strong>Error:</strong> {error}
@@ -108,7 +108,7 @@ const TeamTablePage = () => {
   return (
     <div>
       <div className="flex mb-4 items-center justify-between">
-        <h2 className="uppercase font-semibold leading-4">Team</h2>
+        <h2 className="uppercase font-semibold">Team</h2>
       </div>
       <div className="bg-[#F2F2F2] p-4 rounded-lg">
         <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">

@@ -110,7 +110,7 @@ const RankedTablePage = () => {
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
         <div className="mb-20">
           <div className="flex mb-4 items-center">
-            <h2 className="uppercase font-semibold leading-4">Ranked</h2>
+            <h2 className="uppercase font-semibold">Ranked</h2>
           </div>
           <div className="mb-4">
             <Skeleton height={100} />
@@ -127,7 +127,7 @@ const RankedTablePage = () => {
     return (
       <div>
         <div className="flex mb-4 items-center">
-          <h2 className="uppercase font-semibold leading-4">Ranked</h2>
+          <h2 className="uppercase font-semibold">Ranked</h2>
         </div>
         <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
           <strong>Error:</strong> {error}
@@ -139,7 +139,7 @@ const RankedTablePage = () => {
   return (
     <div className="mb-20">
       <div className="flex mb-4 items-center justify-between">
-        <h2 className="uppercase font-semibold leading-4">Ranked</h2>
+        <h2 className="uppercase font-semibold">Ranked</h2>
       </div>
       <div className="bg-[#F2F2F2] p-4 rounded-lg">
         <div className="rounded-lg overflow-hidden bg-[#eaeaea] h-20 flex justify-between mb-6 p-8">

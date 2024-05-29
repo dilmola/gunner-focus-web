@@ -2,17 +2,12 @@
 import React, { useState } from "react";
 
 const Card = ({
+  children,
+  
   title,
   bgColor,
   textColor,
   hoverColor,
-  team1Logo,
-  team2Logo,
-  team1,
-  team2,
-  date,
-  time,
-  MatchResultArray,
   handleClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -47,82 +42,7 @@ const Card = ({
           <div className="flex flex-col items-center">
             <div className="font-bold uppercase mb-8">{title}</div>
           </div>
-          {MatchResultArray && MatchResultArray.length > 0 ? (
-            <div className="grid grid-flow-row gap-3">
-              {MatchResultArray.map((result, index) => (
-                <div
-                  key={index}
-                  className="justify-between grid grid-flow-col place-items-center"
-                >
-                  {result.homeTeam !== "Arsenal" && (
-                    <>
-                      <div className="grid grid-flow-col px-8">
-                        <div className="mr-4">
-                          <img
-                            src={result.homeLogo}
-                            alt={result.homeTeam}
-                            className="h-12"
-                          />
-                        </div>
-                        <h3 className="flex items-center text-center font-semibold">
-                          {result.homeTeam}
-                        </h3>
-                      </div>
-                      <div className="px-8">
-                        <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                          <h4 className="text-4xl font-bold text-gray-600">
-                            {result.homeGoals}
-                          </h4>
-                          <span className="mx-2 text-4xl font-bold text-gray-600">
-                            -
-                          </span>
-                          <h4 className="text-4xl font-bold text-gray-600">
-                            {result.awayGoals}
-                          </h4>
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {result.awayTeam !== "Arsenal" && (
-                    <>
-                      <div className="grid grid-flow-col px-8">
-                        <div className="mr-4">
-                          <img
-                            src={result.awayLogo}
-                            alt={result.awayTeam}
-                            className="h-12"
-                          />
-                        </div>
-                        <h3 className="flex items-center text-center font-semibold">
-                          {result.awayTeam}
-                        </h3>
-                      </div>
-                      <div className="px-8">
-                        <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                          <h4 className="text-4xl font-bold text-gray-600">
-                            {result.awayGoals}
-                          </h4>
-                          <span className="mx-2 text-4xl font-bold text-gray-600">
-                            -
-                          </span>
-                          <h4 className="text-4xl font-bold text-gray-600">
-                            {result.homeGoals}
-                          </h4>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-xl font-bold">Season Break</p>
-              </div>
-            </div>
-          )}
+          {children}
         </div>
         <div className="absolute px-4 font-semibold" style={seeMoreStyles}>
           <span>See more</span>
