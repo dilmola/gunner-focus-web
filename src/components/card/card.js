@@ -3,21 +3,32 @@ import React, { useState } from "react";
 
 const Card = ({
   children,
-  
   title,
   bgColor,
   textColor,
   hoverColor,
+  hoverCondition,
   handleClick,
+  handleClickCondition,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleCardClick = () => {
+    if (handleClickCondition) {
+      handleClick();
+    }
+  };
+
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (hoverCondition) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (hoverCondition) {
+      setIsHovered(false);
+    }
   };
 
   const hoverStyles = isHovered
@@ -34,7 +45,7 @@ const Card = ({
       <div
         className="rounded-lg h-[14.5rem] overflow-y-auto"
         style={{ color: textColor, backgroundColor: bgColor, ...hoverStyles }}
-        onClick={handleClick}
+        onClick={handleCardClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

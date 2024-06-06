@@ -3,7 +3,7 @@
 import Sort from "../../../public/icons/sort.png";
 import React, { useState, useEffect, useRef } from "react";
 
-const SortButton = () => {
+const FilterButton = ({ setFilter }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -24,6 +24,11 @@ const SortButton = () => {
     setShowDropdown(!showDropdown);
   };
 
+  const handleFilterChange = (filter) => {
+    setFilter(filter);
+    setShowDropdown(false);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -31,29 +36,30 @@ const SortButton = () => {
         onClick={toggleDropdown}
       >
         <img src={Sort.src} alt="sort" className="h-4 px-1" />
-        <div className="px-2 text-black uppercase">Sort</div>
+        <div className="px-2 text-black uppercase">Filter</div>
       </button>
       {showDropdown && (
-        <div className="absolute top-full left-0 w-40 bg-white border border-gray-300 rounded shadow-lg ml-2">
+        <div className="absolute top-full left-0 w-max bg-white border border-gray-300 rounded shadow-lg ml-2">
           <div className="p-2">
-            <div
-              className="cursor-pointer hover:bg-gray-200 p-2 rounded"
-              onClick={toggleDropdown}
-            >
-              By Team
-            </div>
-            <div
-              className="cursor-pointer hover:bg-gray-200 p-2 rounded"
-              onClick={toggleDropdown}
-            >
-              By Team
-            </div>
-            <div
-              className="cursor-pointer hover:bg-gray-200 p-2 rounded"
-              onClick={toggleDropdown}
-            >
-              By Team
-            </div>
+            {[
+              "By Win",
+              "By Draw",
+              "By Lost",
+              "By Premier League",
+              "By UEFA Champions League",
+              "By FA Cup",
+              "By Emirates Cup",
+              "By Friendlies Clubs",
+              "By League Cup",
+            ].map((filterOption) => (
+              <button
+                key={filterOption}
+                className="block px-4 py-2 text-left w-full hover:bg-gray-100"
+                onClick={() => handleFilterChange(filterOption)}
+              >
+                {filterOption}
+              </button>
+            ))}
           </div>
         </div>
       )}
@@ -61,4 +67,4 @@ const SortButton = () => {
   );
 };
 
-export default SortButton;
+export default FilterButton;

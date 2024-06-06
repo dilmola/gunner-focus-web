@@ -1,12 +1,11 @@
 import search from "../../../public/icons/search.png";
 
-const Search = ({ query, setQuery, onSearch }) => {
+const Search = ({ query, setQuery}) => {
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
   return (
-    <div>
       <div className="relative flex">
         <input
           type="text"
@@ -19,7 +18,6 @@ const Search = ({ query, setQuery, onSearch }) => {
           <img src={search.src} alt="search" className="h-4" />
         </div>
       </div>
-    </div>
   );
 };
 

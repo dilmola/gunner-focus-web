@@ -6,8 +6,9 @@ import { metadata } from "@/app/metadata"; // Adjust the path as necessary
 import LoaderAnimation from "@/components/loader/loader";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import useLoading from "@/components/loader/useLoading"; 
+import useLoading from "@/components/loader/useLoading";
 import Navigation from "@/components/navigation/navigation";
+import { DataProvider } from '../context/resultContext';
 
 const Nunito_Sans_init = Nunito_Sans({
   subsets: ["latin"],
@@ -18,28 +19,30 @@ export default function RootLayout({ children }) {
   const isLoading = useLoading();
 
   return (
-    <html lang="en" className={Nunito_Sans_init.className}>
-      <head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <link rel="icon" href={metadata.icons.icon} />
-      </head>
-      <body
-        className={`text-[#242423] bg-[#E9E9E9] selection:bg-[#242423] selection:text-white `}
-      >
-        {isLoading ? (
-          <LoaderAnimation />
-        ) : (
-          <>
-            <Header />
-            <Navigation />
-            <div className="px-36 py-4 mx-auto max-w-screen-xl container">
-              {children}
-            </div>
-            <Footer />
-          </>
-        )}
-      </body>
-    </html>
+    <DataProvider>
+      <html lang="en" className={Nunito_Sans_init.className}>
+        <head>
+          <title>{metadata.title}</title>
+          <meta name="description" content={metadata.description} />
+          <link rel="icon" href={metadata.icons.icon} />
+        </head>
+        <body
+          className={`text-[#242423] bg-[#E9E9E9] selection:bg-[#242423] selection:text-white `}
+        >
+          {isLoading ? (
+            <LoaderAnimation />
+          ) : (
+            <>
+              <Header />
+              <Navigation />
+              <div className="px-28 py-4 mx-auto max-w-screen-xl container">
+                {children}
+              </div>
+              <Footer />
+            </>
+          )}
+        </body>
+      </html>
+    </DataProvider>
   );
 }

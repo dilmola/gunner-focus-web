@@ -8,7 +8,7 @@ import Arsenal from "../../../../public/img/arsenal_img.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
-import Search from "../../search/search";
+import Search from "../../filterBar/search";
 
 const SPECIFIC_TEAM_ID = "Arsenal";
 

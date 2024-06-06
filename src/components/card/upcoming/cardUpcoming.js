@@ -118,6 +118,8 @@ const UpcomingCard = () => {
         hoverColor="#e84c58"
         textColor="#FFFFFF"
         handleClick={handleClick}
+        handleClickCondition={true}
+        hoverCondition={true}
       >
         <>
           {data ? (

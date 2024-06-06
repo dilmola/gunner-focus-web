@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="py-4 px-36 mx-auto max-w-screen-xl container mb-10">
+    <div className="py-4 px-28 mx-auto max-w-screen-xl container mb-10">
       <ul className="flex flex-wrap justify-between	text-sm font-medium text-center text-gray-500 border-b-2 border-opacity-20	 border-gray-600">
         <li>
           <a

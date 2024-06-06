@@ -5,9 +5,10 @@ import fetchUpcoming from "../../../utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
+import { useData } from "../../../context/resultContext";
 
 const ResultsCard = ({}) => {
-  const [data, setData] = useState([]);
+  const { data, setData } = useData();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -35,8 +36,7 @@ const ResultsCard = ({}) => {
             return bDate - aDate;
           });
 
-          const topResults = recentResults.slice(0, 2);
-          const matchData = topResults.map((item) => ({
+          const matchData = recentResults.map((item) => ({
             awayTeam: item?.teams?.away?.name || "N/A",
             homeTeam: item?.teams?.home?.name || "N/A",
             awayLogo: item?.teams?.away?.logo || "",
@@ -44,6 +44,11 @@ const ResultsCard = ({}) => {
             awayGoals: item?.goals?.away || 0,
             homeGoals: item?.goals?.home || 0,
             fixtureDate: item?.fixture?.date,
+            statusMatch: item?.fixture?.status?.long,
+            nameOfMatch: item?.league?.name,
+
+            teamHomeResult: item?.teams?.home?.winner,
+            teamAwayResult: item?.teams?.away?.winner,
           }));
 
           setData(matchData);
@@ -106,9 +111,11 @@ const ResultsCard = ({}) => {
       hoverColor="#f9f9f9"
       textColor="#000000"
       handleClick={handleClick}
+      handleClickCondition={true}
+      hoverCondition={true}
     >
       <div className="grid grid-flow-row gap-3">
-        {data.map((result, index) => (
+        {data.slice(0, 2).map((result, index) => (
           <div
             key={index}
             className="justify-between grid grid-flow-col place-items-center"

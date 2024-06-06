@@ -1,182 +1,230 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import Card from "../card";
-import fetchUpcoming from "../../../utils/getFixtures";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useRouter } from "next/navigation";
+import { useData } from "../../../context/resultContext";
+import Search from "../../filterBar/search";
+import FilterButton from "../../button/buttonFilter";
+import ExpandButtonTable from "../../button/buttonExpandTable";
 
-const ResultsCard = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ResultsCardDetails = ({}) => {
+  const { data } = useData();
+  const [query, setQuery] = useState("");
+  const [filteredData, setFilteredData] = useState({});
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [filter, setFilter] = useState("");
 
-  const router = useRouter();
+  const groupDataByMonth = (data) => {
+    const groupedData = {};
 
-  const handleClick = () => {
-    router.push("/matches");
+    data.forEach((result) => {
+      const fixtureDate = new Date(result.fixtureDate);
+      const month = fixtureDate.toLocaleString("en-US", { month: "long" });
+      const year = fixtureDate.getFullYear();
+      const monthYear = `${month} ${year}`;
+
+      const matchDate = result?.fixtureDate
+        ? new Date(result.fixtureDate)
+            .toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })
+            .replace(/\//g, ".")
+        : "N/A";
+
+      if (!groupedData[monthYear]) {
+        groupedData[monthYear] = [];
+      }
+
+      groupedData[monthYear].push({
+        ...result,
+        matchDate: matchDate,
+      });
+    });
+
+    return groupedData;
+  };
+
+  const groupedData = groupDataByMonth(data);
+  const sortedMonths = Object.keys(groupedData).sort(
+    (a, b) => new Date(b) - new Date(a)
+  );
+  const latestTwoMonths = sortedMonths.slice(0, 2);
+
+  const filterData = (query, data, filter) => {
+    let filtered = {};
+
+    if (query) {
+      const queryLower = query.toLowerCase();
+      filtered = Object.entries(data).reduce((acc, [monthYear, results]) => {
+        const filteredResults = results.filter(
+          (result) =>
+            result.awayTeam.toLowerCase().includes(queryLower) ||
+            result.homeTeam.toLowerCase().includes(queryLower) ||
+            result.matchDate.includes(query) ||
+            result.nameOfMatch.toLowerCase().includes(queryLower)
+        );
+
+        if (filteredResults.length) {
+          acc[monthYear] = filteredResults;
+        }
+        return acc;
+      }, {});
+    } else {
+      filtered = data;
+    }
+
+    if (filter) {
+      filtered = Object.entries(filtered).reduce((acc, [monthYear, results]) => {
+        const filteredResults = results.filter((result) => {
+          switch (filter) {
+            case "By Win":
+              return (
+                (result.teamHomeResult === true &&
+                  result.homeTeam.toLowerCase() === "arsenal") ||
+                (result.teamAwayResult === true &&
+                  result.awayTeam.toLowerCase() === "arsenal")
+              );
+            case "By Draw":
+              return (
+                (result.teamHomeResult === null &&
+                  result.homeTeam.toLowerCase() === "arsenal") ||
+                (result.teamAwayResult === null &&
+                  result.awayTeam.toLowerCase() === "arsenal")
+              );
+            case "By Lost":
+              return (
+                (result.teamHomeResult === false &&
+                  result.homeTeam.toLowerCase() === "arsenal") ||
+                (result.teamAwayResult === false &&
+                  result.awayTeam.toLowerCase() === "arsenal")
+              );
+            case "By Premier League":
+              return result.nameOfMatch.toLowerCase() === "premier league";
+            case "By UEFA Champions League":
+              return (
+                result.nameOfMatch.toLowerCase() === "uefa champions league"
+              );
+            case "By FA Cup":
+              return result.nameOfMatch.toLowerCase() === "fa cup";
+            case "By Emirates Cup":
+              return result.nameOfMatch.toLowerCase() === "emirates cup";
+            case "By Friendlies Clubs":
+              return result.nameOfMatch.toLowerCase() === "friendlies clubs";
+            case "By League Cup":
+              return result.nameOfMatch.toLowerCase() === "league cup";
+            default:
+              return true;
+          }
+        });
+
+        if (filteredResults.length) {
+          acc[monthYear] = filteredResults;
+        }
+        return acc;
+      }, {});
+    }
+
+    return filtered;
   };
 
   useEffect(() => {
-    const fetchResultsData = async () => {
-      try {
-        const response = await fetchUpcoming();
-        if (Array.isArray(response)) {
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          const recentResults = response.filter((item) => {
-            const fixtureDate = new Date(item?.fixture?.date);
-            return fixtureDate <= today;
-          });
+    const dataToFilter = isExpanded
+      ? groupedData
+      : latestTwoMonths.reduce((acc, monthYear) => {
+          acc[monthYear] = groupedData[monthYear];
+          return acc;
+        }, {});
 
-          recentResults.sort((a, b) => {
-            const aDate = new Date(a?.fixture?.date);
-            const bDate = new Date(b?.fixture?.date);
-            return bDate - aDate;
-          });
+    setFilteredData(filterData(query, dataToFilter, filter));
+  }, [query, data, isExpanded, filter]);
 
-          const topResults = recentResults.slice(0, 2);
-          const matchData = topResults.map((item) => ({
-            awayTeam: item?.teams?.away?.name || "N/A",
-            homeTeam: item?.teams?.home?.name || "N/A",
-            awayLogo: item?.teams?.away?.logo || "",
-            homeLogo: item?.teams?.home?.logo || "",
-            awayGoals: item?.goals?.away || 0,
-            homeGoals: item?.goals?.home || 0,
-            fixtureDate: item?.fixture?.date,
-          }));
-
-          setData(matchData);
-          localStorage.setItem("resultsData", JSON.stringify(matchData));
-          localStorage.setItem("resultsLastFetch", Date.now().toString());
-        } else {
-          throw new Error("Unexpected response format");
-        }
-      } catch (err) {
-        setError(err.message || "An error occurred while fetching data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const checkLastFetchTime = () => {
-      const lastFetch = parseInt(localStorage.getItem("resultsLastFetch"), 10);
-      const fetchInterval = 12 * 60 * 60 * 1000;
-      const currentTime = Date.now();
-
-      if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchResultsData();
-      } else {
-        const storedData = localStorage.getItem("resultsData");
-        if (storedData) {
-          setData(JSON.parse(storedData));
-        }
-        setLoading(false);
-      }
-    };
-
-    checkLastFetchTime();
-  }, []);
-
-  if (loading) {
-    return (
-      <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
-        <Skeleton height={228} />
-      </SkeletonTheme>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        <h3 className="flex items-center text-center uppercase font-semibold">
-          Error
-        </h3>
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
-          <strong>Error:</strong> {error}
-        </div>
-      </div>
-    );
-  }
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
-    <Card
-      title="Match Results"
-      bgColor="#F6F6F6"
-      hoverColor="#f9f9f9"
-      textColor="#000000"
-      handleClick={handleClick}
-    >
-      <div className="grid grid-flow-row gap-3">
-        {data.map((result, index) => (
-          <div
-            key={index}
-            className="justify-between grid grid-flow-col place-items-center"
-          >
-            {result.homeTeam !== "Arsenal" && (
-              <>
-                <div className="grid grid-flow-col px-8">
-                  <div className="mr-4">
-                    <img
-                      src={result.homeLogo}
-                      alt={result.homeTeam}
-                      className="h-12"
-                    />
-                  </div>
-                  <h3 className="flex items-center text-center font-semibold">
-                    {result.homeTeam}
-                  </h3>
-                </div>
-                <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                    <h4 className="text-4xl font-bold text-gray-600">
-                      {result.homeGoals}
-                    </h4>
-                    <span className="mx-2 text-4xl font-bold text-gray-600">
-                      -
-                    </span>
-                    <h4 className="text-4xl font-bold text-gray-600">
-                      {result.awayGoals}
-                    </h4>
-                  </div>
-                </div>
-              </>
-            )}
-
-            {result.awayTeam !== "Arsenal" && (
-              <>
-                <div className="grid grid-flow-col px-8">
-                  <div className="mr-4">
-                    <img
-                      src={result.awayLogo}
-                      alt={result.awayTeam}
-                      className="h-12"
-                    />
-                  </div>
-                  <h3 className="flex items-center text-center font-semibold">
-                    {result.awayTeam}
-                  </h3>
-                </div>
-                <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                    <h4 className="text-4xl font-bold text-gray-600">
-                      {result.awayGoals}
-                    </h4>
-                    <span className="mx-2 text-4xl font-bold text-gray-600">
-                      -
-                    </span>
-                    <h4 className="text-4xl font-bold text-gray-600">
-                      {result.homeGoals}
-                    </h4>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+    <>
+      <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg p-4 mb-12">
+        <div className="w-10/12">
+          <Search query={query} setQuery={setQuery} />
+        </div>
+        <FilterButton setFilter={setFilter} />
       </div>
-    </Card>
+      {Object.entries(filteredData).map(([monthYear, results]) => (
+        <div className="mb-12" key={monthYear}>
+          <h2 className="mb-2">{monthYear}</h2>
+          <div className="grid grid-cols-2 gap-2">
+            {results.map((result, index) => (
+              <Card
+                key={index}
+                title=""
+                bgColor="#F6F6F6"
+                hoverColor="#f9f9f9"
+                textColor="#000000"
+                handleClickCondition={false}
+                hoverCondition={false}
+              >
+                <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
+                  <div className="w-20">
+                    <div className="flex justify-center mb-4">
+                      <img
+                        src={result.awayLogo}
+                        alt={result.awayLogo}
+                        className="h-14"
+                      />
+                    </div>
+                    <h3 className="text-center font-semibold">
+                      {result.awayTeam}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col	space-y-6">
+                    <p className="text-center items-center px-2 font-bold ">
+                      {result.matchDate}
+                    </p>
+                    <div className="px-8">
+                      <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
+                        <h4 className="text-4xl font-bold text-gray-600">
+                          {result.awayGoals}
+                        </h4>
+                        <span className="mx-2 text-4xl font-bold text-gray-600">
+                          -
+                        </span>
+                        <h4 className="text-4xl font-bold text-gray-600">
+                          {result.homeGoals}
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-col	space-y-2">
+                      <div className="text-center font-bold">
+                        {result.statusMatch}
+                      </div>
+                      <div className="text-center">{result.nameOfMatch}</div>
+                    </div>
+                  </div>
+                  <div className="w-20">
+                    <div className="flex justify-center mb-4">
+                      <img
+                        src={result.homeLogo}
+                        alt={result.homeLogo}
+                        className="h-14"
+                      />
+                    </div>
+                    <h3 className="text-center font-semibold">
+                      {result.homeTeam}
+                    </h3>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
+      <ExpandButtonTable isExpanded={isExpanded} toggleExpand={toggleExpand} />
+    </>
   );
 };
 
-export default ResultsCard;
+export default ResultsCardDetails;

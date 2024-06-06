@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <div className="border-b-2 border-slate-950/20">
-      <div className="py-4 px-36 mx-auto max-w-screen-xl container">
+      <div className="py-4 px-28 mx-auto max-w-screen-xl container">
         <div className="flex justify-between items-center">
           <div className="flex items-center cursor-pointer" onClick={handleClick}>
             <img src={LogoBeta.src} alt="Logo" className="h-6 mr-2" />

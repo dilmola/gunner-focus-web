@@ -28,7 +28,7 @@ export default function ClubPage() {
             &nbsp;&nbsp;The Gunners
           </span>
         </h2>
-        <h2 className="text-4xl font-extrabold uppercase text-right">
+        <h2 className="text-4xl font-extrabold uppercase">
           Founded:
           <span className="text-red-500 font-extrabold capitalize">
             &nbsp;&nbsp;1886
