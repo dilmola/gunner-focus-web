@@ -1,4 +1,3 @@
-"use client";
 import ResultsCard from "@/components/card/result/cardResult";
 import UpcomingCard from "@/components/card/upcoming/cardUpcoming";
 

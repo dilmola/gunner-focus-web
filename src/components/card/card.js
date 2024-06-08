@@ -43,7 +43,7 @@ const Card = ({
   return (
     <>
       <div
-        className="rounded-lg h-[14.5rem] overflow-y-auto"
+        className="rounded-lg h-[14.5rem] overflow-y-auto borderSizePrimary shadow-card-shadow"
         style={{ color: textColor, backgroundColor: bgColor, ...hoverStyles }}
         onClick={handleCardClick}
         onMouseEnter={handleMouseEnter}

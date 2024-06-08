@@ -110,15 +110,19 @@ const TeamTablePage = () => {
       <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold">Team</h2>
       </div>
-      <div className="bg-[#F2F2F2] p-4 rounded-lg">
-        <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">
-          <div className="w-10/12">
-            <Search query={query} setQuery={setQuery} />
+      <div className="bg-[#F2F2F2] rounded-lg">
+        <div className="p-4">
+          <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg borderSizePrimary">
+            <div className="w-full">
+              <Search query={query} setQuery={setQuery} />
+            </div>
+            <div className="px-2">
+              <ExpandButtonTable
+                isExpanded={isExpanded}
+                toggleExpand={toggleExpand}
+              />
+            </div>
           </div>
-          <ExpandButtonTable
-            isExpanded={isExpanded}
-            toggleExpand={toggleExpand}
-          />
         </div>
         <div>
           <CustomTable

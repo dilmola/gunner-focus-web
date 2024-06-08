@@ -66,3 +66,15 @@ h2 {
 .spin {
   animation: spin 2s linear infinite;
 }
+
+.borderSizePrimary {
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-style: solid;
+}
+
+.borderSizeSecondary {
+  border-width: 0.01rem;
+  border-color: rgba(209, 213, 219);
+  border-style: solid;
+}

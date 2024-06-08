@@ -19,7 +19,6 @@ function Map() {
 
       const styledMapType = new window.google.maps.StyledMapType(mapStyles);
 
-      // Set the styled map to the map instance
       map.mapTypes.set("styled_map", styledMapType);
       map.setMapTypeId("styled_map");
     };

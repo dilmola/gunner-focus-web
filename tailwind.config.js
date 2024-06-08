@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "card-shadow": "0px 3px 0 rgba(0, 0, 0, 0.5)", // Custom shadow with opacity
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -14,13 +17,13 @@ module.exports = {
       },
       fontSize: {
         base: "12px" /* Default font size for Tailwind */,
-        "h2Size": ["1.5rem"],
+        h2Size: ["1.5rem"],
       },
       fontWeight: {
-        normal: "400" /* Define a default 'normal' font weight */,
+        normal: "400", 
         medium: "500",
-        semibold: "600" /* Define a default 'normal' font weight */,
-        bold: "700" /* Define a default 'bold' font weight */,
+        semibold: "600", 
+        bold: "700" 
       },
     },
   },

@@ -77,54 +77,57 @@ const ResultsCardDetails = ({}) => {
     }
 
     if (filter) {
-      filtered = Object.entries(filtered).reduce((acc, [monthYear, results]) => {
-        const filteredResults = results.filter((result) => {
-          switch (filter) {
-            case "By Win":
-              return (
-                (result.teamHomeResult === true &&
-                  result.homeTeam.toLowerCase() === "arsenal") ||
-                (result.teamAwayResult === true &&
-                  result.awayTeam.toLowerCase() === "arsenal")
-              );
-            case "By Draw":
-              return (
-                (result.teamHomeResult === null &&
-                  result.homeTeam.toLowerCase() === "arsenal") ||
-                (result.teamAwayResult === null &&
-                  result.awayTeam.toLowerCase() === "arsenal")
-              );
-            case "By Lost":
-              return (
-                (result.teamHomeResult === false &&
-                  result.homeTeam.toLowerCase() === "arsenal") ||
-                (result.teamAwayResult === false &&
-                  result.awayTeam.toLowerCase() === "arsenal")
-              );
-            case "By Premier League":
-              return result.nameOfMatch.toLowerCase() === "premier league";
-            case "By UEFA Champions League":
-              return (
-                result.nameOfMatch.toLowerCase() === "uefa champions league"
-              );
-            case "By FA Cup":
-              return result.nameOfMatch.toLowerCase() === "fa cup";
-            case "By Emirates Cup":
-              return result.nameOfMatch.toLowerCase() === "emirates cup";
-            case "By Friendlies Clubs":
-              return result.nameOfMatch.toLowerCase() === "friendlies clubs";
-            case "By League Cup":
-              return result.nameOfMatch.toLowerCase() === "league cup";
-            default:
-              return true;
-          }
-        });
+      filtered = Object.entries(filtered).reduce(
+        (acc, [monthYear, results]) => {
+          const filteredResults = results.filter((result) => {
+            switch (filter) {
+              case "By Win":
+                return (
+                  (result.teamHomeResult === true &&
+                    result.homeTeam.toLowerCase() === "arsenal") ||
+                  (result.teamAwayResult === true &&
+                    result.awayTeam.toLowerCase() === "arsenal")
+                );
+              case "By Draw":
+                return (
+                  (result.teamHomeResult === null &&
+                    result.homeTeam.toLowerCase() === "arsenal") ||
+                  (result.teamAwayResult === null &&
+                    result.awayTeam.toLowerCase() === "arsenal")
+                );
+              case "By Lost":
+                return (
+                  (result.teamHomeResult === false &&
+                    result.homeTeam.toLowerCase() === "arsenal") ||
+                  (result.teamAwayResult === false &&
+                    result.awayTeam.toLowerCase() === "arsenal")
+                );
+              case "By Premier League":
+                return result.nameOfMatch.toLowerCase() === "premier league";
+              case "By UEFA Champions League":
+                return (
+                  result.nameOfMatch.toLowerCase() === "uefa champions league"
+                );
+              case "By FA Cup":
+                return result.nameOfMatch.toLowerCase() === "fa cup";
+              case "By Emirates Cup":
+                return result.nameOfMatch.toLowerCase() === "emirates cup";
+              case "By Friendlies Clubs":
+                return result.nameOfMatch.toLowerCase() === "friendlies clubs";
+              case "By League Cup":
+                return result.nameOfMatch.toLowerCase() === "league cup";
+              default:
+                return true;
+            }
+          });
 
-        if (filteredResults.length) {
-          acc[monthYear] = filteredResults;
-        }
-        return acc;
-      }, {});
+          if (filteredResults.length) {
+            acc[monthYear] = filteredResults;
+          }
+          return acc;
+        },
+        {}
+      );
     }
 
     return filtered;
@@ -147,16 +150,18 @@ const ResultsCardDetails = ({}) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg p-4 mb-12">
-        <div className="w-10/12">
+      <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg mb-12 borderSizePrimary">
+        <div className="w-full">
           <Search query={query} setQuery={setQuery} />
         </div>
-        <FilterButton setFilter={setFilter} />
+        <div className="px-2">
+          <FilterButton setFilter={setFilter} />
+        </div>
       </div>
       {Object.entries(filteredData).map(([monthYear, results]) => (
         <div className="mb-12" key={monthYear}>
           <h2 className="mb-2">{monthYear}</h2>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-5">
             {results.map((result, index) => (
               <Card
                 key={index}

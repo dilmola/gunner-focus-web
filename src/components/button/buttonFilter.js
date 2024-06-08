@@ -32,14 +32,14 @@ const FilterButton = ({ setFilter }) => {
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className="bg-[#F2F2F2] rounded p-2 text-black font-semibold ml-2 flex border-[0.01rem] border-gray-300 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
+        className="bg-[#F2F2F2] p-2 text-black font-semibold hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
         onClick={toggleDropdown}
       >
-        <img src={Sort.src} alt="sort" className="h-4 px-1" />
-        <div className="px-2 text-black uppercase">Filter</div>
+          <img src={Sort.src} alt="sort" className="h-4" />
+          
       </button>
       {showDropdown && (
-        <div className="absolute top-full left-0 w-max bg-white border border-gray-300 rounded shadow-lg ml-2">
+        <div className="absolute top-full left-0 w-max bg-white border borderSizeSecondary rounded shadow-lg">
           <div className="p-2">
             {[
               "By Win",

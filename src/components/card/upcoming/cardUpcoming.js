@@ -5,6 +5,7 @@ import fetchUpcoming from "../../../utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
+import noGames from "../../../../public/img/NoGames.png";
 
 const UpcomingCard = () => {
   const [data, setData] = useState([]);
@@ -147,10 +148,11 @@ const UpcomingCard = () => {
               </div>
             </div>
           ) : (
-            <div className="flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-xl font-bold">No Games</p>
+            <div className="flex flex-col items-center justify-center">
+              <div className="opacity-85">
+                <img src={noGames.src} alt="noGames" className="h-20" />
               </div>
+              <p className="font-bold">There are no upcoming match</p>
             </div>
           )}
         </>

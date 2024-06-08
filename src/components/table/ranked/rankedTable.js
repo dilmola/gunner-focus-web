@@ -137,37 +137,41 @@ const RankedTablePage = () => {
   }
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 ">
       <div className="flex mb-4 items-center justify-between">
         <h2 className="uppercase font-semibold">Ranked</h2>
       </div>
-      <div className="bg-[#F2F2F2] p-4 rounded-lg">
-        <div className="rounded-lg overflow-hidden bg-[#eaeaea] h-20 flex justify-between mb-6 p-8">
-          <div className="flex">
-            <div className="flex items-center text-center md:px-3.5">
-              <img src={Arsenal.src} alt="Arsenal" className="h-12" />
+      <div className="bg-[#F2F2F2] rounded-lg">
+        <div className="p-4">
+          <div className="rounded-lg overflow-hidden bg-[#eaeaea] h-20 flex justify-between mb-6 p-8">
+            <div className="flex">
+              <div className="flex items-center text-center md:px-3.5">
+                <img src={Arsenal.src} alt="Arsenal" className="h-12" />
+              </div>
+              <h3 className="flex items-center text-center px-12 uppercase font-semibold text-lg">
+                Arsenal
+              </h3>
             </div>
-            <h3 className="flex items-center text-center px-12 uppercase font-semibold text-lg">
-              Arsenal
-            </h3>
+            <div className="flex">
+              <h3 className="flex items-center text-center uppercase px-8 font-semibold">
+                Current Ranked
+              </h3>
+              <h3 className="flex items-center text-center text-4xl font-semibold">
+                #{teamRank ?? "?"}
+              </h3>
+            </div>
           </div>
-          <div className="flex">
-            <h3 className="flex items-center text-center uppercase px-8 font-semibold">
-              Current Ranked
-            </h3>
-            <h3 className="flex items-center text-center text-4xl font-semibold">
-              #{teamRank ?? "?"}
-            </h3>
+          <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg borderSizePrimary">
+            <div className="w-full">
+              <Search query={query} setQuery={setQuery} />
+            </div>
+            <div className="px-2">
+              <ExpandButtonTable
+                isExpanded={isExpanded}
+                toggleExpand={toggleExpand}
+              />
+            </div>
           </div>
-        </div>
-        <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] h-16 rounded-lg ">
-          <div className="w-10/12">
-            <Search query={query} setQuery={setQuery} />
-          </div>
-          <ExpandButtonTable
-            isExpanded={isExpanded}
-            toggleExpand={toggleExpand}
-          />
         </div>
         <div>
           <CustomTable

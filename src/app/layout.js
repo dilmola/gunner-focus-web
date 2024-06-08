@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
             <>
               <Header />
               <Navigation />
-              <div className="px-28 py-4 mx-auto max-w-screen-xl container">
+              <div className="px-20 py-4 mx-auto max-w-screen-xl container">
                 {children}
               </div>
               <Footer />

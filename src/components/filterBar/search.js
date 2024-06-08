@@ -9,12 +9,12 @@ const Search = ({ query, setQuery}) => {
       <div className="relative flex">
         <input
           type="text"
-          className="flex-grow border px-12 py-2 bg-[#fafafa] focus:outline-none border-gray-300 rounded-lg"
+          className="flex-grow px-12 py-2 bg-transparent focus:outline-none h-fit text-lg	rounded-lg"
           placeholder="Search"
           value={query}
           onChange={handleInputChange}
         />
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <div className="absolute inset-y-0 right-0 p-3 flex items-center pointer-events-none bg-[#E63946]">
           <img src={search.src} alt="search" className="h-4" />
         </div>
       </div>
