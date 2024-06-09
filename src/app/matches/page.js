@@ -2,10 +2,10 @@ import CardResultDetails from "../../components/card/resultDetail/cardResultDeta
 
 export default function MatchesPage() {
   return (
-    <main className="h-fit">
+    <main className="min-h-screen">
       <h2 className="uppercase font-semibold mb-4">Result Matches</h2>
       <div>
-        <CardResultDetails /> 
+        <CardResultDetails />
       </div>
     </main>
   );

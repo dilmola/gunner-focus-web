@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
-const ResultsDataContext = createContext();
+const UpcomingsDataContext = createContext();
 
-export const ResultsDataProvider = ({ children }) => {
+export const UpcomingsDataProvider = ({ children }) => {
   const [data, setData] = useState(() => {
     if (typeof window !== "undefined") {
-      const storedData = localStorage.getItem("resultsData");
+      const storedData = localStorage.getItem("upcomingsData");
       return storedData ? JSON.parse(storedData) : [];
     } else {
       return [];
@@ -15,14 +15,14 @@ export const ResultsDataProvider = ({ children }) => {
   useEffect(() => {
     // Save data to local storage whenever it changes
     if (typeof window !== "undefined") {
-      localStorage.setItem("resultsData", JSON.stringify(data));
+      localStorage.setItem("upcomingsData", JSON.stringify(data));
     }
   }, [data]);
   return (
-    <ResultsDataContext.Provider value={{ data, setData }}>
+    <UpcomingsDataContext.Provider value={{ data, setData }}>
       {children}
-    </ResultsDataContext.Provider>
+    </UpcomingsDataContext.Provider>
   );
 };
 
-export const useData = () => useContext(ResultsDataContext);
+export const useData = () => useContext(UpcomingsDataContext);

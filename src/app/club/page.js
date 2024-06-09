@@ -12,16 +12,6 @@ import Map from "../../components/Map/map";
 export default function ClubPage() {
   return (
     <main className="h-fit space-y-20">
-      <div className="rounded-lg ">
-        <h2 className="text-4xl font-extrabold mb-2 uppercase">History</h2>
-        <p className="text-2xl text-justify text-black text-opacity-50">
-          Arsenal have played in the top division of English football since
-          1913, which is the longest unbroken run in the history of English
-          football. Arsenal are the
-          <span className="text-red-500"> only team </span>
-          to have finished a Premier League season undefeated (2003/04).
-        </p>
-      </div>
       <div className="text-black font-semibold rounded-lg  grid grid-cols-2 gap-2">
         <div>
           <h2 className="text-4xl font-extrabold uppercase">Nickname</h2>
@@ -34,11 +24,21 @@ export default function ClubPage() {
           <h2 className="font-extrabold text-8xl mb-8  text-[#E63946]">1886</h2>
         </div>
       </div>
-      <div className="text-black grid grid-cols-2 gap-2 rounded-lg bg-[#f9f9f9] h-72 overflow-hidden ">
-        <div className="flex items-center justify-center">
+      <div className="rounded-lg ">
+        <h2 className="text-4xl font-extrabold mb-2 uppercase">History</h2>
+        <p className="text-2xl text-justify text-black text-opacity-50">
+          Arsenal have played in the top division of English football since
+          1913, which is the longest unbroken run in the history of English
+          football. Arsenal are the
+          <span className="text-red-500"> only team </span>
+          to have finished a Premier League season undefeated (2003/04).
+        </p>
+      </div>
+      <div className="text-black grid grid-cols-2 gap-2">
+        <div className="flex items-center justify-center rounded-lg bg-[#f9f9f9] h-72">
           <img src={Arsenal.src} alt="Arsenal" className="block w-32 h-auto" />
         </div>
-        <div className="p-4 text-white ">
+        <div className="text-white ">
           <div className="rounded-lg bg-[#17263b] p-8">
             <h2 className="uppercase text-2xl font-semibold mb-2">logo</h2>
             <p className="text-2xl text-justify text-white text-opacity-80">

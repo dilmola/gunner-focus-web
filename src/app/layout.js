@@ -8,7 +8,7 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import useLoading from "@/components/loader/useLoading";
 import Navigation from "@/components/navigation/navigation";
-import { DataProvider } from '../context/resultContext';
+import { CombinedDataProvider } from '../context/mainContext';
 
 const Nunito_Sans_init = Nunito_Sans({
   subsets: ["latin"],
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   const isLoading = useLoading();
 
   return (
-    <DataProvider>
+    <CombinedDataProvider>
       <html lang="en" className={Nunito_Sans_init.className}>
         <head>
           <title>{metadata.title}</title>
@@ -43,6 +43,6 @@ export default function RootLayout({ children }) {
           )}
         </body>
       </html>
-    </DataProvider>
+    </CombinedDataProvider>
   );
 }
