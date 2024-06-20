@@ -7,6 +7,7 @@ import { useData } from "../../../context/upcomingContext";
 import Search from "../../filterBar/search";
 import FilterButton from "../../button/buttonFilter";
 import ExpandButtonTable from "../../button/buttonExpandTable";
+import NoFoundImg from "../../../../public/img/notFound.png";
 
 const UpcomingCardDetails = ({}) => {
   const { data } = useData();
@@ -158,76 +159,95 @@ const UpcomingCardDetails = ({}) => {
           <FilterButton setFilter={setFilter} />
         </div>
       </div>
-      {Object.entries(filteredData).map(([monthYear, results]) => (
-        <div className="mb-12" key={monthYear}>
-          <h2 className="mb-2">{monthYear}</h2>
-          <div className="grid grid-cols-2 gap-5">
-            {results.map((result, index) => (
-              <Card
-                key={index}
-                title=""
-                bgColor="#F6F6F6"
-                hoverColor="#f9f9f9"
-                textColor="#000000"
-                handleClickCondition={false}
-                hoverCondition={false}
-              >
-                <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
-                  <div className="w-20">
-                    <div className="flex justify-center mb-4">
-                      <img
-                        src={result.awayLogo}
-                        alt={result.awayLogo}
-                        className="h-14"
-                      />
-                    </div>
-                    <h3 className="text-center font-semibold">
-                      {result.awayTeam}
-                    </h3>
-                  </div>
-                  <div className="flex flex-col	space-y-6">
-                    <p className="text-center items-center px-2 font-bold ">
-                      {result.matchDate}
-                    </p>
-                    <div className="px-8">
-                      <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                        <h4 className="text-4xl font-bold text-gray-600">
-                          {result.awayGoals}
-                        </h4>
-                        <span className="mx-2 text-4xl font-bold text-gray-600">
-                          -
-                        </span>
-                        <h4 className="text-4xl font-bold text-gray-600">
-                          {result.homeGoals}
-                        </h4>
-                      </div>
-                    </div>
-                    <div className="flex flex-col	space-y-2">
-                      <div className="text-center font-bold">
-                        {result.statusMatch}
-                      </div>
-                      <div className="text-center">{result.nameOfMatch}</div>
-                    </div>
-                  </div>
-                  <div className="w-20">
-                    <div className="flex justify-center mb-4">
-                      <img
-                        src={result.homeLogo}
-                        alt={result.homeLogo}
-                        className="h-14"
-                      />
-                    </div>
-                    <h3 className="text-center font-semibold">
-                      {result.homeTeam}
-                    </h3>
-                  </div>
-                </div>
-              </Card>
-            ))}
+      {Object.keys(filteredData).length === 0 ? (
+        <>
+          <div class="min-h-screen flex flex-col items-center justify-center">
+            <img src={NoFoundImg.src} alt={NoFoundImg} className="h-40" />
+            <p className="text-center text-black font-semibold text-lg py-10">
+              No upcoming match found
+            </p>
           </div>
-        </div>
-      ))}
-      <ExpandButtonTable isExpanded={isExpanded} toggleExpand={toggleExpand} />
+        </>
+      ) : (
+        <>
+          {Object.entries(filteredData).map(([monthYear, results]) => (
+            <div className="mb-12" key={monthYear}>
+              <h2 className="mb-2">{monthYear}</h2>
+              <div className="grid grid-cols-2 gap-5">
+                {results.map((result, index) => (
+                  <Card
+                    key={index}
+                    title=""
+                    bgColor="#F6F6F6"
+                    hoverColor="#f9f9f9"
+                    textColor="#000000"
+                    handleClickCondition={false}
+                    hoverCondition={false}
+                  >
+                    <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
+                      <div className="w-20">
+                        <div className="flex justify-center mb-4">
+                          <img
+                            src={result.awayLogo}
+                            alt={result.awayLogo}
+                            className="h-14"
+                          />
+                        </div>
+                        <h3 className="text-center font-semibold">
+                          {result.awayTeam}
+                        </h3>
+                      </div>
+                      <div className="flex flex-col	space-y-6">
+                        <p className="text-center items-center px-2 font-bold ">
+                          {result.matchDate}
+                        </p>
+                        <div className="px-8">
+                          <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.awayGoals}
+                            </h4>
+                            <span className="mx-2 text-4xl font-bold text-gray-600">
+                              -
+                            </span>
+                            <h4 className="text-4xl font-bold text-gray-600">
+                              {result.homeGoals}
+                            </h4>
+                          </div>
+                        </div>
+                        <div className="flex flex-col	space-y-2">
+                          <div className="text-center font-bold">
+                            {result.statusMatch}
+                          </div>
+                          <div className="text-center">
+                            {result.nameOfMatch}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-20">
+                        <div className="flex justify-center mb-4">
+                          <img
+                            src={result.homeLogo}
+                            alt={result.homeLogo}
+                            className="h-14"
+                          />
+                        </div>
+                        <h3 className="text-center font-semibold">
+                          {result.homeTeam}
+                        </h3>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ))}
+          <ExpandButtonTable
+            isExpanded={isExpanded}
+            toggleExpand={toggleExpand}
+          />
+        </>
+      )}
+      ;
     </>
   );
 };

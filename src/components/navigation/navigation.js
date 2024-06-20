@@ -82,12 +82,12 @@ const Navbar = () => {
           <a
             onClick={() => handleNavigation("/player")}
             className={`inline-block p-2 pb-4 rounded-t-lg cursor-pointer ${
-              pathname === "/player"
+              pathname.startsWith("/player") 
                 ? "font-semibold text-black border-b-2 border-[#E63946]"
                 : "hover:text-black hover:border-black hover:border-b-2"
             }`}
           >
-            <div className="flex h-4 ">
+            <div className="flex h-4">
               <img src={player.src} alt="player" className="pr-2" />
               <span>Player</span>
             </div>

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        "card-shadow": "0px 3px 0 rgba(0, 0, 0, 0.5)", // Custom shadow with opacity
+        "card-shadow": "0px 2px 0 rgba(0, 0, 0, 0.5)", // Custom shadow with opacity
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

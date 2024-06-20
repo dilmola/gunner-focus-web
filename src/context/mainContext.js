@@ -1,12 +1,15 @@
+"use client";
+
 import { UpcomingsDataProvider } from "./upcomingContext";
 import { ResultsDataProvider } from "./resultContext";
+import { TeamsProvider } from "./teamContext";
 
 export const CombinedDataProvider = ({ children }) => {
   return (
-    <UpcomingsDataProvider>
-      <ResultsDataProvider>
-        {children}
-      </ResultsDataProvider>
-    </UpcomingsDataProvider>
+    <TeamsProvider>
+      <UpcomingsDataProvider>
+        <ResultsDataProvider>{children}</ResultsDataProvider>
+      </UpcomingsDataProvider>
+    </TeamsProvider>
   );
 };

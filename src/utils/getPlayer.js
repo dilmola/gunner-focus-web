@@ -7,8 +7,9 @@ const fetchPlayer = async (playerId) => {
     method: "GET",
     url: "https://api-football-v1.p.rapidapi.com/v3/players",
     params: {
-      id: playerId, // Use the playerId passed as an argument
+      id: playerId,
       season: "2023",
+      league: "39",
     },
     headers: {
       "X-RapidAPI-Key": "868455a8d0mshf05117d7763056fp1a7547jsn3d555557a5cd",

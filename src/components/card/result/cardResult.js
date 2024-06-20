@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useData } from "../../../context/resultContext";
 
 const ResultsCard = ({}) => {
+  console.log('execute of cardresult')
   const { data, setData } = useData();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

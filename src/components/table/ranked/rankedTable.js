@@ -179,7 +179,47 @@ const RankedTablePage = () => {
             columns={getColumnsFromRanked()}
             isExpanded={isExpanded}
             clickableColumns={false}
-          />
+          >
+            {tableData.map((row, rowIndex) => (
+              <tr key={rowIndex} className="">
+                {getColumnsFromRanked().map((col) => (
+                  <td key={col.key} className="p-4 font-semibold">
+                    {col.key === "lastFive" &&
+                    typeof row.lastFive === "string" ? (
+                      <div className="flex">
+                        {row.lastFive.split("").map((result, index) => {
+                          const color =
+                            result === "W"
+                              ? "bg-green-500"
+                              : result === "D"
+                              ? "bg-gray-500"
+                              : result === "L"
+                              ? "bg-red-500"
+                              : "";
+                          return (
+                            <div
+                              key={index}
+                              className={`w-4 h-4 rounded-full ${color} mr-2`}
+                            />
+                          );
+                        })}
+                      </div>
+                    ) : col.key === "logo" && row.logo ? (
+                      <div className="flex items-center">
+                        <img
+                          src={row.logo}
+                          alt={row[col.key]}
+                          className="w-8 h-8 rounded mr-3"
+                        />
+                      </div>
+                    ) : (
+                      row[col.key]
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </CustomTable>
         </div>
       </div>
     </div>

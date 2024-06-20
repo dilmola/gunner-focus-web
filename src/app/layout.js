@@ -1,46 +1,30 @@
-"use client";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { metadata } from "@/app/metadata"; // Adjust the path as necessary
-
-import LoaderAnimation from "@/components/loader/loader";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
-import useLoading from "@/components/loader/useLoading";
-import Navigation from "@/components/navigation/navigation";
-import { CombinedDataProvider } from '../context/mainContext';
+import ClientLoader from "@/components/loader/client-loader";
+import { CombinedDataProvider } from "../context/mainContext";
 
 const Nunito_Sans_init = Nunito_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "700", "800"],
 });
 
-export default function RootLayout({ children }) {
-  const isLoading = useLoading();
+export const metadata = {
+  title: "Gunner Focus",
+  description:
+    "Gunner Focus is the premier online center for gunners fans around the globe. Whether you live and breathe the Gunners or are just getting started with your Arsenal journey, our website is your one-stop hub for everything Arsenal.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
+export default function RootLayout({ children }) {
   return (
     <CombinedDataProvider>
       <html lang="en" className={Nunito_Sans_init.className}>
-        <head>
-          <title>{metadata.title}</title>
-          <meta name="description" content={metadata.description} />
-          <link rel="icon" href={metadata.icons.icon} />
-        </head>
         <body
           className={`text-[#242423] bg-[#E9E9E9] selection:bg-[#242423] selection:text-white `}
         >
-          {isLoading ? (
-            <LoaderAnimation />
-          ) : (
-            <>
-              <Header />
-              <Navigation />
-              <div className="px-20 py-4 mx-auto max-w-screen-xl container">
-                {children}
-              </div>
-              <Footer />
-            </>
-          )}
+          <ClientLoader>{children}</ClientLoader>{" "}
         </body>
       </html>
     </CombinedDataProvider>

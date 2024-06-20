@@ -1,4 +1,3 @@
-"use client";
 import LogoKatkodeBlack from "../../../public/logos/logo_adidas_black.png";
 import LogoAdidasBlack from "../../../public/logos/logo_katkode_black.png";
 import LogoPNBlack from "../../../public/logos/logo_pn_black.png";

@@ -8,6 +8,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import Search from "../../filterBar/search";
+import seemoreArrow from "../../../../public/icons/seemore_arrow.png";
 
 const TeamTablePage = () => {
   const [data, setData] = useState([]);
@@ -16,6 +17,7 @@ const TeamTablePage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(-1); // State for hovered row index
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -77,6 +79,14 @@ const TeamTablePage = () => {
 
   const tableData = filteredData;
 
+  const handleMouseEnter = (rowIndex) => {
+    setHoveredRowIndex(rowIndex);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredRowIndex(-1); // Reset when leaving the row
+  };
+  
   if (loading) {
     return (
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
@@ -130,7 +140,50 @@ const TeamTablePage = () => {
             columns={getColumnsFromTeam()}
             isExpanded={isExpanded}
             clickableColumns={true}
-          />
+          >
+            {tableData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {getColumnsFromTeam().map((col) => (
+                  <td
+                    key={col.key}
+                    className="p-4 text-gray-800 font-semibold"
+                    onMouseEnter={() => handleMouseEnter(rowIndex)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {col.key === "photo" && row.photo ? (
+                      <div className="flex items-center">
+                        <img
+                          src={row.photo}
+                          alt={row[col.key]}
+                          className="w-8 h-8 rounded mr-6 bg-[#D9D9D9]"
+                        />
+                        <span className="text-sm text-gray-800">
+                          {row.player}
+                        </span>
+                      </div>
+                    ) : col.key === "position" ? (
+                      <div className="flex justify-between">
+                        <div className="pr-4">{row.position}</div>
+                        <div>
+                          <img
+                            src={seemoreArrow.src}
+                            alt={seemoreArrow}
+                            className="h-4"
+                            style={{
+                              opacity: hoveredRowIndex === rowIndex ? 1 : 0,
+                              transition: "opacity 0.3s ease",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      row[col.key]
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </CustomTable>
         </div>
       </div>
     </div>
