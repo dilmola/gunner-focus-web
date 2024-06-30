@@ -7,7 +7,7 @@ import { usePlayer } from "../../context/playerContext";
 import { useRouter } from "next/navigation";
 import slugify from "../../utils/slugify";
 
-export default function PlayerPage({ player }) {
+export default function PlayerPage() {
   const { checkLastFetchTime } = usePlayer();
   const { data, loading, error } = useTeam();
   const [query, setQuery] = useState("");
@@ -15,23 +15,6 @@ export default function PlayerPage({ player }) {
   const [filteredData, setFilteredData] = useState([]);
   const searchRef = useRef(null);
   const router = useRouter();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  const handlePlayerClick = (player) => {
-    const playerId = player.idPlayer || "unknown-player-id";
-    setSelectedPlayerId(playerId);
-    const playerName = player.player || "unknown-player";
-    const slug = slugify(playerName);
-
-    router.push(`/player/${playerId}/${slug}`);
-  };
 
   useEffect(() => {
     if (selectedPlayerId) {
@@ -64,6 +47,23 @@ export default function PlayerPage({ player }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const handlePlayerClick = (player) => {
+    const playerId = player.idPlayer || "unknown-player-id";
+    setSelectedPlayerId(playerId);
+    const playerName = player.player || "unknown-player";
+    const slug = slugify(playerName);
+
+    router.push(`/player/${playerId}/${slug}`);
+  };
 
   return (
     <main className="min-h-screen">
