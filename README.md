@@ -1,6 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Gunner-focus-web
+
+Welcome to Gunner Focus, hub for Arsenal fans.
 
 First, run the development server:
 
