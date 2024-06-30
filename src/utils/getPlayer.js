@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const fetchPlayer = async (playerId) => {
-  console.log("Player ID:", playerId); // Log playerId
-
+const fetchPlayer = async (playerId, seasonYear) => {
   const options = {
     method: "GET",
     url: "https://api-football-v1.p.rapidapi.com/v3/players",
     params: {
       id: playerId,
-      season: "2023",
+      season: seasonYear,
       league: "39",
     },
     headers: {
@@ -19,6 +17,8 @@ const fetchPlayer = async (playerId) => {
 
   try {
     const response = await axios.request(options);
+    console.log(response);
+
     return response.data.response[0];
   } catch (error) {
     throw new Error(

@@ -2,14 +2,17 @@
 
 import { UpcomingsDataProvider } from "./upcomingContext";
 import { ResultsDataProvider } from "./resultContext";
-import { TeamsProvider } from "./teamContext";
+import { PlayerProvider } from "./playerContext";
+import { TeamProvider } from "./teamContext";
 
 export const CombinedDataProvider = ({ children }) => {
   return (
-    <TeamsProvider>
-      <UpcomingsDataProvider>
-        <ResultsDataProvider>{children}</ResultsDataProvider>
-      </UpcomingsDataProvider>
-    </TeamsProvider>
+    <TeamProvider>
+      <PlayerProvider>
+        <UpcomingsDataProvider>
+          <ResultsDataProvider>{children}</ResultsDataProvider>
+        </UpcomingsDataProvider>
+      </PlayerProvider>
+    </TeamProvider>
   );
 };

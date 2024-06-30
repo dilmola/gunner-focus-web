@@ -1,35 +1,67 @@
-// teamContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import fetchTeams from "../utils/getTeams";
 
-const TeamsContext = createContext();
+const TeamContext = createContext();
 
-export const useTeams = () => useContext(TeamsContext);
+export const useTeam = () => useContext(TeamContext);
 
-export const TeamsProvider = ({ children }) => {
-  const { id } = useParams();
+export const TeamProvider = ({ children }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const [playerData, setPlayerData] = useState(null);
-
-  useEffect(() => { 
-    const fetchData = async () => {
+  useEffect(() => {
+    const fetchTeamData = async () => {
       try {
-        const storedData = localStorage.getItem(`playerData_${id}`);
-        if (storedData) {
-          setPlayerData(JSON.parse(storedData));
+        const response = await fetchTeams();
+        if (response && Array.isArray(response)) {
+          const formattedData = formatData(response);
+          localStorage.setItem("teamsData", JSON.stringify(formattedData));
+          localStorage.setItem("teamsLastFetch", Date.now());
+          setData(formattedData);
+        } else {
+          throw new Error("Data is not in expected format");
         }
-      } catch (error) {
-        console.error("Error fetching player data:", error);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message || "An error occurred");
+        setLoading(false);
       }
     };
 
-    fetchData();
-  }, [id]); // Trigger fetch whenever id changes
+    const checkLastFetchTime = () => {
+      const lastFetch = parseInt(localStorage.getItem("teamsLastFetch"), 10);
+      const fetchInterval = 12 * 60 * 60 * 1000;
+      const currentTime = Date.now();
+
+      if (!lastFetch || currentTime - lastFetch > fetchInterval) {
+        fetchTeamData();
+      } else {
+        const storedData = localStorage.getItem("teamsData");
+        if (storedData) {
+          setData(JSON.parse(storedData));
+        }
+        setLoading(false);
+      }
+    };
+
+    checkLastFetchTime();
+  }, []);
+
+  const formatData = (team) => {
+    return team.map((teamsPlayers) => {
+      return {
+        idPlayer: teamsPlayers?.id ?? 0,
+        photo: teamsPlayers?.photo ?? 0,
+        player: teamsPlayers?.name ?? 0,
+        position: teamsPlayers?.position ?? 0,
+      };
+    });
+  };
 
   return (
-    <TeamsContext.Provider value={{ playerData, setPlayerData }}>
+    <TeamContext.Provider value={{ data, setData, loading, error }}>
       {children}
-    </TeamsContext.Provider>
+    </TeamContext.Provider>
   );
 };
-

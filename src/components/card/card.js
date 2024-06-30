@@ -51,7 +51,7 @@ const Card = ({
       >
         <div className="px-4 py-4 h-[12.5rem]">
           <div className="flex flex-col items-center">
-            <div className="font-bold uppercase mb-8">{title}</div>
+            <div className="font-bold mb-8">{title}</div>
           </div>
           {children}
         </div>

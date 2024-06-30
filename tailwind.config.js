@@ -20,10 +20,17 @@ module.exports = {
         h2Size: ["1.5rem"],
       },
       fontWeight: {
-        normal: "400", 
+        normal: "400",
         medium: "500",
-        semibold: "600", 
-        bold: "700" 
+        semibold: "600",
+        bold: "700",
+      },
+      colors: {
+        mirageColor: "#393e41" /* black, text, bgbuttoncolor*/,
+        amaranthColor: "#E63946" /*red, cardcolor*/,
+        romanceColor: "#F5F4F1" /* white ,text,search , bgcolor*/,
+        whitesmokeColor: "#F0F0F0" /* whitecardcolor*/,
+        gainsboroColor: "#E3E2E2" /*lightdarkabovecardcolor*/,
       },
     },
   },

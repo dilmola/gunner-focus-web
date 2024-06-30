@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../card";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useData } from "../../../context/resultContext";
-import Search from "../../filterBar/search";
+import Search from "../../filterBar/search-with-filter";
 import FilterButton from "../../button/buttonFilter";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import NoFoundImg from "../../../../public/img/notFound.png";
@@ -151,7 +151,7 @@ const ResultsCardDetails = ({}) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg mb-12 borderSizePrimary">
+      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg mb-12 borderSizePrimary">
         <div className="w-full">
           <Search query={query} setQuery={setQuery} />
         </div>
@@ -172,15 +172,15 @@ const ResultsCardDetails = ({}) => {
         <>
           {Object.entries(filteredData).map(([monthYear, results]) => (
             <div className="mb-12" key={monthYear}>
-              <h2 className="mb-2">{monthYear}</h2>
+              <h3 className="mb-2 font-medium text-lg">{monthYear}</h3>
               <div className="grid grid-cols-2 gap-5">
                 {results.map((result, index) => (
                   <Card
                     key={index}
                     title=""
-                    bgColor="#F6F6F6"
+                    bgColor="#F0F0F0"
                     hoverColor="#f9f9f9"
-                    textColor="#000000"
+                    textColor="#393e41"
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
@@ -202,7 +202,7 @@ const ResultsCardDetails = ({}) => {
                           {result.matchDate}
                         </p>
                         <div className="px-8">
-                          <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
+                          <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
                             <h4 className="text-4xl font-bold text-gray-600">
                               {result.awayGoals}
                             </h4>

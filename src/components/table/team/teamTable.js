@@ -1,23 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import fetchTeams from "../../../utils/getTeams";
 import CustomTable from "../table";
-
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
-import Search from "../../filterBar/search";
+import Search from "../../filterBar/search-with-filter";
 import seemoreArrow from "../../../../public/icons/seemore_arrow.png";
+import { useTeam } from "../../../context/teamContext";
 
 const TeamTablePage = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { data, loading, error } = useTeam();
   const [isExpanded, setIsExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [hoveredRowIndex, setHoveredRowIndex] = useState(-1); // State for hovered row index
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(-1);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -37,45 +34,10 @@ const TeamTablePage = () => {
     filterData(query);
   }, [query, data]);
 
-  useEffect(() => {
-    const fetchTeamsData = async () => {
-      try {
-        const response = await fetchTeams();
-        if (response && Array.isArray(response)) {
-          const formattedData = formatData(response);
-
-          localStorage.setItem("teamsData", JSON.stringify(formattedData));
-          localStorage.setItem("teamsLastFetch", Date.now());
-          setData(formattedData);
-          setFilteredData(formattedData);
-        } else {
-          throw new Error("Data is not in expected format");
-        }
-        setLoading(false);
-      } catch (err) {
-        setError(err.message || "An error occurred");
-        setLoading(false);
-      }
-    };
-
-    const checkLastFetchTime = () => {
-      const lastFetch = parseInt(localStorage.getItem("teamsLastFetch"), 10);
-      const fetchInterval = 12 * 60 * 60 * 1000;
-      const currentTime = Date.now();
-
-      if (!lastFetch || currentTime - lastFetch > fetchInterval) {
-        fetchTeamsData();
-      } else {
-        const storedData = localStorage.getItem("teamsData");
-        if (storedData) {
-          setData(JSON.parse(storedData));
-        }
-        setLoading(false);
-      }
-    };
-
-    checkLastFetchTime();
-  }, []);
+  const getColumnsFromTeam = () => [
+    { key: "photo", label: "Player" },
+    { key: "position", label: "Position" },
+  ];
 
   const tableData = filteredData;
 
@@ -84,15 +46,15 @@ const TeamTablePage = () => {
   };
 
   const handleMouseLeave = () => {
-    setHoveredRowIndex(-1); // Reset when leaving the row
+    setHoveredRowIndex(-1);
   };
-  
+
   if (loading) {
     return (
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
         <div className="mb-20">
           <div className="flex mb-4 items-center">
-            <h2 className="uppercase font-semibold">Team</h2>
+            <h2 className="font-semibold">Team</h2>
           </div>
           <div className="mb-6">
             <Skeleton height={300} className="rounded-md" />
@@ -106,9 +68,9 @@ const TeamTablePage = () => {
     return (
       <div>
         <div className="flex mb-4 items-center">
-          <h2 className="uppercase font-semibold">Team</h2>
+          <h2 className="font-semibold">Team</h2>
         </div>
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
+        <div className="bg-amaranthColor text-mirageColor p-4 rounded-lg border border-amaranthColor mb-20">
           <strong>Error:</strong> {error}
         </div>
       </div>
@@ -118,11 +80,11 @@ const TeamTablePage = () => {
   return (
     <div>
       <div className="flex mb-4 items-center justify-between">
-        <h2 className="uppercase font-semibold">Team</h2>
+        <h2 className="font-semibold">Team</h2>
       </div>
-      <div className="bg-[#F2F2F2] rounded-lg">
+      <div className="bg-whitesmokeColor rounded-lg">
         <div className="p-4">
-          <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg borderSizePrimary">
+          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg borderSizePrimary">
             <div className="w-full">
               <Search query={query} setQuery={setQuery} />
             </div>
@@ -146,7 +108,7 @@ const TeamTablePage = () => {
                 {getColumnsFromTeam().map((col) => (
                   <td
                     key={col.key}
-                    className="p-4 text-gray-800 font-semibold"
+                    className="p-4 font-semibold"
                     onMouseEnter={() => handleMouseEnter(rowIndex)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -155,11 +117,9 @@ const TeamTablePage = () => {
                         <img
                           src={row.photo}
                           alt={row[col.key]}
-                          className="w-8 h-8 rounded mr-6 bg-[#D9D9D9]"
+                          className="w-8 h-8 rounded mr-6 bg-romanceColor"
                         />
-                        <span className="text-sm text-gray-800">
-                          {row.player}
-                        </span>
+                        <span className="text-sm">{row.player}</span>
                       </div>
                     ) : col.key === "position" ? (
                       <div className="flex justify-between">
@@ -188,26 +148,6 @@ const TeamTablePage = () => {
       </div>
     </div>
   );
-};
-
-const getColumnsFromTeam = () => [
-  { key: "photo", label: "Player" },
-  { key: "position", label: "Position" },
-];
-
-const formatData = (team) => {
-  if (!Array.isArray(team)) {
-    throw new Error("Expected team to be an array");
-  }
-
-  return team.map((teamsPlayers) => {
-    return {
-      idPlayer: teamsPlayers?.id ?? 0,
-      photo: teamsPlayers?.photo ?? 0,
-      player: teamsPlayers?.name ?? 0,
-      position: teamsPlayers?.position ?? 0,
-    };
-  });
 };
 
 export default TeamTablePage;

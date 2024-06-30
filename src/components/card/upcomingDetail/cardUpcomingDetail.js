@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../card";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useData } from "../../../context/upcomingContext";
-import Search from "../../filterBar/search";
+import Search from "../../filterBar/search-with-filter";
 import FilterButton from "../../button/buttonFilter";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import NoFoundImg from "../../../../public/img/notFound.png";
@@ -21,7 +21,7 @@ const UpcomingCardDetails = ({}) => {
 
     data.forEach((result) => {
       const fixtureDate = new Date(result.fixtureDate);
-      const month = fixtureDate.toLocaleString("en-US", { month: "long" });
+      const month = fixtureDate.toLocaleString("en-MY", { month: "long" });
       const year = fixtureDate.getFullYear();
       const monthYear = `${month} ${year}`;
 
@@ -151,7 +151,7 @@ const UpcomingCardDetails = ({}) => {
 
   return (
     <>
-      <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg mb-12 borderSizePrimary">
+      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg mb-12 borderSizePrimary">
         <div className="w-full">
           <Search query={query} setQuery={setQuery} />
         </div>
@@ -172,7 +172,7 @@ const UpcomingCardDetails = ({}) => {
         <>
           {Object.entries(filteredData).map(([monthYear, results]) => (
             <div className="mb-12" key={monthYear}>
-              <h2 className="mb-2">{monthYear}</h2>
+              <h3 className="mb-2 font-medium text-lg">{monthYear}</h3>
               <div className="grid grid-cols-2 gap-5">
                 {results.map((result, index) => (
                   <Card

@@ -100,7 +100,7 @@ const UpcomingCard = ({}) => {
         <h3 className="flex items-center text-center uppercase font-semibold">
           Error
         </h3>
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
+        <div className="bg-romanceColor text-amaranthColor p-4 rounded-lg border border-amaranthColor mb-20">
           <strong>Error:</strong> {error}
         </div>
       </div>
@@ -112,7 +112,7 @@ const UpcomingCard = ({}) => {
       title="Upcoming Match:"
       bgColor="#E63946"
       hoverColor="#e84c58"
-      textColor="#FFFFFF"
+      textColor="#F5F4F1"
       handleClick={handleClick}
       handleClickCondition={true}
       hoverCondition={true}
@@ -135,13 +135,25 @@ const UpcomingCard = ({}) => {
                       {result.awayTeam}
                     </h3>
                   </div>
-                  <div className="flex flex-col	">
-                    <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
-                      {result.fixtureDate}
+                  <div className="flex flex-col">
+                    <p className="text-center py-1 rounded-lg bg-mirageColor items-center px-2">
+                      {(() => {
+                        const dateObj = new Date(result.fixtureDate);
+                        return dateObj.toISOString().split("T")[0]; // YYYY-MM-DD
+                      })()}
                     </p>
                     <p className="text-center py-1">VS</p>
-                    <p className="text-center py-1 rounded-lg bg-[#e84c58] items-center px-2">
-                      {result.fixtureDate}
+                    <p className="text-center py-1 rounded-lg bg-mirageColor ">
+                      {(() => {
+                        const dateObj = new Date(result.fixtureDate);
+                        const optionsTime = {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                          timeZone: "Asia/Kuala_Lumpur",
+                        };
+                        return dateObj.toLocaleTimeString("en-US", optionsTime); // HH:MM AM/PM
+                      })()}
                     </p>
                   </div>
                   <div className="w-20">

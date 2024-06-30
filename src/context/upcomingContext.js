@@ -13,7 +13,6 @@ export const UpcomingsDataProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // Save data to local storage whenever it changes
     if (typeof window !== "undefined") {
       localStorage.setItem("upcomingsData", JSON.stringify(data));
     }

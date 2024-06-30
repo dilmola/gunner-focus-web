@@ -8,7 +8,7 @@ import Arsenal from "../../../../public/img/arsenal_img.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
-import Search from "../../filterBar/search";
+import Search from "../../filterBar/search-with-filter";
 
 const SPECIFIC_TEAM_ID = "Arsenal";
 
@@ -110,7 +110,7 @@ const RankedTablePage = () => {
       <SkeletonTheme baseColor="#d1d1d1" highlightColor="#888">
         <div className="mb-20">
           <div className="flex mb-4 items-center">
-            <h2 className="uppercase font-semibold">Ranked</h2>
+            <h2 className="font-semibold">Ranked</h2>
           </div>
           <div className="mb-4">
             <Skeleton height={100} />
@@ -127,9 +127,9 @@ const RankedTablePage = () => {
     return (
       <div>
         <div className="flex mb-4 items-center">
-          <h2 className="uppercase font-semibold">Ranked</h2>
+          <h2 className="font-semibold">Ranked</h2>
         </div>
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
+        <div className="bg-amaranthColor text-mirageColor p-4 rounded-lg border border-amaranthColor mb-20">
           <strong>Error:</strong> {error}
         </div>
       </div>
@@ -139,21 +139,21 @@ const RankedTablePage = () => {
   return (
     <div className="mb-20 ">
       <div className="flex mb-4 items-center justify-between">
-        <h2 className="uppercase font-semibold">Ranked</h2>
+        <h2 className="font-semibold">Ranked</h2>
       </div>
-      <div className="bg-[#F2F2F2] rounded-lg">
+      <div className="bg-whitesmokeColor rounded-lg">
         <div className="p-4">
-          <div className="rounded-lg overflow-hidden bg-[#eaeaea] h-20 flex justify-between mb-6 p-8">
+          <div className="rounded-lg overflow-hidden bg-gainsboroColor h-20 flex justify-between mb-6 p-8">
             <div className="flex">
               <div className="flex items-center text-center md:px-3.5">
                 <img src={Arsenal.src} alt="Arsenal" className="h-12" />
               </div>
-              <h3 className="flex items-center text-center px-12 uppercase font-semibold text-lg">
+              <h3 className="flex items-center text-center px-12 font-semibold text-lg">
                 Arsenal
               </h3>
             </div>
             <div className="flex">
-              <h3 className="flex items-center text-center uppercase px-8 font-semibold">
+              <h3 className="flex items-center text-center px-8 font-semibold">
                 Current Ranked
               </h3>
               <h3 className="flex items-center text-center text-4xl font-semibold">
@@ -161,7 +161,7 @@ const RankedTablePage = () => {
               </h3>
             </div>
           </div>
-          <div className="flex justify-between items-center mx-auto w-full bg-[#F2F2F2] rounded-lg borderSizePrimary">
+          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg borderSizePrimary">
             <div className="w-full">
               <Search query={query} setQuery={setQuery} />
             </div>

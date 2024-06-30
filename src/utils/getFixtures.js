@@ -5,7 +5,7 @@ const fetchUpcoming = async () => {
     method: "GET",
     url: "https://api-football-v1.p.rapidapi.com/v3/fixtures",
     params: {
-      season: "2023",
+      season: "2024",
       team: "42",
     },
     headers: {

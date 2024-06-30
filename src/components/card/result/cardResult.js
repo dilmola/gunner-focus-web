@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useData } from "../../../context/resultContext";
 
 const ResultsCard = ({}) => {
-  console.log('execute of cardresult')
+  console.log("execute of cardresult");
   const { data, setData } = useData();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -98,7 +98,7 @@ const ResultsCard = ({}) => {
         <h3 className="flex items-center text-center uppercase font-semibold">
           Error
         </h3>
-        <div className="bg-red-100 text-red-800 p-4 rounded-lg border border-red-200 mb-20">
+        <div className="bg-amaranthColor text-romanceColor p-4 rounded-lg border border-amaranthColor mb-20">
           <strong>Error:</strong> {error}
         </div>
       </div>
@@ -108,9 +108,9 @@ const ResultsCard = ({}) => {
   return (
     <Card
       title="Match Results"
-      bgColor="#F6F6F6"
-      hoverColor="#f9f9f9"
-      textColor="#000000"
+      bgColor="#F0F0F0"
+      hoverColor="#F7F7F7"
+      textColor="#393e41"
       handleClick={handleClick}
       handleClickCondition={true}
       hoverCondition={true}
@@ -136,14 +136,14 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                    <h4 className="text-4xl font-bold text-gray-600">
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
+                    <h4 className="text-4xl font-bold">
                       {result.homeGoals}
                     </h4>
-                    <span className="mx-2 text-4xl font-bold text-gray-600">
+                    <span className="mx-2 text-4xl font-bold">
                       -
                     </span>
-                    <h4 className="text-4xl font-bold text-gray-600">
+                    <h4 className="text-4xl font-bold">
                       {result.awayGoals}
                     </h4>
                   </div>
@@ -166,14 +166,14 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                    <h4 className="text-4xl font-bold text-gray-600">
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
+                    <h4 className="text-4xl font-bold">
                       {result.awayGoals}
                     </h4>
-                    <span className="mx-2 text-4xl font-bold text-gray-600">
+                    <span className="mx-2 text-4xl font-bold">
                       -
                     </span>
-                    <h4 className="text-4xl font-bold text-gray-600">
+                    <h4 className="text-4xl font-bold">
                       {result.homeGoals}
                     </h4>
                   </div>
