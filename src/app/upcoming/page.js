@@ -2,7 +2,7 @@ import UpcomingCardDetails from "../../components/card/upcomingDetail/cardUpcomi
 
 export default function UpcomingsPage() {
   return (
-    <main className="h-fit">
+    <main className="min-h-screen">
       <h2 className="font-semibold mb-4">Upcoming matches</h2>
       <div>
         <UpcomingCardDetails /> 

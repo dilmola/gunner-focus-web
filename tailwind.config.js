@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -27,10 +28,18 @@ module.exports = {
       },
       colors: {
         mirageColor: "#393e41" /* black, text, bgbuttoncolor*/,
+        mirageOpa50Color: "rgba(57, 62, 65, 0.5)" /* text black, opacity 50%,*/,
+        mirageOpa01Color: "rgba(57, 62, 65, 0.1)" /* border*/,
         amaranthColor: "#E63946" /*red, cardcolor*/,
-        romanceColor: "#F5F4F1" /* white ,text,search , bgcolor*/,
+        romanceColor: "#F6F6F6" /* white ,text,search, bgcolor */,
+        romanceOpa50Color:
+          "rgba(246, 246, 246, 0.5)" /* text white ,opacity 50%*/,
+        romanceOpa01Color:
+          "rgba(246, 246, 246, 0.1)" /* border */,
         whitesmokeColor: "#F0F0F0" /* whitecardcolor*/,
         gainsboroColor: "#E3E2E2" /*lightdarkabovecardcolor*/,
+        fiordColor: "#52595D" /*darkmodeabovecardcolor*/,
+        codgreyColor: "#2D3133" /*cardcolor for darkmode*/,
       },
     },
   },

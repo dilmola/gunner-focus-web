@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useTeam } from "../../../../context/teamContext";
 import { usePlayer } from "../../../../context/playerContext";
+import { useTheme } from "../../../../context/themeContext"; // Adjust path as necessary
 
 import jerseyNumbers from "../../../../libs/jerseyNumbers";
 import flags from "../../../../libs/nationalFlags";
@@ -18,12 +19,24 @@ import goalIcon from "../../../../../public/icons/player/goals-icon.png";
 import passesIcon from "../../../../../public/icons/player/passes-icon.png";
 import tackleIcon from "../../../../../public/icons/player/tackle-icon.png";
 import cardsIcon from "../../../../../public/icons/player/cards-icon.png";
-import cardsRedIcon from "../../../../../public/icons/player/cards-icon-red.png";
-import cardsYellowIcon from "../../../../../public/icons/player/cards-icon-yellow.png";
+import cardsRedIcon from "../../../../../public/icons/player/cards-red-icon.png";
+import cardsYellowIcon from "../../../../../public/icons/player/cards-yellow-icon.png";
 import penaltyIcon from "../../../../../public/icons/player/penalty-icon.png";
 import foulsIcon from "../../../../../public/icons/player/fouls-icon.png";
 import duelsIcon from "../../../../../public/icons/player/duels-icon.png";
 import dribblesIcon from "../../../../../public/icons/player/dribbles-icon.png";
+import substituteDarkIcon from "../../../../../public/icons/player/substitute-dark-icon.png";
+import shotDarkIcon from "../../../../../public/icons/player/shot-dark-icon.png";
+import goalIDarkIcon from "../../../../../public/icons/player/goals-dark-icon.png";
+import passesDarkIcon from "../../../../../public/icons/player/passes-dark-icon.png";
+import tackleDarkIcon from "../../../../../public/icons/player/tackle-dark-icon.png";
+import cardsDarkIcon from "../../../../../public/icons/player/cards-dark-icon.png";
+import cardsRedDarkIcon from "../../../../../public/icons/player/cards-dark-red-icon.png";
+import cardsYellowDarkIcon from "../../../../../public/icons/player/cards-dark-yellow-icon.png";
+import penaltyDarkIcon from "../../../../../public/icons/player/penalty-dark-icon.png";
+import foulsDarkIcon from "../../../../../public/icons/player/fouls-dark-icon.png";
+import duelsDarkIcon from "../../../../../public/icons/player/duels-dark-icon.png";
+import dribblesDarkIcon from "../../../../../public/icons/player/dribbles-dark-icon.png";
 
 import GamesPlayerCard from "../../../../components/card/games-player/games-player";
 import StackedChart from "../../../../components/chart/stackedbar-chart";
@@ -31,6 +44,7 @@ import DoughnutChart from "../../../../components/chart/doughnut-chart";
 import Search from "../../../../components/filterBar/search";
 
 export default function PlayerPage() {
+  const { theme } = useTheme();
   const [query, setQuery] = useState("");
   const { data } = useTeam();
   const [seasonYear, setSeasonYear] = useState("2024"); // Default season
@@ -52,7 +66,7 @@ export default function PlayerPage() {
     {
       name: "Saves",
       value: playerData?.statistics?.[0]?.goals?.saves ?? 0,
-      color: "#fdf0d5",
+      color: "#df817a",
     },
   ];
 
@@ -65,7 +79,7 @@ export default function PlayerPage() {
     {
       name: "Assists",
       value: playerData?.statistics?.[0]?.goals?.assists ?? 0,
-      color: "#fdf0d5",
+      color: "#df817a",
     },
   ];
 
@@ -80,7 +94,7 @@ export default function PlayerPage() {
       value:
         (playerData?.statistics?.[0]?.duels?.total ?? 0) -
         (playerData?.statistics?.[0]?.duels?.won ?? 0),
-      color: "#fdf0d5",
+      color: "#df817a",
     },
   ];
 
@@ -95,7 +109,7 @@ export default function PlayerPage() {
       value:
         (playerData?.statistics?.[0]?.dribbles?.attempts ?? "-") -
         (playerData?.statistics?.[0]?.dribbles?.success ?? "-"),
-      color: "#fdf0d5",
+      color: "#df817a",
     },
   ];
 
@@ -147,7 +161,7 @@ export default function PlayerPage() {
         <Search query={query} setQuery={setQuery} />
         {query ? (
           filteredData.length > 0 ? (
-            <ul className="bg-white w-full absolute z-20 p-3 shadow-md rounded-md borderSizePrimary mt-2">
+            <ul className="bg-gainsboroColor dark:bg-fiordColor w-full absolute z-20 p-3 shadow-md rounded-md  mt-2">
               {filteredData.map((player) => (
                 <li
                   key={player.idPlayer}
@@ -165,16 +179,13 @@ export default function PlayerPage() {
                     <span className="font-semibold">{player.player}</span>
                     <span className="ml-2 text-gray-600">
                       ({player.position})
-                    </span>
-                    <span className="ml-2 text-gray-600">
-                      ({player.idPlayer})
-                    </span>
+                    </span>              
                   </div>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="bg-white w-full absolute z-20 p-3 shadow-md rounded-md borderSizePrimary mt-2 text-center text-gray-600">
+            <div className="bg-gainsboroColor dark:bg-fiordColor w-full absolute z-20 p-3 shadow-md rounded-md  mt-2 text-center">
               No results found
             </div>
           )
@@ -189,13 +200,13 @@ export default function PlayerPage() {
           ) : playerDataExist ? (
             <div className="space-y-16">
               <section className="space-y-4">
-                <section className="bg-red-600 w-full rounded-lg p-4 grid grid-cols-2 gap-36 content-center text-white">
+                <section className="bg-amaranthColor w-full rounded-lg p-4 grid grid-cols-2 gap-36 content-center text-romanceColor">
                   <article className="flex flex-row gap-2">
                     <figure>
                       <img
                         src={playerData?.player.photo ?? "-"}
                         alt={playerData?.player.photo ?? "-"}
-                        className="h-28 rounded mr-6 bg-[#D9D9D9]"
+                        className="h-28 rounded mr-6 bg-gainsboroColor"
                       />
                     </figure>
                     <div>
@@ -207,10 +218,10 @@ export default function PlayerPage() {
                       </p>
                     </div>
                   </article>
-                  <article className="grid grid-cols-3 gap-2 p-6 bg-[#F6F6F6] rounded-md text-sm  text-slate-700/60 font-bold">
+                  <article className="grid grid-cols-3 gap-2 p-6 bg-gainsboroColor dark:bg-fiordColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
                     <div className="flex flex-col space-y-4">
                       <p>Captain</p>
-                      <p className="font-semibold text-lg text-gray-700">
+                      <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
                         {playerData?.statistics?.[0]?.games?.captain
                           ? "Yes"
                           : "-"}
@@ -218,13 +229,13 @@ export default function PlayerPage() {
                     </div>
                     <div className="flex flex-col space-y-4">
                       <p>Shirt number</p>
-                      <p className="font-semibold text-lg text-gray-700">
+                      <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
                         #{jerseyNumbers[playerData?.player?.id] ?? "-"}
                       </p>
                     </div>
                     <div className="flex flex-col space-y-4">
                       <p>Nationality</p>
-                      <div className="flex font-semibold text-lg space-x-2 text-gray-700">
+                      <div className="flex font-semibold text-lg space-x-2 text-mirageColor dark:text-romanceColor">
                         <img
                           src={flags[playerData?.player?.nationality]?.src}
                           alt={playerData?.player?.nationality}
@@ -235,65 +246,67 @@ export default function PlayerPage() {
                     </div>
                   </article>
                 </section>
-                <section className="bg-white rounded-lg p-4 grid grid-cols-3 gap-8 text-sm text-slate-700/50 font-bold">
+                <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-4 grid grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
                   <article>
                     <h3>First name</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.player?.firstname}
                     </p>
                   </article>
                   <article>
                     <h3>Last name</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.player?.lastname}
                     </p>
                   </article>
                   <article>
                     <h3>Age</h3>
-                    <p className="text-gray-700">{playerData?.player?.age}</p>
+                    <p className="text-mirageColor dark:text-romanceColor">
+                      {playerData?.player?.age}
+                    </p>
                   </article>
                   <article>
                     <h3>Weight</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.player?.weight}
                     </p>
                   </article>
                   <article>
                     <h3>Height</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.player?.height}
                     </p>
                   </article>
                   <article>
                     <h3>Preferred foot</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {preferredFoot[playerData?.player?.id] ?? "-"}
                     </p>
                   </article>
                   <article>
                     <h3>Appearences</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.statistics?.[0]?.games?.appearences ?? "-"}
                     </p>
                   </article>
                   <article>
                     <h3>Minutes</h3>
-                    <p className="text-gray-700">
+                    <p className="text-mirageColor dark:text-romanceColor">
                       {playerData?.statistics?.[0]?.games?.minutes ?? "-"}
                     </p>
                   </article>
-                  <article className="col-span-2 bg-[#eaeaea] p-4 rounded">
+                  <article className="flex flex-col space-y-2 col-span-2 bg-gainsboroColor dark:bg-fiordColor p-4 rounded text-mirageOpa50Color dark:text-romanceOpa50Color">
                     <h3>Birth</h3>
                     <div className="grid grid-cols-3">
                       <div>
                         <h4>Date</h4>
-                        <p className="text-gray-700">
+                        <p className="text-mirageColor dark:text-romanceColor">
                           {playerData?.player?.birth?.date ?? "-"}
                         </p>
                       </div>
                       <div>
                         <h4>Place</h4>
-                        <p className="text-gray-700">
+                        <p className="text-mirageColor dark:text-romanceColor">
                           {playerData?.player?.birth?.place ?? "-"}
                         </p>
                       </div>
@@ -305,7 +318,7 @@ export default function PlayerPage() {
                             alt={playerData?.player?.birth?.country}
                             className="h-6 rounded"
                           />
-                          <p className="text-gray-700">
+                          <p className="text-mirageColor dark:text-romanceColor">
                             {playerData?.player?.birth?.country ?? "-"}
                           </p>
                         </div>
@@ -314,16 +327,16 @@ export default function PlayerPage() {
                   </article>
                 </section>
               </section>
-              <section className="space-y-4 text-slate-700/50">
+              <section className="space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">
                 <nav className="flex flex-wrap justify-between">
                   <div className="space-x-4 text-sm font-bold">
                     {["2022", "2023", "2024"].map((year) => (
                       <button
                         key={year}
-                        className={`px-4 py-2 rounded-lg text-white ${
+                        className={`px-4 py-2 rounded-lg ${
                           seasonYear === year
-                            ? "bg-amaranthColor"
-                            : "bg-gray-300 hover:bg-mirageColor"
+                            ? "bg-amaranthColor text-romanceColor"
+                            : "dark:text-romanceOpa50Color dark:bg-romanceOpa01Color text-mirageOpa50Color bg-mirageOpa01Color"
                         }`}
                         onClick={() => handleSeasonClick(year)}
                       >
@@ -331,14 +344,16 @@ export default function PlayerPage() {
                       </button>
                     ))}
                   </div>
-                  {/* <div>
-                    <a className="rounded-md bg-white py-2 px-4">compare</a>
-                  </div> */}
                 </nav>
-                <section className="bg-white rounded-lg p-4">
+                <section className="bg-whitesmokeColor dark:bg-codgreyColor text-mirageOpa50Color dark:text-romanceOpa50Color rounded-lg p-4">
                   <div className="grid grid-cols-3 gap-4">
+                    {/* Penalty Card */}
                     <GamesPlayerCard
-                      contentCardIcon={penaltyIcon.src}
+                      contentCardIcon={
+                        theme === "light"
+                          ? penaltyIcon.src
+                          : penaltyDarkIcon.src
+                      }
                       contentCardAlt="penaltyIcon"
                       contentCardTitle="Penalty"
                     >
@@ -347,7 +362,7 @@ export default function PlayerPage() {
                         "Goalkeeper" ? (
                           <>
                             <div className="flex flex-row space-x-2 items-baseline">
-                              <p className="text-3xl font-bold text-gray-700">
+                              <p className="text-3xl font-bold dark:text-romanceColor text-mirageColor">
                                 {playerData?.statistics?.[0]?.penalty?.saved ??
                                   "-"}
                               </p>
@@ -358,14 +373,14 @@ export default function PlayerPage() {
                           <>
                             <div className="flex flex-row space-x-6">
                               <div className="flex flex-row space-x-2 items-baseline">
-                                <p className="text-3xl font-bold text-gray-700">
+                                <p className="text-3xl font-bold dark:text-romanceColor text-mirageColor">
                                   {playerData?.statistics?.[0]?.penalty
                                     ?.scored ?? "-"}
                                 </p>
-                                <p className="text-base font-bold ">Scored</p>
+                                <p className="text-base font-bold">Scored</p>
                               </div>
                               <div className="flex flex-row space-x-2 items-baseline">
-                                <p className="text-3xl font-bold text-gray-700">
+                                <p className="text-3xl font-bold dark:text-romanceColor text-mirageColor">
                                   {playerData?.statistics?.[0]?.penalty
                                     ?.missed ?? "-"}
                                 </p>
@@ -376,25 +391,33 @@ export default function PlayerPage() {
                         )}
                       </>
                     </GamesPlayerCard>
+
+                    {/* Fouls Card */}
                     <GamesPlayerCard
-                      contentCardIcon={foulsIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? foulsIcon.src : foulsDarkIcon.src
+                      }
                       contentCardAlt="foulsIcon"
                       contentCardTitle="Fouls"
                     >
                       <>
-                        <p className="text-3xl font-bold text-gray-700">
+                        <p className="text-3xl font-bold dark:text-romanceColor text-mirageColor">
                           {playerData?.statistics?.[0]?.fouls?.committed ?? "-"}
                         </p>
                       </>
                     </GamesPlayerCard>
+
+                    {/* Shots Card */}
                     <GamesPlayerCard
-                      contentCardIcon={shotIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? shotIcon.src : shotDarkIcon.src
+                      }
                       contentCardAlt="shotIcon"
                       contentCardTitle="Shots"
                     >
                       <>
                         <div className="flex flex-row items-baseline space-x-2">
-                          <p className=" text-3xl font-bold text-gray-700">
+                          <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {(() => {
                               const total =
                                 playerData?.statistics?.[0]?.shots?.total ?? 0;
@@ -412,34 +435,38 @@ export default function PlayerPage() {
                           </p>
                           <p className="text-base font-bold">
                             Total shot&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.shots?.total ?? "-"}
                             </span>
                             &nbsp;|&nbsp; Shot on target&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.shots?.on ?? "-"}
                             </span>
                           </p>
                         </div>
                       </>
                     </GamesPlayerCard>
+
+                    {/* Passes Card */}
                     <GamesPlayerCard
-                      contentCardIcon={passesIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? passesIcon.src : passesDarkIcon.src
+                      }
                       contentCardAlt="passesIcon"
                       contentCardTitle="Passes"
                     >
                       <>
                         <div className="flex flex-row items-baseline space-x-2">
-                          <p className=" text-3xl font-bold text-gray-700">
+                          <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {playerData?.statistics?.[0]?.passes?.total ?? "-"}
                           </p>
                           <p className="text-base font-bold">
                             Key passes&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.passes?.key ?? "-"}
                             </span>
                             &nbsp;|&nbsp; Accuracy pass&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.passes?.accuracy ??
                                 "-"}
                             </span>
@@ -447,24 +474,28 @@ export default function PlayerPage() {
                         </div>
                       </>
                     </GamesPlayerCard>
+
+                    {/* Tackles Card */}
                     <GamesPlayerCard
-                      contentCardIcon={tackleIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? tackleIcon.src : tackleDarkIcon.src
+                      }
                       contentCardAlt="tackleIcon"
                       contentCardTitle="Tackle"
                     >
                       <>
                         <div className="flex flex-row items-baseline space-x-2">
-                          <p className=" text-3xl font-bold text-gray-700">
+                          <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {playerData?.statistics?.[0]?.tackles?.total ?? "-"}
                           </p>
                           <p className="text-base font-bold">
                             Block&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.tackles?.blocks ??
                                 "-"}
                             </span>
                             &nbsp;|&nbsp; Interceptions&nbsp;
-                            <span className="text-black">
+                            <span className="text-mirageColor dark:text-romanceColor">
                               {playerData?.statistics?.[0]?.tackles
                                 ?.interceptions ?? "-"}
                             </span>
@@ -472,17 +503,25 @@ export default function PlayerPage() {
                         </div>
                       </>
                     </GamesPlayerCard>
+
+                    {/* Cards Card */}
                     <GamesPlayerCard
-                      contentCardIcon={cardsIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? cardsIcon.src : cardsDarkIcon.src
+                      }
                       contentCardAlt="cardsIcon"
                       contentCardTitle="Cards"
                     >
                       <>
                         <div className="flex flex-row space-x-2">
-                          <div className="text-3xl font-bold flex flex-row space-x-6 text-gray-700">
+                          <div className="text-3xl font-bold flex flex-row space-x-6 dark:text-romanceColor text-mirageColor">
                             <div className="flex flex-row space-x-2 items-baseline">
                               <img
-                                src={cardsRedIcon.src}
+                                src={
+                                  theme === "light"
+                                    ? cardsRedIcon.src
+                                    : cardsRedDarkIcon.src
+                                }
                                 alt="cardsRedIconAlt"
                                 className="w-4 h-auto"
                               />
@@ -492,7 +531,11 @@ export default function PlayerPage() {
                             </div>
                             <div className="flex flex-row space-x-2 items-baseline">
                               <img
-                                src={cardsYellowIcon.src}
+                                src={
+                                  theme === "light"
+                                    ? cardsYellowIcon.src
+                                    : cardsYellowDarkIcon.src
+                                }
                                 alt="cardsRedYellowAlt"
                                 className="w-4 h-auto"
                               />
@@ -505,15 +548,21 @@ export default function PlayerPage() {
                         </div>
                       </>
                     </GamesPlayerCard>
+
+                    {/* Substitutes Card */}
                     <article className="col-span-3">
                       <GamesPlayerCard
-                        contentCardIcon={substituteIcon.src}
+                        contentCardIcon={
+                          theme === "light"
+                            ? substituteIcon.src
+                            : substituteDarkIcon.src
+                        }
                         contentCardAlt="substituteIcon"
                         contentCardTitle="Substitutes"
                       >
                         <>
                           <div className="flex flex-row space-x-2 items-baseline">
-                            <p className="text-3xl font-bold text-gray-700">
+                            <p className="text-3xl font-bold dark:text-romanceColor text-mirageColor">
                               {(() => {
                                 const subIn =
                                   playerData?.statistics?.[0]?.substitutes
@@ -548,10 +597,14 @@ export default function PlayerPage() {
                         </>
                       </GamesPlayerCard>
                     </article>
+
+                    {/* Goals Card */}
                     <GamesPlayerCard
-                      contentCardIcon={goalIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? goalIcon.src : goalIDarkIcon.src
+                      }
                       contentCardAlt="goalIcon"
-                      contentCardTitle="goals"
+                      contentCardTitle="Goals"
                     >
                       <>
                         {playerData?.statistics?.[0]?.games?.position ===
@@ -568,10 +621,14 @@ export default function PlayerPage() {
                         )}
                       </>
                     </GamesPlayerCard>
+
+                    {/* Duels Card */}
                     <GamesPlayerCard
-                      contentCardIcon={duelsIcon.src}
+                      contentCardIcon={
+                        theme === "light" ? duelsIcon.src : duelsDarkIcon.src
+                      }
                       contentCardAlt="duelsIcon"
-                      contentCardTitle="duels"
+                      contentCardTitle="Duels"
                     >
                       <>
                         <DoughnutChart
@@ -580,10 +637,16 @@ export default function PlayerPage() {
                         />
                       </>
                     </GamesPlayerCard>
+
+                    {/* Dribbles Card */}
                     <GamesPlayerCard
-                      contentCardIcon={dribblesIcon.src}
-                      contentCardAlt="dribblesIconcon"
-                      contentCardTitle="dribbles"
+                      contentCardIcon={
+                        theme === "light"
+                          ? dribblesIcon.src
+                          : dribblesDarkIcon.src
+                      }
+                      contentCardAlt="dribblesIcon"
+                      contentCardTitle="Dribbles"
                     >
                       <>
                         <DoughnutChart

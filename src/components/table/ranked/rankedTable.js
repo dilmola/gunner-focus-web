@@ -25,6 +25,10 @@ const RankedTablePage = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const handleExpandClick = () => {
+    toggleExpand();
+  };
+
   const filterData = (query) => {
     const lowerCaseQuery = query.toLowerCase();
     const filtered = data.filter(
@@ -141,9 +145,9 @@ const RankedTablePage = () => {
       <div className="flex mb-4 items-center justify-between">
         <h2 className="font-semibold">Ranked</h2>
       </div>
-      <div className="bg-whitesmokeColor rounded-lg">
+      <div className="bg-whitesmokeColor rounded-lg dark:bg-codgreyColor">
         <div className="p-4">
-          <div className="rounded-lg overflow-hidden bg-gainsboroColor h-20 flex justify-between mb-6 p-8">
+          <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-fiordColor h-20 flex justify-between mb-6 p-8">
             <div className="flex">
               <div className="flex items-center text-center md:px-3.5">
                 <img src={Arsenal.src} alt="Arsenal" className="h-12" />
@@ -161,12 +165,13 @@ const RankedTablePage = () => {
               </h3>
             </div>
           </div>
-          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg borderSizePrimary">
+          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg borderSizePrimary">
             <div className="w-full">
               <Search query={query} setQuery={setQuery} />
             </div>
-            <div className="px-2">
+            <div className="p-2 cursor-pointer" onClick={handleExpandClick}>
               <ExpandButtonTable
+                iconBlack={true}
                 isExpanded={isExpanded}
                 toggleExpand={toggleExpand}
               />

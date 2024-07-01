@@ -6,8 +6,10 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import Search from "../../filterBar/search-with-filter";
-import seemoreArrow from "../../../../public/icons/seemore_arrow.png";
+import SeemoreIcon from "../../../../public/icons/seemore-icon.png";
+import SeemoreDarkIcon from "../../../../public/icons/seemore-dark-icon.png";
 import { useTeam } from "../../../context/teamContext";
+import { useTheme } from "../../../context/themeContext";
 
 const TeamTablePage = () => {
   const { data, loading, error } = useTeam();
@@ -15,9 +17,14 @@ const TeamTablePage = () => {
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [hoveredRowIndex, setHoveredRowIndex] = useState(-1);
+  const { theme } = useTheme();
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleExpandClick = () => {
+    toggleExpand();
   };
 
   const filterData = (query) => {
@@ -82,14 +89,15 @@ const TeamTablePage = () => {
       <div className="flex mb-4 items-center justify-between">
         <h2 className="font-semibold">Team</h2>
       </div>
-      <div className="bg-whitesmokeColor rounded-lg">
+      <div className="bg-whitesmokeColor rounded-lg dark:bg-codgreyColor">
         <div className="p-4">
-          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg borderSizePrimary">
+          <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg borderSizePrimary dark:borderSizePrimaryDark">
             <div className="w-full">
               <Search query={query} setQuery={setQuery} />
             </div>
-            <div className="px-2">
+            <div className="p-2 cursor-pointer" onClick={handleExpandClick}>
               <ExpandButtonTable
+                iconBlack={true}
                 isExpanded={isExpanded}
                 toggleExpand={toggleExpand}
               />
@@ -126,9 +134,13 @@ const TeamTablePage = () => {
                         <div className="pr-4">{row.position}</div>
                         <div>
                           <img
-                            src={seemoreArrow.src}
-                            alt={seemoreArrow}
-                            className="h-4"
+                            src={
+                              theme === "light"
+                                ? SeemoreIcon.src
+                                : SeemoreDarkIcon.src
+                            }
+                            alt="SeemoreIcon"
+                            className="h-3"
                             style={{
                               opacity: hoveredRowIndex === rowIndex ? 1 : 0,
                               transition: "opacity 0.3s ease",

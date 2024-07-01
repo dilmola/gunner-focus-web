@@ -7,7 +7,9 @@ import { useData } from "../../../context/resultContext";
 import Search from "../../filterBar/search-with-filter";
 import FilterButton from "../../button/buttonFilter";
 import ExpandButtonTable from "../../button/buttonExpandTable";
-import NoFoundImg from "../../../../public/img/notFound.png";
+import NoFoundImg from "../../../../public/img/notFound-img.png";
+import NoFoundDarkImg from "../../../../public/img/notFound-dark-img.png";
+import { useTheme } from "../../../context/themeContext";
 
 const ResultsCardDetails = ({}) => {
   const { data } = useData();
@@ -15,6 +17,7 @@ const ResultsCardDetails = ({}) => {
   const [filteredData, setFilteredData] = useState({});
   const [isExpanded, setIsExpanded] = useState(false);
   const [filter, setFilter] = useState("");
+  const { theme } = useTheme();
 
   const groupDataByMonth = (data) => {
     const groupedData = {};
@@ -117,6 +120,8 @@ const ResultsCardDetails = ({}) => {
                 return result.nameOfMatch.toLowerCase() === "friendlies clubs";
               case "By League Cup":
                 return result.nameOfMatch.toLowerCase() === "league cup";
+              case "Clear":
+                return true;
               default:
                 return true;
             }
@@ -134,6 +139,39 @@ const ResultsCardDetails = ({}) => {
     return filtered;
   };
 
+  const nameMatch = [
+    {
+      data: "By Win",
+    },
+    {
+      data: "By Draw",
+    },
+    {
+      data: "By Lost",
+    },
+    {
+      data: "By Premier League",
+    },
+    {
+      data: "By UEFA Champions League",
+    },
+    {
+      data: "By FA Cup",
+    },
+    {
+      data: "By Emirates Cup",
+    },
+    {
+      data: "By Friendlies Clubs",
+    },
+    {
+      data: "By League Cupp",
+    },
+    {
+      data: "Clear",
+    },
+  ];
+
   useEffect(() => {
     const dataToFilter = isExpanded
       ? groupedData
@@ -149,21 +187,33 @@ const ResultsCardDetails = ({}) => {
     setIsExpanded(!isExpanded);
   };
 
+  const handleExpandClick = () => {
+    toggleExpand();
+  };
+
+  const bgColor = theme === "light" ? "#F0F0F0" : "#2D3133";
+  const hoverColor = theme === "light" ? "#F7F7F7" : "#575A5C";
+  const textColor = theme === "light" ? "#393e41" : "#F5F4F1";
+
   return (
     <>
-      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg mb-12 borderSizePrimary">
+      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg mb-12 borderSizePrimary">
         <div className="w-full">
           <Search query={query} setQuery={setQuery} />
         </div>
         <div className="px-2">
-          <FilterButton setFilter={setFilter} />
+          <FilterButton setFilter={setFilter} nameMatch={nameMatch} />
         </div>
       </div>
       {Object.keys(filteredData).length === 0 ? (
         <>
-          <div class="min-h-screen flex flex-col items-center justify-center">
-            <img src={NoFoundImg.src} alt={NoFoundImg} className="h-40" />
-            <p className="text-center text-black font-semibold text-lg py-10">
+          <div class="min-h-screen flex flex-col items-center justify-center opacity-50">
+              <img
+                src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
+                alt="NoFoundImg"
+                className="h-40"
+              />
+            <p className="text-center font-semibold text-lg py-10">
               No match found
             </p>
           </div>
@@ -178,9 +228,9 @@ const ResultsCardDetails = ({}) => {
                   <Card
                     key={index}
                     title=""
-                    bgColor="#F0F0F0"
-                    hoverColor="#f9f9f9"
-                    textColor="#393e41"
+                    bgColor={bgColor}
+                    hoverColor={hoverColor}
+                    textColor={textColor}
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
@@ -241,10 +291,18 @@ const ResultsCardDetails = ({}) => {
               </div>
             </div>
           ))}
-          <ExpandButtonTable
-            isExpanded={isExpanded}
-            toggleExpand={toggleExpand}
-          />
+          <div className="flex justify-start ">
+            <div
+              className="bg-amaranthColor rounded p-2 cursor-pointer"
+              onClick={handleExpandClick}
+            >
+              <ExpandButtonTable
+                iconBlack={false}
+                isExpanded={isExpanded}
+                toggleExpand={toggleExpand}
+              />
+            </div>
+          </div>
         </>
       )}
     </>

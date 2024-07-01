@@ -6,7 +6,7 @@ const Search = ({ query, setQuery }) => {
   };
 
   return (
-    <div className="flex justify-between items-center mx-auto bg-romanceColor rounded-lg borderSizePrimary overflow-hidden	">
+    <div className="flex justify-between items-center mx-auto bg-romanceColor dark:bg-mirageColor rounded-lg borderSizePrimary overflow-hidden	">
       <div className="w-full">
         <div className="relative flex">
           <input

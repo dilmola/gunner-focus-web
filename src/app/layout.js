@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <CombinedDataProvider>
       <html lang="en" className={Nunito_Sans_init.className}>
-        <body className="text-mirageColor bg-romanceColor selection:bg-mirageColor selection:text-romanceColor">
+        <body className="text-mirageColor bg-romanceColor selection:bg-mirageColor selection:text-romanceColor dark:bg-mirageColor dark:text-romanceColor dark:selection:bg-romanceColor dark:selection:text-mirageColor">
           <ClientLoader>{children}</ClientLoader>
         </body>
       </html>

@@ -1,13 +1,27 @@
-import More from "../../../public/icons/more.png";
-import Less from "../../../public/icons/less.png";
+import MoreIcon from "../../../public/icons/more-icon.png";
+import MoreDarkIcon from "../../../public/icons/more-dark-icon.png";
+import LessIcon from "../../../public/icons/less-icon.png";
+import LessDarkIcon from "../../../public/icons/less-dark-icon.png";
 
-const ButtonExpandTable = ({ isExpanded, toggleExpand }) => {
+import { useTheme } from "../../context/themeContext";
+
+const ButtonExpandTable = ({ isExpanded, toggleExpand, iconBlack }) => {
+  const { theme } = useTheme();
+
   return (
-    <button onClick={toggleExpand} className="px-4 py-2 h-full rounded">
+    <button onClick={toggleExpand} className="px-1 h-full">
       {isExpanded ? (
-        <img src={Less.src} alt="Less" className="h-3" />
+        <img
+          src={theme === "light" && iconBlack ? LessDarkIcon.src : LessIcon.src}
+          alt="logo"
+          className="h-2"
+        />
       ) : (
-        <img src={More.src} alt="More" className="h-3" />
+        <img
+          src={theme === "light" && iconBlack ? MoreDarkIcon.src : MoreIcon.src}
+          alt="logo"
+          className="h-2"
+        />
       )}
     </button>
   );

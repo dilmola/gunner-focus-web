@@ -6,12 +6,14 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 import { useData } from "../../../context/resultContext";
+import { useTheme } from "../../../context/themeContext";
 
 const ResultsCard = ({}) => {
   console.log("execute of cardresult");
   const { data, setData } = useData();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { theme } = useTheme(); // Get current theme from the context
 
   const router = useRouter();
 
@@ -105,12 +107,16 @@ const ResultsCard = ({}) => {
     );
   }
 
+  const bgColor = theme === "light" ? "#F0F0F0" : "#2D3133";
+  const hoverColor = theme === "light" ? "#F7F7F7" : "#575A5C";
+  const textColor = theme === "light" ? "#393e41" : "#F5F4F1";
+
   return (
     <Card
       title="Match Results"
-      bgColor="#F0F0F0"
-      hoverColor="#F7F7F7"
-      textColor="#393e41"
+      bgColor={bgColor}
+      hoverColor={hoverColor}
+      textColor={textColor}
       handleClick={handleClick}
       handleClickCondition={true}
       hoverCondition={true}
@@ -136,21 +142,14 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
-                    <h4 className="text-4xl font-bold">
-                      {result.homeGoals}
-                    </h4>
-                    <span className="mx-2 text-4xl font-bold">
-                      -
-                    </span>
-                    <h4 className="text-4xl font-bold">
-                      {result.awayGoals}
-                    </h4>
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-fiordColor items-center text-center p-2">
+                    <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
+                    <span className="mx-2 text-4xl font-bold">-</span>
+                    <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
                   </div>
                 </div>
               </>
             )}
-
             {result.awayTeam !== "Arsenal" && (
               <>
                 <div className="grid grid-flow-col px-8">
@@ -166,16 +165,10 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
-                    <h4 className="text-4xl font-bold">
-                      {result.awayGoals}
-                    </h4>
-                    <span className="mx-2 text-4xl font-bold">
-                      -
-                    </span>
-                    <h4 className="text-4xl font-bold">
-                      {result.homeGoals}
-                    </h4>
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-fiordColor items-center text-center p-2">
+                    <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
+                    <span className="mx-2 text-4xl font-bold">-</span>
+                    <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
                   </div>
                 </div>
               </>

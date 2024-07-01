@@ -1,11 +1,14 @@
 "use client";
 
-import Sort from "../../../public/icons/sort.png";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import SortIcon from "../../../public/icons/sort-icon.png";
+import SortDarkIcon from "../../../public/icons/sort-dark-icon.png";
+import { useTheme } from "../../context/themeContext";
 
-const FilterButton = ({ setFilter }) => {
+const FilterButton = ({ setFilter, nameMatch }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -25,39 +28,34 @@ const FilterButton = ({ setFilter }) => {
   };
 
   const handleFilterChange = (filter) => {
-    setFilter(filter);
+    setFilter(filter.data); // Assuming filter is an object with a 'data' property
     setShowDropdown(false);
   };
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className="bg-[#F2F2F2] p-2 text-black font-semibold hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
+        className="bg-romanceColor dark:bg-mirageColor py-2 font-semibold hover:bg-romanceColor focus:bg-romanceColor dark:hover:bg-mirageColor dark:focus:bg-mirageColor focus:outline-none "
         onClick={toggleDropdown}
       >
-          <img src={Sort.src} alt="sort" className="h-4" />
-          
+        <img
+          src={theme === "light" ? SortIcon.src : SortDarkIcon.src}
+          alt="SortIcon"
+          className="h-3"
+        />
       </button>
       {showDropdown && (
-        <div className="absolute top-full left-0 w-max bg-white border borderSizeSecondary rounded shadow-lg">
+        <div className="absolute top-full left-0 w-max bg-romanceColor dark:bg-mirageColor rounded shadow-lg">
           <div className="p-2">
-            {[
-              "By Win",
-              "By Draw",
-              "By Lost",
-              "By Premier League",
-              "By UEFA Champions League",
-              "By FA Cup",
-              "By Emirates Cup",
-              "By Friendlies Clubs",
-              "By League Cup",
-            ].map((filterOption) => (
+            {nameMatch.map((filterOption) => (
               <button
-                key={filterOption}
-                className="block px-4 py-2 text-left w-full hover:bg-gray-100"
+                key={filterOption.data} // Assuming 'data' is unique for each filter
+                className={`block px-4 py-2 text-left w-full ${
+                  filterOption.data === "Clear" ? "font-bold" : ""
+                } bg-romanceColor dark:bg-mirageColor hover:bg-whitesmokeColor focus:bg-whitesmokeColor dark:hover:bg-fiordColor dark:focus:bg-fiordColor`}
                 onClick={() => handleFilterChange(filterOption)}
               >
-                {filterOption}
+                {filterOption.data}
               </button>
             ))}
           </div>

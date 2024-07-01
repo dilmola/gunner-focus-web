@@ -73,8 +73,8 @@ h2 {
   border-style: solid;
 }
 
-.borderSizeSecondary {
-  border-width: 0.01rem;
-  border-color: rgba(209, 213, 219);
+.dark .borderSizePrimary{
+  border-width: 2px;
+  border-color: rgba(121, 121, 121, 0.5);
   border-style: solid;
 }

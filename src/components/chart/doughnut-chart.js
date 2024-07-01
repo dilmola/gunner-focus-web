@@ -9,8 +9,11 @@ import {
   Legend,
   Cell,
 } from "recharts";
+import { useTheme } from "@/context/themeContext"; // Adjust the import path as per your project structure
 
-const MyClientChart = ({ contentCardType, contentCardData }) => {
+const DoughnutChart = ({ contentCardType, contentCardData }) => {
+  const { theme } = useTheme(); // Assuming useTheme provides theme state
+
   let dataCard;
 
   switch (contentCardType) {
@@ -60,7 +63,14 @@ const MyClientChart = ({ contentCardType, contentCardData }) => {
             />
             <p style={{ margin: 0 }}>
               {`${entry.value}: `}
-              <span style={{ fontWeight: "bold" , color: "black"}}>{entry.payload.value}</span>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: theme === "dark" ? "white" : "black",
+                }}
+              >
+                {entry.payload.value}
+              </span>
             </p>
           </div>
         ))}
@@ -80,14 +90,19 @@ const MyClientChart = ({ contentCardType, contentCardData }) => {
           paddingAngle={5}
           dataKey="value"
           cornerRadius={5}
+          stroke="none"
+          strokeWidth={0} 
         >
           {dataCard.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.color} />
           ))}
         </Pie>
         <Tooltip
-          contentStyle={{ backgroundColor: "black", color: "white" }}
-          itemStyle={{ color: "white" }}
+          contentStyle={{
+            backgroundColor: theme === "dark" ? "black" : "white",
+            color: theme === "dark" ? "white" : "black",
+          }}
+          itemStyle={{ color: theme === "dark" ? "white" : "black" }}
         />
         <Legend content={renderLegend} />
       </PieChart>
@@ -95,4 +110,4 @@ const MyClientChart = ({ contentCardType, contentCardData }) => {
   );
 };
 
-export default MyClientChart;
+export default DoughnutChart;

@@ -8,12 +8,15 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { useTheme } from "@/context/themeContext";
 
 const StackedChart = ({
   SubstitutesInData,
   SubstitutesOutData,
   SubstitutesBenchData,
 }) => {
+  const { theme } = useTheme();
+
   const data = [
     {
       name: "Substitutes",
@@ -33,13 +36,7 @@ const StackedChart = ({
     const { payload } = props;
 
     return (
-      <div
-        style={{
-          marginTop: 12,
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
+      <div style={{ marginTop: 12, display: "flex", flexDirection: "row" }}>
         {payload.map((entry, index) => (
           <div
             key={`item-${index}`}
@@ -61,7 +58,12 @@ const StackedChart = ({
             />
             <p style={{ margin: 0 }}>
               {`${entry.value}: `}
-              <span style={{ fontWeight: "bold", color: "black" }}>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: theme === "dark" ? "white" : "black",
+                }}
+              >
                 {data[0][entry.value]}
               </span>
             </p>
@@ -81,8 +83,11 @@ const StackedChart = ({
         <XAxis type="number" domain={[0, maxValue]} hide />
         <YAxis type="category" dataKey="name" hide />
         <Tooltip
-          contentStyle={{ backgroundColor: "black", color: "white" }}
-          itemStyle={{ color: "white" }}
+          contentStyle={{
+            backgroundColor: theme === "dark" ? "black" : "white",
+            color: theme === "dark" ? "white" : "black",
+          }}
+          itemStyle={{ color: theme === "dark" ? "white" : "black" }}
         />
         <Legend content={renderLegend} />
         <Bar
@@ -100,7 +105,7 @@ const StackedChart = ({
         <Bar
           dataKey="Bench"
           stackId="Substitutes"
-          fill="#fdf0d5"
+          fill="#df817a"
           radius={[0, 5, 5, 0]}
         />
       </BarChart>

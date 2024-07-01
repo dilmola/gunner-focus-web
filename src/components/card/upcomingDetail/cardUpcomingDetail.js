@@ -7,7 +7,9 @@ import { useData } from "../../../context/upcomingContext";
 import Search from "../../filterBar/search-with-filter";
 import FilterButton from "../../button/buttonFilter";
 import ExpandButtonTable from "../../button/buttonExpandTable";
-import NoFoundImg from "../../../../public/img/notFound.png";
+import NoFoundImg from "../../../../public/img/notFound-img.png";
+import NoFoundDarkImg from "../../../../public/img/notFound-dark-img.png";
+import { useTheme } from "../../../context/themeContext";
 
 const UpcomingCardDetails = ({}) => {
   const { data } = useData();
@@ -15,6 +17,7 @@ const UpcomingCardDetails = ({}) => {
   const [filteredData, setFilteredData] = useState({});
   const [isExpanded, setIsExpanded] = useState(false);
   const [filter, setFilter] = useState("");
+  const { theme } = useTheme();
 
   const groupDataByMonth = (data) => {
     const groupedData = {};
@@ -48,11 +51,16 @@ const UpcomingCardDetails = ({}) => {
     return groupedData;
   };
 
-  const groupedData = groupDataByMonth(data);
-  const sortedMonths = Object.keys(groupedData).sort(
-    (a, b) => new Date(b) - new Date(a)
-  );
-  const latestTwoMonths = sortedMonths.slice(0, 2);
+  const sortByMonthYear = (data) => {
+    return Object.keys(data)
+      .sort((a, b) => new Date(a) - new Date(b))
+      .reduce((acc, key) => {
+        acc[key] = data[key];
+        return acc;
+      }, {});
+  };
+  const groupedData = sortByMonthYear(groupDataByMonth(data));
+  const latestTwoMonths = Object.keys(groupedData).slice(0, 2);
 
   const filterData = (query, data, filter) => {
     let filtered = {};
@@ -82,27 +90,6 @@ const UpcomingCardDetails = ({}) => {
         (acc, [monthYear, results]) => {
           const filteredResults = results.filter((result) => {
             switch (filter) {
-              case "By Win":
-                return (
-                  (result.teamHomeResult === true &&
-                    result.homeTeam.toLowerCase() === "arsenal") ||
-                  (result.teamAwayResult === true &&
-                    result.awayTeam.toLowerCase() === "arsenal")
-                );
-              case "By Draw":
-                return (
-                  (result.teamHomeResult === null &&
-                    result.homeTeam.toLowerCase() === "arsenal") ||
-                  (result.teamAwayResult === null &&
-                    result.awayTeam.toLowerCase() === "arsenal")
-                );
-              case "By Lost":
-                return (
-                  (result.teamHomeResult === false &&
-                    result.homeTeam.toLowerCase() === "arsenal") ||
-                  (result.teamAwayResult === false &&
-                    result.awayTeam.toLowerCase() === "arsenal")
-                );
               case "By Premier League":
                 return result.nameOfMatch.toLowerCase() === "premier league";
               case "By UEFA Champions League":
@@ -117,6 +104,8 @@ const UpcomingCardDetails = ({}) => {
                 return result.nameOfMatch.toLowerCase() === "friendlies clubs";
               case "By League Cup":
                 return result.nameOfMatch.toLowerCase() === "league cup";
+              case "Clear":
+                return true;
               default:
                 return true;
             }
@@ -134,6 +123,30 @@ const UpcomingCardDetails = ({}) => {
     return filtered;
   };
 
+  const nameMatch = [
+    {
+      data: "By Premier League",
+    },
+    {
+      data: "By UEFA Champions League",
+    },
+    {
+      data: "By FA Cup",
+    },
+    {
+      data: "By Emirates Cup",
+    },
+    {
+      data: "By Friendlies Clubs",
+    },
+    {
+      data: "By League Cup",
+    },
+    {
+      data: "Clear",
+    },
+  ];
+
   useEffect(() => {
     const dataToFilter = isExpanded
       ? groupedData
@@ -149,20 +162,32 @@ const UpcomingCardDetails = ({}) => {
     setIsExpanded(!isExpanded);
   };
 
+  const handleExpandClick = () => {
+    toggleExpand();
+  };
+
+  const bgColor = theme === "light" ? "#F0F0F0" : "#2D3133";
+  const hoverColor = theme === "light" ? "#F7F7F7" : "#575A5C";
+  const textColor = theme === "light" ? "#393e41" : "#F5F4F1";
+
   return (
     <>
-      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor rounded-lg mb-12 borderSizePrimary">
+      <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg mb-12 borderSizePrimary">
         <div className="w-full">
           <Search query={query} setQuery={setQuery} />
         </div>
         <div className="px-2">
-          <FilterButton setFilter={setFilter} />
+          <FilterButton setFilter={setFilter} nameMatch={nameMatch} />
         </div>
       </div>
       {Object.keys(filteredData).length === 0 ? (
         <>
-          <div class="min-h-screen flex flex-col items-center justify-center">
-            <img src={NoFoundImg.src} alt={NoFoundImg} className="h-40" />
+          <div class="min-h-screen flex flex-col items-center justify-center opacity-50">
+            <img
+              src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
+              alt="NoFoundImg"
+              className="h-40"
+            />
             <p className="text-center text-black font-semibold text-lg py-10">
               No upcoming match found
             </p>
@@ -178,9 +203,9 @@ const UpcomingCardDetails = ({}) => {
                   <Card
                     key={index}
                     title=""
-                    bgColor="#F6F6F6"
-                    hoverColor="#f9f9f9"
-                    textColor="#000000"
+                    bgColor={bgColor}
+                    hoverColor={hoverColor}
+                    textColor={textColor}
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
@@ -201,27 +226,22 @@ const UpcomingCardDetails = ({}) => {
                         <p className="text-center items-center px-2 font-bold ">
                           {result.matchDate}
                         </p>
-                        <div className="px-8">
-                          <div className="grid grid-flow-col rounded-lg bg-[#e4e4e3] items-center text-center p-2">
-                            <h4 className="text-4xl font-bold text-gray-600">
-                              {result.awayGoals}
-                            </h4>
-                            <span className="mx-2 text-4xl font-bold text-gray-600">
-                              -
-                            </span>
-                            <h4 className="text-4xl font-bold text-gray-600">
-                              {result.homeGoals}
-                            </h4>
-                          </div>
-                        </div>
-                        <div className="flex flex-col	space-y-2">
-                          <div className="text-center font-bold">
-                            {result.statusMatch}
-                          </div>
-                          <div className="text-center">
-                            {result.nameOfMatch}
-                          </div>
-                        </div>
+                        <p className="text-center py-1">VS</p>
+                        <p className="text-center py-1 rounded-lg bg-gainsboroColor dark:bg-fiordColor">
+                          {(() => {
+                            const dateObj = new Date(result.fixtureDate);
+                            const optionsTime = {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                              timeZone: "Asia/Kuala_Lumpur",
+                            };
+                            return dateObj.toLocaleTimeString(
+                              "en-US",
+                              optionsTime
+                            );
+                          })()}
+                        </p>
                       </div>
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
@@ -241,13 +261,20 @@ const UpcomingCardDetails = ({}) => {
               </div>
             </div>
           ))}
-          <ExpandButtonTable
-            isExpanded={isExpanded}
-            toggleExpand={toggleExpand}
-          />
+          <div className="flex justify-start ">
+            <div
+              className="bg-amaranthColor rounded p-2 cursor-pointer"
+              onClick={handleExpandClick}
+            >
+              <ExpandButtonTable
+                iconBlack={false}
+                isExpanded={isExpanded}
+                toggleExpand={toggleExpand}
+              />
+            </div>
+          </div>
         </>
       )}
-      ;
     </>
   );
 };
