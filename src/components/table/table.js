@@ -52,7 +52,7 @@ const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
               React.cloneElement(child, {
                 onClick: () => handleRowClick(data[rowIndex]),
                 className: clickableColumns
-                  ? "cursor-pointer hover:bg-gray-100 dark:hover:bg-[#575A5C]"
+                  ? "cursor-pointer hover:bg-romanceOpa50Color dark:hover:bg-mirageOpa50Color"
                   : "",
               })
             )}

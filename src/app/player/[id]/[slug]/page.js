@@ -120,6 +120,20 @@ export default function PlayerPage() {
     }
   }, [id, seasonYear, checkLastFetchTime]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setQuery("");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleSeasonClick = (year) => {
     setSeasonYear(year);
     if (selectedPlayerId) {
@@ -155,17 +169,17 @@ export default function PlayerPage() {
   }, [query, data]);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex flex-col">
       <h2 className="font-semibold mb-4">Player</h2>
-      <div className="relative mb-12" ref={searchRef}>
+      <div className="relative mb-12 flex-1 h-full" ref={searchRef}>
         <Search query={query} setQuery={setQuery} />
         {query ? (
           filteredData.length > 0 ? (
-            <ul className="bg-gainsboroColor dark:bg-fiordColor w-full absolute z-20 p-3 shadow-md rounded-md  mt-2">
+            <ul className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 overflow-y-auto max-h-screen">
               {filteredData.map((player) => (
                 <li
                   key={player.idPlayer}
-                  className="mb-2 cursor-pointer"
+                  className="mb-2 cursor-pointer dark:hover:bg-mirageOpa50Color hover:bg-romanceOpa50Color"
                   onClick={() => handlePlayerClick(player)}
                 >
                   <div className="flex items-center">
@@ -179,13 +193,13 @@ export default function PlayerPage() {
                     <span className="font-semibold">{player.player}</span>
                     <span className="ml-2 text-gray-600">
                       ({player.position})
-                    </span>              
+                    </span>
                   </div>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="bg-gainsboroColor dark:bg-fiordColor w-full absolute z-20 p-3 shadow-md rounded-md  mt-2 text-center">
+            <div className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 text-center">
               No results found
             </div>
           )

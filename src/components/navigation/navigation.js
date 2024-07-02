@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "../../context/themeContext"; // Adjust path as necessary
+import { useTheme } from "../../context/themeContext";
 
 import Home from "../../../public/icons/nav/home-icon.png";
 import Upcoming from "../../../public/icons/nav/upcoming-icon.png";

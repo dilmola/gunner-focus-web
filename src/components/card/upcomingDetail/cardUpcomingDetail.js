@@ -188,7 +188,7 @@ const UpcomingCardDetails = ({}) => {
               alt="NoFoundImg"
               className="h-40"
             />
-            <p className="text-center text-black font-semibold text-lg py-10">
+            <p className="text-center font-semibold text-lg py-10">
               No upcoming match found
             </p>
           </div>

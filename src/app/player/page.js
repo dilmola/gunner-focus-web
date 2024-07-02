@@ -72,11 +72,11 @@ export default function PlayerPage() {
         <Search query={query} setQuery={setQuery} />
         {query ? (
           filteredData.length > 0 ? (
-            <ul className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 overflow-y-auto max-h-full	">
+            <ul className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 overflow-y-auto max-h-full">
               {filteredData.map((player) => (
                 <li
                   key={player.idPlayer}
-                  className="mb-2 cursor-pointer"
+                  className="mb-2 cursor-pointer dark:hover:bg-mirageOpa50Color hover:bg-romanceOpa50Color"
                   onClick={() => handlePlayerClick(player)}
                 >
                   <div className="flex items-center">

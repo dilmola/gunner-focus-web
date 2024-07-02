@@ -108,7 +108,7 @@ const ResultsCard = ({}) => {
   }
 
   const bgColor = theme === "light" ? "#F0F0F0" : "#2D3133";
-  const hoverColor = theme === "light" ? "#F7F7F7" : "#575A5C";
+  const hoverColor = theme === "light" ? "#F6F6F6CC" : "#393E4180";
   const textColor = theme === "light" ? "#393e41" : "#F5F4F1";
 
   return (
