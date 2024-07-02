@@ -145,18 +145,23 @@ const RankedTablePage = () => {
         <h2 className="font-semibold">Ranked</h2>
       </div>
       <div className="bg-whitesmokeColor rounded-lg dark:bg-codgreyColor">
-        <div className="p-4">
-          <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-fiordColor h-20 flex justify-between mb-6 p-8">
+        <div className="sm:p-4 p-2">
+          <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-fiordColor h-20 flex justify-between mb-6 p-2 sm:p-8">
             <div className="flex">
-              <div className="flex items-center text-center md:px-3.5">
-                <img src={Arsenal.src} alt="Arsenal" className="h-12" />
+              <div className="flex items-center text-center">
+                <img
+                  src={Arsenal.src}
+                  alt="Arsenal"
+                  className="h-12 w-12 object-contain"
+                />
               </div>
-              <h3 className="flex items-center text-center px-12 font-semibold text-lg">
+              <h3 className="flex items-center text-center px-2 sm:px-12 font-semibold text-lg">
                 Arsenal
               </h3>
             </div>
+
             <div className="flex">
-              <h3 className="flex items-center text-center px-8 font-semibold">
+              <h3 className="flex items-center text-center px-2 sm:px-8 font-semibold">
                 Current Ranked
               </h3>
               <h3 className="flex items-center text-center text-4xl font-semibold">
@@ -189,8 +194,10 @@ const RankedTablePage = () => {
                 {getColumnsFromRanked().map((col) => (
                   <td
                     key={col.key}
-                    className={`p-3 sm:p-4 font-semibold ${
-                      col.key === "lastFive" ? "hidden sm:table-cell" : ""
+                    className={`p-2 sm:p-4 font-semibold ${
+                      ["lastFive", "goalFor", "goalAgainst"].includes(col.key)
+                        ? "hidden sm:table-cell"
+                        : ""
                     }`}
                   >
                     {col.key === "team" ? (

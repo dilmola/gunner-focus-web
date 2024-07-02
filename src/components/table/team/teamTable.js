@@ -90,7 +90,7 @@ const TeamTablePage = () => {
         <h2 className="font-semibold">Team</h2>
       </div>
       <div className="bg-whitesmokeColor rounded-lg dark:bg-codgreyColor">
-        <div className="p-4">
+        <div className="sm:p-4 p-2">
           <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg borderSizePrimary dark:borderSizePrimaryDark">
             <div className="w-full">
               <Search query={query} setQuery={setQuery} />
@@ -116,7 +116,7 @@ const TeamTablePage = () => {
                 {getColumnsFromTeam().map((col) => (
                   <td
                     key={col.key}
-                    className="p-4 font-semibold"
+                    className="p-2 sm:p-4 font-semibold"
                     onMouseEnter={() => handleMouseEnter(rowIndex)}
                     onMouseLeave={handleMouseLeave}
                   >

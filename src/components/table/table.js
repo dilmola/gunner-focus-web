@@ -31,8 +31,10 @@ const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className={`p-3 sm:p-4 border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color font-normal text-mirageOpa50Color dark:text-romanceOpa50Color ${
-                      col.key === "lastFive" ? "hidden sm:table-cell" : ""
+                    className={`p-2 sm:p-4 border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color font-normal text-mirageOpa50Color dark:text-romanceOpa50Color ${
+                      ["lastFive", "goalFor", "goalAgainst"].includes(col.key)
+                        ? "hidden sm:table-cell"
+                        : ""
                     }`}
                   >
                     {col.label}
