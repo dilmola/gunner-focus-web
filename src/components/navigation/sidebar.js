@@ -30,9 +30,10 @@ const Sidebar = ({ isOpen, toggleSidebar, handleToggle }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 right-0 w-1/2 max-w-sm bg-white dark:bg-gray-800 transition-transform transform ${
-        isOpen ? "translate-x-0" : "translate-x-full"
+      className={`fixed inset-y-0 right-0 w-1/2 max-w-sm bg-romanceColor dark:bg-codgreyColor transition-transform transform ${
+        isOpen ? "translate-x-0 shadow-left" : "translate-x-full"
       } sm:hidden z-50`}
+      style={{ boxShadow: isOpen ? "-4px 0 6px rgba(0, 0, 0, 0.1)" : "none" }}
     >
       <div className="p-4 flex justify-between items-center">
         <h2 className="text-lg font-semibold">Menu</h2>
@@ -43,7 +44,7 @@ const Sidebar = ({ isOpen, toggleSidebar, handleToggle }) => {
           ✕ {/* Replace this with an icon if desired */}
         </button>
       </div>
-      <ul className="text-sm font-medium text-center text-mirageOpa50Color dark:text-romanceOpa50Color">
+      <ul className="text-sm font-medium text-left px-2 text-mirageOpa50Color dark:text-romanceOpa50Color">
         <li className="my-2">
           <Link href="/" className={linkClass("/")} onClick={toggleSidebar}>
             <div className="flex items-center">
@@ -114,6 +115,28 @@ const Sidebar = ({ isOpen, toggleSidebar, handleToggle }) => {
               />
               <span>Mode</span>
             </button>
+          </div>
+        </li>
+        <li className="my-2">
+          <div className="inline-block p-2 pb-4 rounded-t-lg cursor-pointer">
+            <a
+              className=""
+              href="https://buymeacoffee.com/aidilmaula"
+              target="_blank"
+            >
+              <span>BMAC</span>
+            </a>
+          </div>
+        </li>
+        <li className="my-2">
+          <div className="inline-block p-2 pb-4 rounded-t-lg cursor-pointer">
+            <a
+              className=""
+              href="https://github.com/dilmola/arsenal-website"
+              target="_blank"
+            >
+              <span>Github</span>
+            </a>
           </div>
         </li>
       </ul>

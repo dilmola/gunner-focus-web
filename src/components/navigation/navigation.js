@@ -32,9 +32,9 @@ const Navbar = () => {
     }`;
 
   return (
-    <div className="hidden sm:block py-4 px-20 mx-auto max-w-screen-xl container mb-10">
+    <div className="hidden md:block py-4 px-20 mx-auto max-w-screen-xl container mb-10">
       <div>
-        <ul className="flex-wrap hidden sm:flex sm:justify-between  text-sm font-medium text-center text-mirageOpa50Color dark:text-romanceOpa50Color border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color">
+        <ul className="flex-wrap hidden md:flex md:justify-between  text-sm font-medium text-center text-mirageOpa50Color dark:text-romanceOpa50Color border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color">
           <li>
             <Link href="/" className={linkClass("/")}>
               <div className="flex h-4">

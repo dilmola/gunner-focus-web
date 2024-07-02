@@ -214,17 +214,17 @@ export default function PlayerPage() {
           ) : playerDataExist ? (
             <div className="space-y-16">
               <section className="space-y-4">
-                <section className="bg-amaranthColor w-full rounded-lg p-4 grid grid-cols-2 gap-36 content-center text-romanceColor">
+                <section className="bg-amaranthColor w-full rounded-lg p-4 flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-36 content-center text-romanceColor">
                   <article className="flex flex-row gap-2">
                     <figure>
                       <img
                         src={playerData?.player.photo ?? "-"}
                         alt={playerData?.player.photo ?? "-"}
-                        className="h-28 rounded mr-6 bg-gainsboroColor"
+                        className="h-12 w-12 sm:h-28 sm:w-28 rounded mr-6 bg-gainsboroColor object-contain"
                       />
                     </figure>
                     <div>
-                      <p className="text-2xl font-bold">
+                      <p className="text-lg sm:text-2xl font-bold">
                         {playerData?.player?.name}
                       </p>
                       <p className="font-semibold text-sm">
@@ -232,8 +232,8 @@ export default function PlayerPage() {
                       </p>
                     </div>
                   </article>
-                  <article className="grid grid-cols-3 gap-2 p-6 bg-gainsboroColor dark:bg-fiordColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
-                    <div className="flex flex-col space-y-4">
+                  <article className="flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-fiordColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
+                    <div className="flex flex-col space-y-2 sm:space-y-4">
                       <p>Captain</p>
                       <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
                         {playerData?.statistics?.[0]?.games?.captain
@@ -241,13 +241,13 @@ export default function PlayerPage() {
                           : "-"}
                       </p>
                     </div>
-                    <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col space-y-2 sm:space-y-4">
                       <p>Shirt number</p>
                       <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
                         #{jerseyNumbers[playerData?.player?.id] ?? "-"}
                       </p>
                     </div>
-                    <div className="flex flex-col space-y-4">
+                    <div className="flex flex-col space-y-2 sm:space-y-4">
                       <p>Nationality</p>
                       <div className="flex font-semibold text-lg space-x-2 text-mirageColor dark:text-romanceColor">
                         <img
@@ -260,7 +260,7 @@ export default function PlayerPage() {
                     </div>
                   </article>
                 </section>
-                <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-4 grid grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
+                <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
                   <article>
                     <h3>First name</h3>
                     <p className="text-mirageColor dark:text-romanceColor">
@@ -309,7 +309,7 @@ export default function PlayerPage() {
                       {playerData?.statistics?.[0]?.games?.minutes ?? "-"}
                     </p>
                   </article>
-                  <article className="flex flex-col space-y-2 col-span-2 bg-gainsboroColor dark:bg-fiordColor p-4 rounded text-mirageOpa50Color dark:text-romanceOpa50Color">
+                  <article className="flex flex-col space-y-2 sm:col-span-2 bg-gainsboroColor dark:bg-fiordColor p-4 rounded text-mirageOpa50Color dark:text-romanceOpa50Color">
                     <h3>Birth</h3>
                     <div className="grid grid-cols-3">
                       <div>
@@ -343,7 +343,7 @@ export default function PlayerPage() {
               </section>
               <section className="space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">
                 <nav className="flex flex-wrap justify-between">
-                  <div className="space-x-4 text-sm font-bold">
+                  <div className="space-x-2 sm:space-x-4 text-sm font-bold">
                     {["2022", "2023", "2024"].map((year) => (
                       <button
                         key={year}
@@ -360,7 +360,7 @@ export default function PlayerPage() {
                   </div>
                 </nav>
                 <section className="bg-whitesmokeColor dark:bg-codgreyColor text-mirageOpa50Color dark:text-romanceOpa50Color rounded-lg p-4">
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="sm:grid sm:grid-cols-3 flex flex-col gap-4">
                     {/* Penalty Card */}
                     <GamesPlayerCard
                       contentCardIcon={

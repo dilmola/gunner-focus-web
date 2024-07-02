@@ -208,11 +208,11 @@ const ResultsCardDetails = ({}) => {
       {Object.keys(filteredData).length === 0 ? (
         <>
           <div class="min-h-screen flex flex-col items-center justify-center opacity-50">
-              <img
-                src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
-                alt="NoFoundImg"
-                className="h-40"
-              />
+            <img
+              src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
+              alt="NoFoundImg"
+              className="h-40"
+            />
             <p className="text-center font-semibold text-lg py-10">
               No match found
             </p>
@@ -223,7 +223,7 @@ const ResultsCardDetails = ({}) => {
           {Object.entries(filteredData).map(([monthYear, results]) => (
             <div className="mb-12" key={monthYear}>
               <h3 className="mb-2 font-medium text-lg">{monthYear}</h3>
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                 {results.map((result, index) => (
                   <Card
                     key={index}

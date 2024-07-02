@@ -116,7 +116,7 @@ const TeamTablePage = () => {
                 {getColumnsFromTeam().map((col) => (
                   <td
                     key={col.key}
-                    className="p-2 sm:p-4 font-semibold"
+                    className="px-2 py-4 sm:p-4 font-semibold"
                     onMouseEnter={() => handleMouseEnter(rowIndex)}
                     onMouseLeave={handleMouseLeave}
                   >

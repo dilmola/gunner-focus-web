@@ -19,6 +19,7 @@ module.exports = {
       fontSize: {
         base: "12px" /* Default font size for Tailwind */,
         h2Size: ["1.5rem"],
+        h2SmSize: ["1.2rem"],
       },
       fontWeight: {
         normal: "400",

@@ -194,7 +194,7 @@ const RankedTablePage = () => {
                 {getColumnsFromRanked().map((col) => (
                   <td
                     key={col.key}
-                    className={`p-2 sm:p-4 font-semibold ${
+                    className={`px-2 py-4 sm:p-4 font-semibold ${
                       ["lastFive", "goalFor", "goalAgainst"].includes(col.key)
                         ? "hidden sm:table-cell"
                         : ""

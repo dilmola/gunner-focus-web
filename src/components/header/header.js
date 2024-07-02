@@ -62,7 +62,6 @@ const Header = ({ onClick }) => {
             </a>
             <ThemeToggle className="hidden sm:flex bg-mirageColor dark:bg-romanceColor dark:hover:bg-[#FFFFFF] hover:bg-[#464c50] font-bold py-2 px-4 rounded items-center cursor-pointer" />
           </div>
-          {/* Toggle button for sidebar */}
           <div className="sm:hidden flex justify-end">
             <button
               onClick={toggleSidebar}
@@ -71,8 +70,6 @@ const Header = ({ onClick }) => {
               ☰ {/* Replace this with an icon if desired */}
             </button>
           </div>
-
-          {/* Sidebar */}
           <Sidebar
             isOpen={isOpen}
             toggleSidebar={toggleSidebar}

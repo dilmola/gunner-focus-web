@@ -23,7 +23,7 @@ body {
 }
 
 h2 {
-  @apply text-h2Size; /* Use the custom size from Tailwind CSS config */
+  @apply text-h2SmSize sm:text-h2Size; /* Use the custom size from Tailwind CSS config */
 }
 
 @layer base {

@@ -30,7 +30,7 @@ const Welcome = () => {
 
   return (
     isVisible && (
-      <div className="relative mb-20 rounded-lg p-4">
+      <div className="relative mb-20 rounded-lg sm:p-4 p-2">
         <p className="text-5xl sm:text-7xl font-semibold text-justify mt-8">
           Welcome to <span className="text-amaranthColor">Gunner Focus</span>,
           hub for Arsenal fans.

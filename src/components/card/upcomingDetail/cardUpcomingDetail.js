@@ -198,7 +198,7 @@ const UpcomingCardDetails = ({}) => {
           {Object.entries(filteredData).map(([monthYear, results]) => (
             <div className="mb-12" key={monthYear}>
               <h3 className="mb-2 font-medium text-lg">{monthYear}</h3>
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                 {results.map((result, index) => (
                   <Card
                     key={index}
