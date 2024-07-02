@@ -38,7 +38,8 @@ h2 {
   }
 
   ::-webkit-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the scrollbar */
   }
 
   ::-webkit-scrollbar-track {
@@ -73,7 +74,7 @@ h2 {
   border-style: solid;
 }
 
-.dark .borderSizePrimary{
+.dark .borderSizePrimary {
   border-width: 2px;
   border-color: rgba(121, 121, 121, 0.5);
   border-style: solid;

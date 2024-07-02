@@ -16,7 +16,7 @@ const ThemeToggle = ({ className, onClick }) => {
   return (
     <button onClick={handleToggle} className={`flex items-center ${className}`}>
       <img
-        src={theme === "light" ? LightIcon.src : DarkIcon.src} // Show dark icon in light mode and vice versa
+        src={theme === "light" ? LightIcon.src : DarkIcon.src}
         alt="Theme Toggle"
         className="h-4"
       />

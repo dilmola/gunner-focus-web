@@ -18,7 +18,7 @@ export default function ClientLoader({ children }) {
         <>
           <Header />
           <Navigation />
-          <div className="px-20 py-4 mx-auto max-w-screen-xl container">
+          <div className="px-4 sm:px-20 py-4 mx-auto max-w-screen-xl container">
             {children}
           </div>
           <Footer />

@@ -21,7 +21,7 @@ const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
   return (
     <div>
       <div
-        className="rounded-lg overflow-hidden "
+        className="rounded-lg overflow-hidden"
         style={{ height: tableHeight }}
       >
         <table className="w-full border-collapse text-left text-sm text-mirageColor dark:text-romanceColor">
@@ -31,7 +31,9 @@ const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="p-4 border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color font-normal text-mirageOpa50Color dark:text-romanceOpa50Color"
+                    className={`p-3 sm:p-4 border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color font-normal text-mirageOpa50Color dark:text-romanceOpa50Color ${
+                      col.key === "lastFive" ? "hidden sm:table-cell" : ""
+                    }`}
                   >
                     {col.label}
                   </th>

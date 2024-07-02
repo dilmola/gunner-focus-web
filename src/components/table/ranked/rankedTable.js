@@ -4,12 +4,11 @@ import React, { useEffect, useState } from "react";
 import fetchStandings from "../../../utils/getStandings";
 import CustomTable from "../table";
 import Arsenal from "../../../../public/img/arsenal_img.png";
-
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../../button/buttonExpandTable";
 import Search from "../../filterBar/search-with-filter";
-
+import TeamsAbbreviation from "@/libs/teamsAbbreviation";
 const SPECIFIC_TEAM_ID = "Arsenal";
 
 const RankedTablePage = () => {
@@ -188,10 +187,24 @@ const RankedTablePage = () => {
             {tableData.map((row, rowIndex) => (
               <tr key={rowIndex} className="">
                 {getColumnsFromRanked().map((col) => (
-                  <td key={col.key} className="p-4 font-semibold">
-                    {col.key === "lastFive" &&
-                    typeof row.lastFive === "string" ? (
-                      <div className="flex">
+                  <td
+                    key={col.key}
+                    className={`p-3 sm:p-4 font-semibold ${
+                      col.key === "lastFive" ? "hidden sm:table-cell" : ""
+                    }`}
+                  >
+                    {col.key === "team" ? (
+                      typeof row.team === "string" ? (
+                        <div className="flex">
+                          <span className="block sm:hidden">
+                            {TeamsAbbreviation[row.team]}
+                          </span>
+                          <span className="hidden sm:block">{row.team}</span>
+                        </div>
+                      ) : null
+                    ) : col.key === "lastFive" &&
+                      typeof row.lastFive === "string" ? (
+                      <div className="hidden sm:flex">
                         {row.lastFive.split("").map((result, index) => {
                           const color =
                             result === "W"
@@ -242,7 +255,7 @@ const getColumnsFromRanked = () => [
   { key: "goalFor", label: "GF" },
   { key: "goalAgainst", label: "GA" },
   { key: "goalDifferent", label: "GD" },
-  { key: "points", label: "Points" },
+  { key: "points", label: "PTS" },
   { key: "lastFive", label: "Last 5" },
 ];
 
