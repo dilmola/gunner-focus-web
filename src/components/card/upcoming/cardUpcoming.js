@@ -34,7 +34,7 @@ const UpcomingCard = ({}) => {
           recentResults.sort((a, b) => {
             const aDate = new Date(a?.fixture?.date);
             const bDate = new Date(b?.fixture?.date);
-            return bDate - aDate;
+            return aDate - bDate;
           });
 
           const matchData = recentResults.map((item) => ({
@@ -122,13 +122,13 @@ const UpcomingCard = ({}) => {
           <div className="grid grid-flow-row gap-3">
             {data.slice(0, 1).map((result, index) => (
               <div key={index}>
-                <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
+                <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
                   <div className="w-20">
                     <div className="flex justify-center mb-4">
                       <img
                         src={result.awayLogo}
                         alt={result.awayLogo}
-                        className="h-14"
+                        className="h-12 lg:h-14 object-contain"
                       />
                     </div>
                     <h3 className="text-center font-semibold">
@@ -139,7 +139,7 @@ const UpcomingCard = ({}) => {
                     <p className="text-center py-1 rounded-lg bg-mirageColor items-center px-2">
                       {(() => {
                         const dateObj = new Date(result.fixtureDate);
-                        return dateObj.toISOString().split("T")[0]; // YYYY-MM-DD
+                        return dateObj.toISOString().split("T")[0]; 
                       })()}
                     </p>
                     <p className="text-center py-1">VS</p>
@@ -161,7 +161,7 @@ const UpcomingCard = ({}) => {
                       <img
                         src={result.homeLogo}
                         alt={result.homeLogo}
-                        className="h-14"
+                        className="h-12 lg:h-14"
                       />
                     </div>
                     <h3 className="text-center font-semibold">

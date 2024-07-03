@@ -45,7 +45,7 @@ const FilterButton = ({ setFilter, nameMatch }) => {
         />
       </button>
       {showDropdown && (
-        <div className="absolute top-full left-0 w-max bg-romanceColor dark:bg-mirageColor rounded shadow-lg">
+        <div className="absolute top-full right-0 lg:left-0 w-max bg-romanceColor dark:bg-mirageColor rounded shadow-lg">
           <div className="p-2">
             {nameMatch.map((filterOption) => (
               <button

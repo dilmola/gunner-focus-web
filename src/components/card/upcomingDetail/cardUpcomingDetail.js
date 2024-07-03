@@ -209,13 +209,13 @@ const UpcomingCardDetails = ({}) => {
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
-                    <div className="grid grid-flow-col gap-4 place-items-center items-start mb-6">
+                    <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
                           <img
                             src={result.awayLogo}
                             alt={result.awayLogo}
-                            className="h-14"
+                            className="h-12 lg:h-14 object-contain"
                           />
                         </div>
                         <h3 className="text-center font-semibold">
@@ -248,7 +248,7 @@ const UpcomingCardDetails = ({}) => {
                           <img
                             src={result.homeLogo}
                             alt={result.homeLogo}
-                            className="h-14"
+                            className="h-12 lg:h-14 object-contain"
                           />
                         </div>
                         <h3 className="text-center font-semibold">

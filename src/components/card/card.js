@@ -43,13 +43,13 @@ const Card = ({
   return (
     <>
       <div
-        className="rounded-lg h-[12.5rem] sm:h-[14.5rem] overflow-y-auto borderSizePrimary shadow-card-shadow"
+        className="rounded-lg h-[12.5rem] lg:h-[14.5rem] overflow-y-auto borderSizePrimary shadow-card-shadow"
         style={{ color: textColor, backgroundColor: bgColor, ...hoverStyles }}
         onClick={handleCardClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="px-4 py-4 h-[10.5rem] sm:h-[12.5rem]">
+        <div className="px-4 py-4 h-[10.5rem] lg:h-[12.5rem]">
           <div className="flex flex-col items-center">
             <div className="font-bold mb-8">{title}</div>
           </div>

@@ -50,10 +50,10 @@ const Modal = ({ onClose, selectedRowData }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-40">
       <div className="absolute inset-0 bg-gray-500 opacity-65"></div>
-      <div className="p-8 rounded z-50 px-36 py-4 mx-auto max-w-screen-xl container">
+      <div className="p-8 rounded z-50 px-2 sm:px-4 md:px-32 py-4 mx-auto max-w-screen-xl container">
         <div
           ref={modalRef}
-          className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-5"
+          className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-2 sm:p-4"
         >
           <div>
             {loading ? (
@@ -63,12 +63,12 @@ const Modal = ({ onClose, selectedRowData }) => {
             ) : (
               <div>
                 <section className="text-sm font-bold space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">
-                  <header className="grid grid-cols-2 border-b-2 border-opacity-20 border-gray-600 pb-4">
-                    <div className="flex flex-row gap-2">
+                  <header className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 border-b-2 border-opacity-20 border-gray-600 pb-4 space-y-8 sm:space-y-4 lg:space-y-0">
+                    <div className="flex justify-between sm:justify-normal sm:flex-row gap-2">
                       <img
                         src={playerData?.player?.photo}
                         alt={playerData?.player?.photo}
-                        className="h-20 rounded mr-6 bg-[#D9D9D9]"
+                        className="object-contain h-12 w-12 sm:h-20 sm:w-20 rounded mr-6 bg-[#D9D9D9]"
                       />
                       <div className="flex flex-col font-semibold text-black col-span-2">
                         <h2 className="text-2xl text-mirageColor dark:text-romanceColor">
@@ -159,7 +159,7 @@ const Modal = ({ onClose, selectedRowData }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 space-x-4">
+                  <div className="grid grids-cols-1 sm:grid-cols-3 space-y-2 sm:space-x-4">
                     <div className="bg-gainsboroColor p-4 rounded col-span-2 dark:bg-fiordColor flex flex-col space-y-4">
                       <h3>Birthday</h3>
                       <div className="grid grid-cols-3">
@@ -190,7 +190,7 @@ const Modal = ({ onClose, selectedRowData }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="grid place-items-end">
+                    <div className="grid place-items-start sm:place-items-end">
                       <button
                         class="flex flex-row space-x-4 items-center bg-mirageColor dark:bg-romanceColor dark:text-mirageColor text-romanceColor rounded px-4 py-2 transition-transform duration-200 ease-in-out hover:[#6A7276] hover:scale-90"
                         onClick={handleClick}

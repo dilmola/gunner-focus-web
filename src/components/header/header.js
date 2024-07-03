@@ -24,7 +24,7 @@ const Header = ({ onClick }) => {
   const handleToggle = (event) => {
     event.preventDefault();
     toggleTheme();
-    onClick && onClick(); // Call parent's onClick if provided
+    onClick && onClick();
   };
 
   return (
@@ -65,9 +65,9 @@ const Header = ({ onClick }) => {
           <div className="sm:hidden flex justify-end">
             <button
               onClick={toggleSidebar}
-              className="p-2 text-mirageColor dark:text-romanceColor"
+              className="text-mirageColor dark:text-romanceColor text-xl"
             >
-              ☰ {/* Replace this with an icon if desired */}
+              ☰ 
             </button>
           </div>
           <Sidebar

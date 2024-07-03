@@ -152,7 +152,7 @@ const RankedTablePage = () => {
                 <img
                   src={Arsenal.src}
                   alt="Arsenal"
-                  className="h-12 w-12 object-contain"
+                  className="h-8 w-8 md:h-12 md:w-12 object-contain"
                 />
               </div>
               <h3 className="flex items-center text-center px-2 sm:px-12 font-semibold text-lg">
@@ -194,7 +194,7 @@ const RankedTablePage = () => {
                 {getColumnsFromRanked().map((col) => (
                   <td
                     key={col.key}
-                    className={`px-2 py-4 sm:p-4 font-semibold ${
+                    className={`px-2 py-4 md:px-3 lg:px-4 font-semibold ${
                       ["lastFive", "goalFor", "goalAgainst"].includes(col.key)
                         ? "hidden sm:table-cell"
                         : ""
@@ -203,10 +203,10 @@ const RankedTablePage = () => {
                     {col.key === "team" ? (
                       typeof row.team === "string" ? (
                         <div className="flex">
-                          <span className="block sm:hidden">
+                          <span className="block lg:hidden">
                             {TeamsAbbreviation[row.team]}
                           </span>
-                          <span className="hidden sm:block">{row.team}</span>
+                          <span className="hidden lg:block">{row.team}</span>
                         </div>
                       ) : null
                     ) : col.key === "lastFive" &&

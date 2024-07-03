@@ -105,7 +105,7 @@ export default function PlayerPage() {
       color: "#780000",
     },
     {
-      name: "Attempts",
+      name: "Failed",
       value:
         (playerData?.statistics?.[0]?.dribbles?.attempts ?? "-") -
         (playerData?.statistics?.[0]?.dribbles?.success ?? "-"),
@@ -214,7 +214,7 @@ export default function PlayerPage() {
           ) : playerDataExist ? (
             <div className="space-y-16">
               <section className="space-y-4">
-                <section className="bg-amaranthColor w-full rounded-lg p-4 flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:gap-36 content-center text-romanceColor">
+                <section className="bg-amaranthColor w-full rounded-lg p-4 flex flex-col sm:grid sm:grid-cols-2 gap-2 lg:gap-36 content-center text-romanceColor">
                   <article className="flex flex-row gap-2">
                     <figure>
                       <img
@@ -347,7 +347,7 @@ export default function PlayerPage() {
                     {["2022", "2023", "2024"].map((year) => (
                       <button
                         key={year}
-                        className={`px-4 py-2 rounded-lg ${
+                        className={`px-2 sm:px-4 py-2 rounded-lg ${
                           seasonYear === year
                             ? "bg-amaranthColor text-romanceColor"
                             : "dark:text-romanceOpa50Color dark:bg-romanceOpa01Color text-mirageOpa50Color bg-mirageOpa01Color"
@@ -360,7 +360,7 @@ export default function PlayerPage() {
                   </div>
                 </nav>
                 <section className="bg-whitesmokeColor dark:bg-codgreyColor text-mirageOpa50Color dark:text-romanceOpa50Color rounded-lg p-4">
-                  <div className="sm:grid sm:grid-cols-3 flex flex-col gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {/* Penalty Card */}
                     <GamesPlayerCard
                       contentCardIcon={
@@ -430,7 +430,7 @@ export default function PlayerPage() {
                       contentCardTitle="Shots"
                     >
                       <>
-                        <div className="flex flex-row items-baseline space-x-2">
+                        <div className="flex flex-col lg:flex-row items-baseline space-x-2">
                           <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {(() => {
                               const total =
@@ -470,7 +470,7 @@ export default function PlayerPage() {
                       contentCardTitle="Passes"
                     >
                       <>
-                        <div className="flex flex-row items-baseline space-x-2">
+                        <div className="flex flex-col lg:flex-row items-baseline space-x-2">
                           <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {playerData?.statistics?.[0]?.passes?.total ?? "-"}
                           </p>
@@ -498,7 +498,7 @@ export default function PlayerPage() {
                       contentCardTitle="Tackle"
                     >
                       <>
-                        <div className="flex flex-row items-baseline space-x-2">
+                        <div className="flex flex-col lg:flex-row items-baseline space-x-2">
                           <p className=" text-3xl font-bold dark:text-romanceColor text-mirageColor">
                             {playerData?.statistics?.[0]?.tackles?.total ?? "-"}
                           </p>
@@ -564,7 +564,7 @@ export default function PlayerPage() {
                     </GamesPlayerCard>
 
                     {/* Substitutes Card */}
-                    <article className="col-span-3">
+                    <article className="col-span-0 sm:col-span-2 md:col-span-3">
                       <GamesPlayerCard
                         contentCardIcon={
                           theme === "light"
