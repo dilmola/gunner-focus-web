@@ -1,15 +1,13 @@
 import { useState } from "react";
-
 import Logo from "../../../public/logos/logo.png";
 import LogoDark from "../../../public/logos/logo-dark.png";
-import Github from "../../../public/icons/github_icon.png";
+import Github from "../../../public/icons/github-icon.png";
 import BMAC from "../../../public/logos/bmac-logo.png";
 import BMACDark from "../../../public/logos/bmac-dark-logo.png";
-
-import Sidebar from "@/components/navigation/sidebar"; // Import the new Sidebar component
+import NavigationSidebar from "@/components/navigations/navigation-sidebar";
 import { useTheme } from "../../context/themeContext";
 import { useRouter } from "next/navigation";
-import ThemeToggle from "@/components/button/theme-toggle/theme-toggle";
+import ThemeToggle from "@/components/buttons/theme-toggle/theme-toggle";
 
 const Header = ({ onClick }) => {
   const { theme, toggleTheme } = useTheme();
@@ -67,10 +65,10 @@ const Header = ({ onClick }) => {
               onClick={toggleSidebar}
               className="text-mirageColor dark:text-romanceColor text-xl"
             >
-              ☰ 
+              ☰
             </button>
           </div>
-          <Sidebar
+          <NavigationSidebar
             isOpen={isOpen}
             toggleSidebar={toggleSidebar}
             handleToggle={handleToggle}

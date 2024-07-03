@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Search from "../../components/filterBar/search";
-import { useTeam } from "../../context/teamContext";
-import { usePlayer } from "../../context/playerContext";
+import SearchWithList from "@/components/searches/search-with-list";
+import { useTeam } from "@/context/teamContext";
+import { usePlayer } from "@/context/playerContext";
 import { useRouter } from "next/navigation";
-import slugify from "../../utils/slugify";
+import slugify from "@/utils/slugify";
 
 export default function PlayerPage() {
   const { checkLastFetchTime } = usePlayer();
@@ -69,38 +69,13 @@ export default function PlayerPage() {
     <main className="min-h-screen flex flex-col">
       <h2 className="font-semibold mb-4">Player</h2>
       <div className="relative mb-12 flex-1 h-full" ref={searchRef}>
-        <Search query={query} setQuery={setQuery} />
-        {query ? (
-          filteredData.length > 0 ? (
-            <ul className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 overflow-y-auto max-h-full">
-              {filteredData.map((player) => (
-                <li
-                  key={player.idPlayer}
-                  className="mb-2 cursor-pointer dark:hover:bg-mirageOpa50Color hover:bg-romanceOpa50Color"
-                  onClick={() => handlePlayerClick(player)}
-                >
-                  <div className="flex items-center">
-                    {player.photo && (
-                      <img
-                        src={player.photo}
-                        alt={player.player}
-                        className="w-10 h-10 rounded-md mr-4"
-                      />
-                    )}
-                    <span className="font-semibold">{player.player}</span>
-                    <span className="ml-2 text-gray-600">
-                      ({player.position})
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="bg-whitesmokeColor dark:bg-codgreyColor w-full absolute z-20 p-3 shadow-md rounded-md mt-2 text-center">
-              No results found
-            </div>
-          )
-        ) : null}
+        <SearchWithList
+          query={query}
+          setQuery={setQuery}
+          filteredData={filteredData}
+          handlePlayerClick={handlePlayerClick}
+          heightViewportValue={"max-h-full"}
+        />
       </div>
     </main>
   );

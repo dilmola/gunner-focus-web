@@ -1,24 +1,20 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
-// Create a context
 const ThemeContext = createContext();
 
-// Custom hook for easy access to the ThemeContext
 export const useTheme = () => useContext(ThemeContext);
 
-// Theme provider component
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark"); // Set default theme to "dark"
+  const [theme, setTheme] = useState("dark"); 
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "dark"; // Default to "dark"
+    const storedTheme = localStorage.getItem("theme") || "dark"; 
     setTheme(storedTheme);
     document.documentElement.classList.toggle("dark", storedTheme === "dark");
   }, []);
 
   useEffect(() => {
     const handleStorageChange = () => {
-      const currentTheme = localStorage.getItem("theme") || "dark"; // Default to "dark"
+      const currentTheme = localStorage.getItem("theme") || "dark"; 
       setTheme(currentTheme);
       document.documentElement.classList.toggle(
         "dark",

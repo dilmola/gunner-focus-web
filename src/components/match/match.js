@@ -1,5 +1,5 @@
-import ResultsCard from "@/components/card/result/cardResult";
-import UpcomingCard from "@/components/card/upcoming/cardUpcoming";
+import CardUpcoming from "@/components/cards/cards-upcoming/card-upcoming";
+import CardResult from "@/components/cards/cards-result/card-result";
 
 const match = () => {
   return (
@@ -9,10 +9,10 @@ const match = () => {
       </div>
       <div className="flex flex-col sm:flex-row justify-between mb-20">
         <div className="w-full sm:w-1/2 sm:pr-2 mb-4 sm:mb-0">
-          <UpcomingCard />
+          <CardUpcoming />
         </div>
         <div className="w-full sm:w-1/2 sm:pl-2">
-          <ResultsCard />
+          <CardResult />
         </div>
       </div>
     </div>

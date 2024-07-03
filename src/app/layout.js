@@ -1,6 +1,6 @@
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import ClientLoader from "@/components/loader/client-loader";
+import LoaderClient from "@/components/loaders/loader-client";
 import { CombinedDataProvider } from "../context/mainContext";
 
 const Nunito_Sans_init = Nunito_Sans({
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <CombinedDataProvider>
       <html lang="en" className={Nunito_Sans_init.className}>
         <body className="text-mirageColor bg-romanceColor selection:bg-mirageColor selection:text-romanceColor dark:bg-mirageColor dark:text-romanceColor dark:selection:bg-romanceColor dark:selection:text-mirageColor">
-          <ClientLoader>{children}</ClientLoader>
+          <LoaderClient>{children}</LoaderClient>
         </body>
       </html>
     </CombinedDataProvider>
