@@ -146,7 +146,7 @@ const RankedTablePage = () => {
       </div>
       <div className="bg-whitesmokeColor rounded-lg dark:bg-codgreyColor">
         <div className="sm:p-4 p-2">
-          <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-fiordColor h-20 flex justify-between mb-6 p-2 sm:p-8">
+          <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-montanaColor h-20 flex justify-between mb-6 p-2 sm:p-8">
             <div className="flex">
               <div className="flex items-center text-center">
                 <img

@@ -34,12 +34,12 @@ module.exports = {
         amaranthColor: "#E63946" /*red, cardcolor*/,
         romanceColor: "#F6F6F6" /* white ,text,search, bgcolor */,
         romanceOpa50Color:
-          "rgba(246, 246, 246, 0.8)" /* text white ,opacity 50%*/,
+          "rgba(246, 246, 246, 0.4)" /* text white ,opacity 50%*/,
         romanceOpa01Color:
           "rgba(246, 246, 246, 0.1)" /* border */,
         whitesmokeColor: "#F0F0F0" /* whitecardcolor*/,
         gainsboroColor: "#E3E2E2" /*lightdarkabovecardcolor*/,
-        fiordColor: "#52595D" /*darkmodeabovecardcolor*/,
+        montanaColor: "#363B3D" /*darkmodeabovecardcolor*/,
         codgreyColor: "#2D3133" /*cardcolor for darkmode*/,
       },
     },

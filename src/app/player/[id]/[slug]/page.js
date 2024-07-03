@@ -214,7 +214,7 @@ export default function PlayerPage() {
           ) : playerDataExist ? (
             <div className="space-y-16">
               <section className="space-y-4">
-                <section className="bg-amaranthColor w-full rounded-lg p-4 flex flex-col sm:grid sm:grid-cols-2 gap-2 lg:gap-36 content-center text-romanceColor">
+                <section className="bg-amaranthColor w-full rounded-lg p-0 md:p-4 flex flex-col sm:grid sm:grid-cols-2 gap-2 lg:gap-36 content-center text-romanceColor">
                   <article className="flex flex-row gap-2">
                     <figure>
                       <img
@@ -232,7 +232,7 @@ export default function PlayerPage() {
                       </p>
                     </div>
                   </article>
-                  <article className="flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-fiordColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
+                  <article className="flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-montanaColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
                     <div className="flex flex-col space-y-2 sm:space-y-4">
                       <p>Captain</p>
                       <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
@@ -309,7 +309,7 @@ export default function PlayerPage() {
                       {playerData?.statistics?.[0]?.games?.minutes ?? "-"}
                     </p>
                   </article>
-                  <article className="flex flex-col space-y-2 sm:col-span-2 bg-gainsboroColor dark:bg-fiordColor p-4 rounded text-mirageOpa50Color dark:text-romanceOpa50Color">
+                  <article className="flex flex-col space-y-2 sm:col-span-2 bg-gainsboroColor dark:bg-montanaColor p-4 rounded text-mirageOpa50Color dark:text-romanceOpa50Color">
                     <h3>Birth</h3>
                     <div className="grid grid-cols-3">
                       <div>

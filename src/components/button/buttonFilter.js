@@ -45,14 +45,14 @@ const FilterButton = ({ setFilter, nameMatch }) => {
         />
       </button>
       {showDropdown && (
-        <div className="absolute top-full right-0 lg:left-0 w-max bg-romanceColor dark:bg-mirageColor rounded shadow-lg">
+        <div className="absolute top-full right-0 xl:left-0 w-max bg-romanceColor dark:bg-mirageColor rounded shadow-lg">
           <div className="p-2">
             {nameMatch.map((filterOption) => (
               <button
-                key={filterOption.data} // Assuming 'data' is unique for each filter
+                key={filterOption.data}
                 className={`block px-4 py-2 text-left w-full ${
                   filterOption.data === "Clear" ? "font-bold" : ""
-                } bg-romanceColor dark:bg-mirageColor hover:bg-whitesmokeColor focus:bg-whitesmokeColor dark:hover:bg-fiordColor dark:focus:bg-fiordColor`}
+                } bg-romanceColor dark:bg-mirageColor hover:bg-whitesmokeColor focus:bg-whitesmokeColor dark:hover:bg-montanaColor dark:focus:bg-montanaColor`}
                 onClick={() => handleFilterChange(filterOption)}
               >
                 {filterOption.data}

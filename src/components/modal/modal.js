@@ -79,7 +79,7 @@ const Modal = ({ onClose, selectedRowData }) => {
                         </p>
                       </div>
                     </div>
-                    <div className="bg-gainsboroColor dark:bg-fiordColor rounded grid-flow-col justify-center content-center">
+                    <div className="bg-gainsboroColor dark:bg-montanaColor rounded grid-flow-col justify-center content-center">
                       <div className="grid grid-cols-3 gap-2 px-4">
                         <div className="flex flex-col space-y-4">
                           <p>Captain</p>
@@ -160,7 +160,7 @@ const Modal = ({ onClose, selectedRowData }) => {
                     </div>
                   </div>
                   <div className="grid grids-cols-1 sm:grid-cols-3 space-y-2 sm:space-x-4">
-                    <div className="bg-gainsboroColor p-4 rounded col-span-2 dark:bg-fiordColor flex flex-col space-y-4">
+                    <div className="hidden bg-gainsboroColor p-4 rounded col-span-2 dark:bg-montanaColor sm:flex flex-col space-y-4">
                       <h3>Birthday</h3>
                       <div className="grid grid-cols-3">
                         <div>

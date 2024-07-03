@@ -227,7 +227,7 @@ const UpcomingCardDetails = ({}) => {
                           {result.matchDate}
                         </p>
                         <p className="text-center py-1">VS</p>
-                        <p className="text-center py-1 rounded-lg bg-gainsboroColor dark:bg-fiordColor">
+                        <p className="text-center py-1 rounded-lg bg-gainsboroColor dark:bg-montanaColor">
                           {(() => {
                             const dateObj = new Date(result.fixtureDate);
                             const optionsTime = {

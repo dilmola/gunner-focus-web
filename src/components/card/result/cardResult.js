@@ -142,7 +142,7 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-fiordColor items-center text-center p-2">
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
                     <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
                     <span className="mx-2 text-4xl font-bold">-</span>
                     <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
@@ -165,7 +165,7 @@ const ResultsCard = ({}) => {
                   </h3>
                 </div>
                 <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-fiordColor items-center text-center p-2">
+                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
                     <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
                     <span className="mx-2 text-4xl font-bold">-</span>
                     <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
