@@ -31,9 +31,10 @@ const Welcome = () => {
   return (
     isVisible && (
       <div className="relative mb-20 rounded-lg sm:p-4 p-2">
-        <p className="text-5xl sm:text-7xl font-semibold text-justify mt-8">
-          Welcome to <span className="text-amaranthColor">Gunner Focus</span>,
-          hub for Arsenal fans.👋
+        <p className="text-5xl sm:text-7xl font-semibold text-justify mt-8 relative">
+          Hi! Welcome to<span className="text-amaranthColor"> Gunner Focus</span>, a hub for
+          fans of Arsenal.
+          <span className="animate-waving inline-block">👋</span>
         </p>
         <button
           className="absolute top-0 right-0 mt-2 mr-1 text-2xl font-bold"
