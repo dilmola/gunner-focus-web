@@ -14,6 +14,7 @@ import italyFlag from "../../public/img/flag/it.png";
 import egyptFlag from "../../public/img/flag/eg.png";
 import germanyFlag from "../../public/img/flag/de.png";
 import belgiumFlag from "../../public/img/flag/be.png";
+import netherlandsFlag from "../../public/img/flag/nl.png";
 
 const flags = {
   Brazil: brazilFlag,
@@ -32,6 +33,7 @@ const flags = {
   Egypt: egyptFlag,
   Germany: germanyFlag,
   Belgium: belgiumFlag,
+  Netherlands: netherlandsFlag
 };
 
 export default flags;

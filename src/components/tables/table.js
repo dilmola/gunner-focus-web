@@ -1,6 +1,7 @@
 "use client";
+
 import React, { useState } from "react";
-import Modal from "../modal/modal";
+import Modal from "../modal/modal"
 
 const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,21 +45,29 @@ const Table = ({ children, columns, data, isExpanded, clickableColumns }) => {
             </thead>
           ) : (
             <thead>
-              <tr className="bg-[#F2F2F2] text-gray-800">
-                <th className="p-4 border-b-2 border-gray-300 font-normal text-slate-700/60">
-                  No Data Available
+              <tr className="bg-[#F2F2F2] ">
+                <th className="p-4 border-b-2 border-gray-300 font-normal ">
+                  Noo Data Available
                 </th>
               </tr>
             </thead>
           )}
           <tbody>
-            {React.Children.map(children, (child, rowIndex) =>
-              React.cloneElement(child, {
-                onClick: () => handleRowClick(data[rowIndex]),
-                className: clickableColumns
-                  ? "cursor-pointer hover:bg-romanceOpa50Color dark:hover:bg-mirageOpa50Color"
-                  : "",
-              })
+            {data.length > 0 ? (
+              React.Children.map(children, (child, rowIndex) =>
+                React.cloneElement(child, {
+                  onClick: () => handleRowClick(data[rowIndex]),
+                  className: clickableColumns
+                    ? "cursor-pointer hover:bg-romanceOpa50Color dark:hover:bg-mirageOpa50Color"
+                    : "",
+                })
+              )
+            ) : (
+              <tr>
+                <td colSpan={columns.length} className="p-4 text-center">
+                  Looks like it's blank here
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

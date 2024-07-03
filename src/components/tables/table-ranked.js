@@ -21,31 +21,6 @@ const TableRanked = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [query, setQuery] = useState("");
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleExpandClick = () => {
-    toggleExpand();
-  };
-
-  const filterData = (query) => {
-    const lowerCaseQuery = query.toLowerCase();
-    const filtered = data.filter(
-      (team) =>
-        team.team.toLowerCase().includes(lowerCaseQuery) ||
-        team.matchPlay.toString().includes(lowerCaseQuery) ||
-        team.win.toString().includes(lowerCaseQuery) ||
-        team.draw.toString().includes(lowerCaseQuery) ||
-        team.lose.toString().includes(lowerCaseQuery) ||
-        team.goalFor.toString().includes(lowerCaseQuery) ||
-        team.goalAgainst.toString().includes(lowerCaseQuery) ||
-        team.goalDifferent.toString().includes(lowerCaseQuery) ||
-        team.points.toString().includes(lowerCaseQuery)
-    );
-    setFilteredData(filtered);
-  };
-
   useEffect(() => {
     filterData(query);
   }, [query, data]);
@@ -56,7 +31,6 @@ const TableRanked = () => {
         const response = await fetchStandings();
         if (response && Array.isArray(response)) {
           const formattedData = formatData(response);
-
           const specificTeam = formattedData.find(
             (team) => team.teamId === SPECIFIC_TEAM_ID
           );
@@ -92,8 +66,9 @@ const TableRanked = () => {
       } else {
         const storedData = localStorage.getItem("standingsData");
         if (storedData) {
-          setData(JSON.parse(storedData));
-          const specificTeam = JSON.parse(storedData).find(
+          const parsedData = JSON.parse(storedData);
+          setData(parsedData);
+          const specificTeam = parsedData.find(
             (team) => team.teamId === SPECIFIC_TEAM_ID
           );
           if (specificTeam) {
@@ -106,6 +81,26 @@ const TableRanked = () => {
 
     checkLastFetchTime();
   }, []);
+
+  const filterData = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = data.filter((team) =>
+      Object.values(team).some((value) =>
+        typeof value === "string"
+          ? value.toLowerCase().includes(lowerCaseQuery)
+          : false
+      )
+    );
+    setFilteredData(filtered);
+  };
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleExpandClick = () => {
+    toggleExpand();
+  };
 
   const tableData = filteredData;
 
@@ -141,7 +136,7 @@ const TableRanked = () => {
   }
 
   return (
-    <div className="mb-20 ">
+    <div className="mb-20">
       <div className="flex mb-4 items-center justify-between">
         <h2 className="font-semibold">Ranked</h2>
       </div>
@@ -170,6 +165,7 @@ const TableRanked = () => {
               </h3>
             </div>
           </div>
+
           <div className="flex justify-between items-center mx-auto w-full bg-romanceColor dark:bg-mirageColor rounded-lg borderSizePrimary">
             <div className="w-full">
               <SearchWithFilter query={query} setQuery={setQuery} />

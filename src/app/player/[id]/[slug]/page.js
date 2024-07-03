@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useTeam } from "@/context/teamContext";
@@ -10,6 +10,7 @@ import SectionStatistics from "@/components/sections/section-statistics";
 import NavigationYear from "@/components/navigations/navigation-year";
 import SearchWithList from "@/components/searches/search-with-list";
 import slugify from "@/utils/slugify";
+import PlayerPageSkeleton from "@/components/loaders/loader-skeleton-player";
 
 export default function PlayerPage() {
   const [query, setQuery] = useState("");
@@ -88,21 +89,23 @@ export default function PlayerPage() {
       </div>
       <section className="mb-12">
         <div>
-          {loading ? (
-            <p>Loading...</p>
-          ) : error ? (
+          {error ? (
             <p>Error: {error}</p>
+          ) : loading ? (
+            <PlayerPageSkeleton /> 
           ) : playerDataExist ? (
-            <div className="space-y-16">
-              <SectionPlayer playerData={playerData} />
-              <section className="space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">
-                <NavigationYear
-                  handleSeasonClick={handleSeasonClick}
-                  seasonYear={seasonYear}
-                />
-                <SectionStatistics playerData={playerData} />
-              </section>
-            </div>
+            <Suspense fallback={<PlayerPageSkeleton />}>
+              <div className="space-y-16">
+                <SectionPlayer playerData={playerData} />
+                <section className="space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">
+                  <NavigationYear
+                    handleSeasonClick={handleSeasonClick}
+                    seasonYear={seasonYear}
+                  />
+                  <SectionStatistics playerData={playerData} />
+                </section>
+              </div>
+            </Suspense>
           ) : (
             <p>No player data available for ID: {id}</p>
           )}
