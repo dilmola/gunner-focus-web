@@ -5,7 +5,7 @@ import preferredFoot from "@/libs/preferredFoot";
 export default function SectionPlayer({ playerData }) {
   return (
     <section className="space-y-4">
-      <section className="bg-amaranthColor w-full rounded-lg p-0 md:p-4 flex flex-col sm:grid sm:grid-cols-2 gap-2 lg:gap-36 content-center text-romanceColor">
+      <section className="bg-amaranthColor w-full rounded-lg p-2 gap-2 md:p-4 flex flex-col sm:grid sm:grid-cols-2 lg:gap-36 content-center text-romanceColor">
         <article className="flex flex-row gap-2">
           <figure>
             <img
@@ -49,7 +49,7 @@ export default function SectionPlayer({ playerData }) {
           </div>
         </article>
       </section>
-      <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
+      <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-2 md:p-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
         <article>
           <h3>First name</h3>
           <p className="text-mirageColor dark:text-romanceColor">

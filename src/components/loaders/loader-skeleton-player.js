@@ -4,8 +4,8 @@ import { useTheme } from "@/context/themeContext";
 const PlayerPageSkeleton = () => {
   const { theme } = useTheme();
 
-  const baseColor = theme === "light" ? "#E0E0E0" : "#393E41";
-  const highlightColor = theme === "light" ? "#F6F6F6" : "#4A4E51";
+  const baseColor = theme === "light" ? "#F6F6F61A" : "#393E411A";
+  const highlightColor = theme === "light" ? "#F6F6F61A" : "#393E411A";
 
   return (
     <SkeletonTheme color={baseColor} highlightColor={highlightColor}>

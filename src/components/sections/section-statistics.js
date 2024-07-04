@@ -89,9 +89,8 @@ export default function SectionStatistics({ playerData }) {
   ];
 
   return (
-    <section className="bg-whitesmokeColor dark:bg-codgreyColor text-mirageOpa50Color dark:text-romanceOpa50Color rounded-lg p-4">
+    <section className="bg-whitesmokeColor dark:bg-codgreyColor text-mirageOpa50Color dark:text-romanceOpa50Color rounded-lg p-2 md:p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {/* Penalty Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? penaltyIcon.src : penaltyDarkIcon.src
@@ -129,8 +128,6 @@ export default function SectionStatistics({ playerData }) {
             )}
           </>
         </CardStatisticPlayer>
-
-        {/* Fouls Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? foulsIcon.src : foulsDarkIcon.src
@@ -144,8 +141,6 @@ export default function SectionStatistics({ playerData }) {
             </p>
           </>
         </CardStatisticPlayer>
-
-        {/* Shots Card */}
         <CardStatisticPlayer
           contentCardIcon={theme === "light" ? shotIcon.src : shotDarkIcon.src}
           contentCardAlt="shotIcon"
@@ -177,8 +172,6 @@ export default function SectionStatistics({ playerData }) {
             </div>
           </>
         </CardStatisticPlayer>
-
-        {/* Passes Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? passesIcon.src : passesDarkIcon.src
@@ -204,8 +197,6 @@ export default function SectionStatistics({ playerData }) {
             </div>
           </>
         </CardStatisticPlayer>
-
-        {/* Tackles Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? tackleIcon.src : tackleDarkIcon.src
@@ -231,8 +222,6 @@ export default function SectionStatistics({ playerData }) {
             </div>
           </>
         </CardStatisticPlayer>
-
-        {/* Cards Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? cardsIcon.src : cardsDarkIcon.src
@@ -273,8 +262,6 @@ export default function SectionStatistics({ playerData }) {
             </div>
           </>
         </CardStatisticPlayer>
-
-        {/* Substitutes Card */}
         <article className="col-span-0 sm:col-span-2 md:col-span-3">
           <CardStatisticPlayer
             contentCardIcon={
@@ -314,8 +301,6 @@ export default function SectionStatistics({ playerData }) {
             </>
           </CardStatisticPlayer>
         </article>
-
-        {/* Goals Card */}
         <CardStatisticPlayer
           contentCardIcon={theme === "light" ? goalIcon.src : goalDarkIcon.src}
           contentCardAlt="goalIcon"
@@ -335,8 +320,6 @@ export default function SectionStatistics({ playerData }) {
             )}
           </>
         </CardStatisticPlayer>
-
-        {/* Duels Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? duelsIcon.src : duelsDarkIcon.src
@@ -351,8 +334,6 @@ export default function SectionStatistics({ playerData }) {
             />
           </>
         </CardStatisticPlayer>
-
-        {/* Dribbles Card */}
         <CardStatisticPlayer
           contentCardIcon={
             theme === "light" ? dribblesIcon.src : dribblesDarkIcon.src

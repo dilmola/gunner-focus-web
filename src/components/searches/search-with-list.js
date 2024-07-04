@@ -1,4 +1,4 @@
-import search from "../../../public/icons/search/search.png";
+import { useState, useEffect } from "react";
 
 const SearchWithList = ({
   query,
@@ -11,8 +11,25 @@ const SearchWithList = ({
     setQuery(e.target.value);
   };
 
+  const [placeholder, setPlaceholder] = useState("");
+  const placeholderText = "Enter your search here...";
+  const animationSpeed = 150;
+
   const maxHeightClass =
     heightViewportValue === "max-h-screen" ? "max-h-screen" : "max-h-full";
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setPlaceholder(placeholderText.slice(0, index++));
+
+      if (index > placeholderText.length) {
+        clearInterval(interval);
+      }
+    }, animationSpeed);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -22,13 +39,10 @@ const SearchWithList = ({
             <input
               type="text"
               className="flex-grow px-4 sm:px-12 py-2 bg-transparent focus:outline-none h-fit text-lg rounded-lg"
-              placeholder="Search"
+              placeholder={placeholder}
               value={query}
               onChange={handleInputChange}
             />
-            <div className="absolute inset-y-0 right-0 p-3 flex items-center pointer-events-none bg-amaranthColor">
-              <img src={search.src} alt="search" className="h-4" />
-            </div>
           </div>
         </div>
       </div>
