@@ -36,16 +36,14 @@ const NavigationSidebar = ({ isOpen, toggleSidebar, handleToggle }) => {
     };
   }, [isOpen, toggleSidebar]);
 
-  const linkClass = (path, exact = true) =>
-    `inline-block p-1 rounded-t-lg cursor-pointer ${
-      exact
-        ? pathname === path
-          ? "font-semibold text-mirageColor border-b-2 border-mirageColor dark:text-romanceColor dark:border-romanceColor"
-          : "hover:text-mirageColor hover:border-mirageColor dark:hover:text-romanceColor dark:hover:border-romanceColor hover:border-b-2"
-        : pathname.startsWith(path)
+  const linkClass = (path, exact = true) => {
+    const isActive = exact ? pathname === path : pathname.startsWith(path);
+    return `inline-block p-1 rounded-t-lg cursor-pointer ${
+      isActive
         ? "font-semibold text-mirageColor border-b-2 border-mirageColor dark:text-romanceColor dark:border-romanceColor"
-        : "hover:text-mirageColor hover:border-mirageColor dark:hover:text-romanceColor dark:hover:border-romanceColor hover:border-b-2"
+        : "text-gray-600 dark:text-gray-300" 
     }`;
+  };
 
   return (
     <div

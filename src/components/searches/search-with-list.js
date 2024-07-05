@@ -38,7 +38,7 @@ const SearchWithList = ({
           <div className="relative flex">
             <input
               type="text"
-              className="flex-grow px-4 sm:px-12 py-2 bg-transparent focus:outline-none h-fit text-lg rounded-lg"
+              className="flex-grow px-4 sm:px-6 py-2 bg-transparent focus:outline-none h-fit text-lg rounded-lg"
               placeholder={placeholder}
               value={query}
               onChange={handleInputChange}

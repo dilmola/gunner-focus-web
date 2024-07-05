@@ -1,4 +1,3 @@
-// components/Navbar.js
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "../../context/themeContext";
@@ -11,10 +10,6 @@ import HomeDark from "../../../public/icons/nav/home-dark-icon.png";
 import UpcomingDark from "../../../public/icons/nav/upcoming-dark-icon.png";
 import ResultDark from "../../../public/icons/nav/result-dark-icon.png";
 import PlayerDark from "../../../public/icons/nav/player-dark-icon.png";
-import BMAC from "../../../public/logos/bmac-logo.png";
-import BMACDark from "../../../public/logos/bmac-dark-logo.png";
-import LightIcon from "../../../public/icons/light-icon.png";
-import DarkIcon from "../../../public/icons/dark-icon.png";
 
 const NavigationTop = () => {
   const { theme } = useTheme();
@@ -32,28 +27,28 @@ const NavigationTop = () => {
     }`;
 
   return (
-    <div className="hidden md:block py-4 px-20 mx-auto max-w-screen-xl container mb-10">
+    <div className="hidden sm:block py-4 px-20 mx-auto max-w-screen-xl container mb-10">
       <div>
-        <ul className="flex-wrap hidden md:flex md:justify-between  text-sm font-medium text-center text-mirageOpa50Color dark:text-romanceOpa50Color border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color">
+        <ul className="hidden sm:flex sm:justify-between text-sm font-medium text-center text-mirageOpa50Color dark:text-romanceOpa50Color border-b-2 border-mirageOpa01Color dark:border-romanceOpa01Color">
           <li>
             <Link href="/" className={linkClass("/")}>
-              <div className="flex h-4">
+              <div className="flex items-center justify-center">
                 <img
                   src={theme === "light" ? Home.src : HomeDark.src}
                   alt="home"
-                  className="pr-2"
+                  className="pr-2 w-6 h-6 object-contain"
                 />
-                <span>Home</span>
+                <span className="whitespace-nowrap">Home</span>
               </div>
             </Link>
           </li>
           <li>
             <Link href="/upcoming" className={linkClass("/upcoming")}>
-              <div className="flex h-4">
+              <div className="flex items-center justify-center">
                 <img
                   src={theme === "light" ? Upcoming.src : UpcomingDark.src}
                   alt="upcoming"
-                  className="pr-2"
+                  className="pr-2 w-6 h-6 object-contain"
                 />
                 <span>Upcoming matches</span>
               </div>
@@ -61,11 +56,11 @@ const NavigationTop = () => {
           </li>
           <li>
             <Link href="/matches" className={linkClass("/matches")}>
-              <div className="flex h-4">
+              <div className="flex items-center justify-center">
                 <img
                   src={theme === "light" ? Result.src : ResultDark.src}
                   alt="result"
-                  className="pr-2"
+                  className="pr-2 w-6 h-6 object-contain"
                 />
                 <span>Matches result</span>
               </div>
@@ -73,11 +68,11 @@ const NavigationTop = () => {
           </li>
           <li>
             <Link href="/player" className={linkClass("/player", false)}>
-              <div className="flex h-4">
+              <div className="flex items-center justify-center">
                 <img
                   src={theme === "light" ? Player.src : PlayerDark.src}
                   alt="player"
-                  className="pr-2"
+                  className="pr-2 w-6 h-6 object-contain"
                 />
                 <span>Player</span>
               </div>
