@@ -1,6 +1,7 @@
 "use client";
 import Card from "../card";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import fetchUpcoming from "../../../utils/getFixtures";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -69,7 +70,7 @@ const CardUpcoming = ({}) => {
         localStorage.getItem("upcomingsLastFetch"),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000;
+      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
@@ -125,9 +126,11 @@ const CardUpcoming = ({}) => {
                 <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
                   <div className="w-20">
                     <div className="flex justify-center mb-4">
-                      <img
+                      <Image
                         src={result.awayLogo}
                         alt={result.awayLogo}
+                        width={56} // Set appropriate width
+                        height={56} // Set appropriate height
                         className="h-12 lg:h-14 object-contain"
                       />
                     </div>
@@ -139,11 +142,11 @@ const CardUpcoming = ({}) => {
                     <p className="text-center py-1 rounded-lg bg-mirageColor items-center px-2">
                       {(() => {
                         const dateObj = new Date(result.fixtureDate);
-                        return dateObj.toISOString().split("T")[0]; 
+                        return dateObj.toISOString().split("T")[0]; // YYYY-MM-DD format
                       })()}
                     </p>
                     <p className="text-center py-1">VS</p>
-                    <p className="text-center py-1 rounded-lg bg-mirageColor ">
+                    <p className="text-center py-1 rounded-lg bg-mirageColor">
                       {(() => {
                         const dateObj = new Date(result.fixtureDate);
                         const optionsTime = {
@@ -152,16 +155,18 @@ const CardUpcoming = ({}) => {
                           hour12: true,
                           timeZone: "Asia/Kuala_Lumpur",
                         };
-                        return dateObj.toLocaleTimeString("en-US", optionsTime); // HH:MM AM/PM
+                        return dateObj.toLocaleTimeString("en-US", optionsTime); // HH:MM AM/PM format
                       })()}
                     </p>
                   </div>
                   <div className="w-20">
                     <div className="flex justify-center mb-4">
-                      <img
+                      <Image
                         src={result.homeLogo}
                         alt={result.homeLogo}
-                        className="h-12 lg:h-14"
+                        width={56} // Set appropriate width
+                        height={56} // Set appropriate height
+                        className="h-12 lg:h-14 object-contain"
                       />
                     </div>
                     <h3 className="text-center font-semibold">
@@ -175,7 +180,13 @@ const CardUpcoming = ({}) => {
         ) : (
           <div className="flex flex-col items-center justify-center">
             <div className="opacity-85">
-              <img src={noGames.src} alt="noGames" className="h-20" />
+              <Image
+                src={noGames}
+                alt="noGames"
+                width={80}
+                height={80}
+                className="h-20"
+              />
             </div>
             <p className="font-bold">There are no upcoming match</p>
           </div>

@@ -1,6 +1,10 @@
+"use client";
+
+import React from "react";
 import jerseyNumbers from "@/libs/jerseyNumbers";
 import flags from "@/libs/nationalFlags";
 import preferredFoot from "@/libs/preferredFoot";
+import Image from "next/image"; // Import Image from next/image
 
 export default function SectionPlayer({ playerData }) {
   return (
@@ -8,10 +12,12 @@ export default function SectionPlayer({ playerData }) {
       <section className="bg-amaranthColor w-full rounded-lg p-2 gap-2 md:p-4 flex flex-col sm:grid sm:grid-cols-2 lg:gap-36 content-center text-romanceColor">
         <article className="flex flex-row gap-2">
           <figure>
-            <img
-              src={playerData?.player.photo ?? "-"}
+            <Image
+              src={playerData?.player.photo ?? "/"}
               alt={playerData?.player.photo ?? "-"}
               className="h-12 w-12 sm:h-28 sm:w-28 rounded mr-6 bg-gainsboroColor object-contain"
+              width={108}
+              height={108}
             />
           </figure>
           <div>
@@ -87,9 +93,9 @@ export default function SectionPlayer({ playerData }) {
           </p>
         </article>
         <article>
-          <h3>Appearences</h3>
+          <h3>Appearances</h3>
           <p className="text-mirageColor dark:text-romanceColor">
-            {playerData?.statistics?.[0]?.games?.appearences ?? "-"}
+            {playerData?.statistics?.[0]?.games?.appearances ?? "-"}
           </p>
         </article>
         <article>

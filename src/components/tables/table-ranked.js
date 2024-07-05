@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import fetchStandings from "../../utils/getStandings";
 import CustomTable from "@/components/tables/table";
+import Image from "next/image";
 import Arsenal from "../../../public/img/arsenal-img.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -145,10 +146,12 @@ const TableRanked = () => {
           <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-montanaColor h-20 flex justify-between mb-6 p-2 sm:p-8">
             <div className="flex">
               <div className="flex items-center text-center">
-                <img
+                <Image
                   src={Arsenal.src}
                   alt="Arsenal"
-                  className="h-8 w-8 md:h-12 md:w-12 object-contain"
+                  className="object-contain"
+                  width={48}
+                  height={48} 
                 />
               </div>
               <h3 className="flex items-center text-center px-2 sm:px-12 font-semibold text-lg">
@@ -228,10 +231,12 @@ const TableRanked = () => {
                       </div>
                     ) : col.key === "logo" && row.logo ? (
                       <div className="flex items-center">
-                        <img
+                        <Image
                           src={row.logo}
                           alt={row[col.key]}
-                          className="w-8 h-8 rounded mr-3"
+                          width={32} 
+                          height={32} 
+                          className="rounded mr-3"
                         />
                       </div>
                     ) : (

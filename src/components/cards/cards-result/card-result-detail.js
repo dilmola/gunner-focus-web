@@ -10,6 +10,7 @@ import ExpandButtonTable from "../../buttons/button-expand-table";
 import NoFoundImg from "../../../../public/img/notFound-img.png";
 import NoFoundDarkImg from "../../../../public/img/notFound-dark-img.png";
 import { useTheme } from "../../../context/themeContext";
+import Image from "next/image"; // Import Image from next/image
 
 const CardResultDetail = ({}) => {
   const { data } = useData();
@@ -207,10 +208,12 @@ const CardResultDetail = ({}) => {
       </div>
       {Object.keys(filteredData).length === 0 ? (
         <>
-          <div class="min-h-screen flex flex-col items-center justify-center opacity-50">
-            <img
-              src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
+          <div className="min-h-screen flex flex-col items-center justify-center opacity-50">
+            <Image
+              src={theme === "light" ? NoFoundImg : NoFoundDarkImg}
               alt="NoFoundImg"
+              width={200}
+              height={200}
               className="h-40"
             />
             <p className="text-center font-semibold text-lg py-10">
@@ -237,10 +240,12 @@ const CardResultDetail = ({}) => {
                     <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
-                          <img
+                          <Image
                             src={result.awayLogo}
                             alt={result.awayLogo}
-                            className="h-12 lg:h-14 object-contain"
+                            width={48}
+                            height={48}
+                            className="object-contain"
                           />
                         </div>
                         <h3 className="text-center font-semibold">
@@ -275,10 +280,12 @@ const CardResultDetail = ({}) => {
                       </div>
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
-                          <img
+                          <Image
                             src={result.homeLogo}
                             alt={result.homeLogo}
-                            className="h-12 lg:h-14 object-contain"
+                            width={48}
+                            height={48}
+                            className="object-contain"
                           />
                         </div>
                         <h3 className="text-center font-semibold">

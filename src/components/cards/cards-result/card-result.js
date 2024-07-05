@@ -6,11 +6,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 import { useData } from "../../../context/resultContext";
 import { useTheme } from "../../../context/themeContext";
+import Image from "next/image"; // Import next/image component
+import noGames from "../../../../public/img/NoGames.png"; // Example import of a static image
 
 const CardResult = ({}) => {
   const { data, loading, error } = useData();
   const { theme } = useTheme();
-
   const router = useRouter();
 
   const handleClick = () => {
@@ -52,61 +53,78 @@ const CardResult = ({}) => {
       handleClickCondition={true}
       hoverCondition={true}
     >
-      <div className="grid grid-flow-row gap-3">
-        {data.slice(0, 2).map((result, index) => (
-          <div
-            key={index}
-            className="justify-between grid grid-flow-col place-items-center"
-          >
-            {result.homeTeam !== "Arsenal" && (
-              <>
-                <div className="grid grid-flow-col px-8">
-                  <div className="mr-4">
-                    <img
-                      src={result.homeLogo}
-                      alt={result.homeTeam}
-                      className="h-12"
-                    />
+      {data && data.length > 0 ? (
+        <div className="grid grid-flow-row gap-3">
+          {data.slice(0, 2).map((result, index) => (
+            <div
+              key={index}
+              className="justify-between grid grid-flow-col place-items-center"
+            >
+              {!result.homeTeam.includes("Arsenal") && (
+                <>
+                  <div className="grid grid-flow-col px-8">
+                    <div className="mr-4">
+                      <Image
+                        src={result.homeLogo}
+                        alt={result.homeTeam}
+                        width={48} // Specify your preferred width
+                        height={48} // Specify your preferred height
+                      />
+                    </div>
+                    <h3 className="flex items-center text-center font-semibold">
+                      {result.homeTeam}
+                    </h3>
                   </div>
-                  <h3 className="flex items-center text-center font-semibold">
-                    {result.homeTeam}
-                  </h3>
-                </div>
-                <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
-                    <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
-                    <span className="mx-2 text-4xl font-bold">-</span>
-                    <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
+                  <div className="px-8">
+                    <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
+                      <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
+                      <span className="mx-2 text-4xl font-bold">-</span>
+                      <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
-            {result.awayTeam !== "Arsenal" && (
-              <>
-                <div className="grid grid-flow-col px-8">
-                  <div className="mr-4">
-                    <img
-                      src={result.awayLogo}
-                      alt={result.awayTeam}
-                      className="h-12"
-                    />
+                </>
+              )}
+              {!result.awayTeam.includes("Arsenal") && (
+                <>
+                  <div className="grid grid-flow-col px-8">
+                    <div className="mr-4">
+                      <Image
+                        src={result.awayLogo}
+                        alt={result.awayTeam}
+                        width={48} // Specify your preferred width
+                        height={48} // Specify your preferred height
+                      />
+                    </div>
+                    <h3 className="flex items-center text-center font-semibold">
+                      {result.awayTeam}
+                    </h3>
                   </div>
-                  <h3 className="flex items-center text-center font-semibold">
-                    {result.awayTeam}
-                  </h3>
-                </div>
-                <div className="px-8">
-                  <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
-                    <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
-                    <span className="mx-2 text-4xl font-bold">-</span>
-                    <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
+                  <div className="px-8">
+                    <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
+                      <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
+                      <span className="mx-2 text-4xl font-bold">-</span>
+                      <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <div className="opacity-85">
+            <Image
+              src={noGames}
+              alt="noGames"
+              width={80}
+              height={80}
+              className="h-20"
+            />
           </div>
-        ))}
-      </div>
+          <p className="font-bold">There are no match results</p>
+        </div>
+      )}
     </Card>
   );
 };

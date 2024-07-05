@@ -6,6 +6,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ExpandButtonTable from "../buttons/button-expand-table";
 import SearchWithFilter from "../searches/search-with-filter";
+import Image from "next/image";
 import SeemoreIcon from "../../../public/icons/seemore-icon.png";
 import SeemoreDarkIcon from "../../../public/icons/seemore-dark-icon.png";
 import { useTeam } from "../../context/teamContext";
@@ -112,19 +113,23 @@ const TableTeam = () => {
             clickableColumns={true}
           >
             {tableData.map((row, rowIndex) => (
-              <tr key={rowIndex}>
+              <tr
+                key={rowIndex}
+                onMouseEnter={() => handleMouseEnter(rowIndex)}
+                onMouseLeave={handleMouseLeave}
+              >
                 {getColumnsFromTeam().map((col) => (
                   <td
                     key={col.key}
                     className="px-2 py-4 md:px-3 lg:px-4 font-semibold"
-                    onMouseEnter={() => handleMouseEnter(rowIndex)}
-                    onMouseLeave={handleMouseLeave}
                   >
                     {col.key === "photo" && row.photo ? (
                       <div className="flex items-center">
-                        <img
+                        <Image
                           src={row.photo}
                           alt={row[col.key]}
+                          width={32} 
+                          height={32}
                           className="w-8 h-8 rounded mr-6 bg-romanceColor"
                         />
                         <span className="text-sm">{row.player}</span>
@@ -133,13 +138,13 @@ const TableTeam = () => {
                       <div className="flex justify-between">
                         <div className="pr-4">{row.position}</div>
                         <div>
-                          <img
+                          <Image
                             src={
-                              theme === "light"
-                                ? SeemoreIcon.src
-                                : SeemoreDarkIcon.src
+                              theme === "light" ? SeemoreIcon : SeemoreDarkIcon
                             }
                             alt="SeemoreIcon"
+                            width={12} 
+                            height={12} 
                             className="h-3"
                             style={{
                               opacity: hoveredRowIndex === rowIndex ? 1 : 0,

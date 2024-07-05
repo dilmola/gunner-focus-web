@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Card from "../card";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useData } from "../../../context/upcomingContext";
@@ -182,11 +183,13 @@ const CardUpcomingDetail = ({}) => {
       </div>
       {Object.keys(filteredData).length === 0 ? (
         <>
-          <div class="min-h-screen flex flex-col items-center justify-center opacity-50">
-            <img
+          <div className="min-h-screen flex flex-col items-center justify-center opacity-50">
+            <Image
               src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
-              alt="NoFoundImg"
+              alt="No upcoming match found"
               className="h-40"
+              width={160}
+              height={160}
             />
             <p className="text-center font-semibold text-lg py-10">
               No upcoming match found
@@ -212,17 +215,19 @@ const CardUpcomingDetail = ({}) => {
                     <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
-                          <img
+                          <Image
                             src={result.awayLogo}
                             alt={result.awayLogo}
                             className="h-12 lg:h-14 object-contain"
+                            width={48}
+                            height={56}
                           />
                         </div>
                         <h3 className="text-center font-semibold">
                           {result.awayTeam}
                         </h3>
                       </div>
-                      <div className="flex flex-col	space-y-6">
+                      <div className="flex flex-col space-y-6">
                         <p className="text-center items-center px-2 font-bold ">
                           {result.matchDate}
                         </p>
@@ -245,10 +250,12 @@ const CardUpcomingDetail = ({}) => {
                       </div>
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
-                          <img
+                          <Image
                             src={result.homeLogo}
                             alt={result.homeLogo}
                             className="h-12 lg:h-14 object-contain"
+                            width={48}
+                            height={56}
                           />
                         </div>
                         <h3 className="text-center font-semibold">
@@ -261,7 +268,7 @@ const CardUpcomingDetail = ({}) => {
               </div>
             </div>
           ))}
-          <div className="flex justify-start ">
+          <div className="flex justify-start">
             <div
               className="bg-amaranthColor rounded p-2 cursor-pointer"
               onClick={handleExpandClick}
