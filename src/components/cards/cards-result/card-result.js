@@ -64,8 +64,8 @@ const CardResult = ({}) => {
             >
               {!result.homeTeam.includes("Arsenal") && (
                 <>
-                  <div className="grid grid-flow-col px-8">
-                    <div className="mr-4">
+                  <div className="grid grid-flow-col px-0 lg:px-8">
+                    <div className="mr-4 w-12">
                       <Image
                         src={result.homeLogo}
                         alt={result.homeTeam}
@@ -77,7 +77,7 @@ const CardResult = ({}) => {
                       {result.homeTeam}
                     </h3>
                   </div>
-                  <div className="px-8">
+                  <div className="px-0 lg:px-8">
                     <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
                       <h4 className="text-4xl font-bold">{result.homeGoals}</h4>
                       <span className="mx-2 text-4xl font-bold">-</span>
@@ -88,8 +88,8 @@ const CardResult = ({}) => {
               )}
               {!result.awayTeam.includes("Arsenal") && (
                 <>
-                  <div className="grid grid-flow-col px-8">
-                    <div className="mr-4">
+                  <div className="grid grid-flow-col px-0 lg:px-8">
+                    <div className="mr-4 w-12">
                       <Image
                         src={result.awayLogo}
                         alt={result.awayTeam}
@@ -101,7 +101,7 @@ const CardResult = ({}) => {
                       {result.awayTeam}
                     </h3>
                   </div>
-                  <div className="px-8">
+                  <div className="px-0 lg:px-8">
                     <div className="grid grid-flow-col rounded-lg bg-gainsboroColor dark:bg-montanaColor items-center text-center p-2">
                       <h4 className="text-4xl font-bold">{result.awayGoals}</h4>
                       <span className="mx-2 text-4xl font-bold">-</span>

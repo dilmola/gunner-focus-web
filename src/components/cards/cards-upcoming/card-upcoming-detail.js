@@ -211,7 +211,7 @@ const CardUpcomingDetail = ({}) => {
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
-                    <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
+                    <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mt-4">
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
                           <Image
@@ -226,7 +226,7 @@ const CardUpcomingDetail = ({}) => {
                           {result.awayTeam}
                         </h3>
                       </div>
-                      <div className="flex flex-col space-y-6">
+                      <div className="flex flex-col space-y-4 lg:space-y-6">
                         <p className="text-center items-center px-2 font-bold ">
                           {result.matchDate}
                         </p>

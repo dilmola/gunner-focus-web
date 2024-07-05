@@ -251,11 +251,11 @@ const CardResultDetail = ({}) => {
                           {result.awayTeam}
                         </h3>
                       </div>
-                      <div className="flex flex-col space-y-6">
+                      <div className="flex flex-col space-y-4 lg:space-y-6">
                         <p className="text-center items-center px-2 font-bold">
                           {result.matchDate}
                         </p>
-                        <div className="px-8">
+                        <div className="px-2 lg:px-8">
                           <div className="grid grid-flow-col rounded-lg bg-gainsboroColor items-center text-center p-2">
                             <h4 className="text-4xl font-bold text-gray-600">
                               {result.awayGoals}

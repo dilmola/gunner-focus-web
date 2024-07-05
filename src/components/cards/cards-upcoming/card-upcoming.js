@@ -121,9 +121,12 @@ const CardUpcoming = ({}) => {
       <>
         {data && data.length > 0 ? (
           <div className="grid grid-flow-row gap-3">
-            {data.slice(0, 1).map((result, index) => (
-              <div key={index}>
-                <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mb-6">
+            <div className="mt-2">
+              {data.slice(0, 1).map((result, index) => (
+                <div
+                  key={index}
+                  className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start"
+                >
                   <div className="w-20">
                     <div className="flex justify-center mb-4">
                       <Image
@@ -174,8 +177,8 @@ const CardUpcoming = ({}) => {
                     </h3>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
