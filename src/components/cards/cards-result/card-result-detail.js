@@ -10,7 +10,7 @@ import ExpandButtonTable from "../../buttons/button-expand-table";
 import NoFoundImg from "../../../../public/img/notFound-img.png";
 import NoFoundDarkImg from "../../../../public/img/notFound-dark-img.png";
 import { useTheme } from "../../../context/themeContext";
-import Image from "next/image"; // Import Image from next/image
+import Image from "next/image";
 
 const CardResultDetail = ({}) => {
   const { data } = useData();
@@ -202,7 +202,7 @@ const CardResultDetail = ({}) => {
         <div className="w-full">
           <SearchWithFilter query={query} setQuery={setQuery} />
         </div>
-        <div className="px-2">
+        <div className="px-4">
           <ButtonFilter setFilter={setFilter} nameMatch={nameMatch} />
         </div>
       </div>
@@ -212,9 +212,8 @@ const CardResultDetail = ({}) => {
             <Image
               src={theme === "light" ? NoFoundImg : NoFoundDarkImg}
               alt="NoFoundImg"
-              width={200}
-              height={200}
-              className="h-40"
+              width={160}
+              height={120}
             />
             <p className="text-center font-semibold text-lg py-10">
               No match found

@@ -177,7 +177,7 @@ const CardUpcomingDetail = ({}) => {
         <div className="w-full">
           <SearchWithFilter query={query} setQuery={setQuery} />
         </div>
-        <div className="px-2">
+        <div className="px-4">
           <ButtonFilter setFilter={setFilter} nameMatch={nameMatch} />
         </div>
       </div>
@@ -187,9 +187,8 @@ const CardUpcomingDetail = ({}) => {
             <Image
               src={theme === "light" ? NoFoundImg.src : NoFoundDarkImg.src}
               alt="No upcoming match found"
-              className="h-40"
               width={160}
-              height={160}
+              height={120}
             />
             <p className="text-center font-semibold text-lg py-10">
               No upcoming match found

@@ -17,8 +17,6 @@ const fetchPlayer = async (playerId, seasonYear) => {
 
   try {
     const response = await axios.request(options);
-    console.log(response);
-
     return response.data.response[0];
   } catch (error) {
     throw new Error(

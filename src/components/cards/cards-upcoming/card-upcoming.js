@@ -110,7 +110,7 @@ const CardUpcoming = ({}) => {
 
   return (
     <Card
-      title="Upcoming Match:"
+      title="Upcoming Match"
       bgColor="#E63946"
       hoverColor="#e84c58"
       textColor="#F5F4F1"
@@ -179,14 +179,8 @@ const CardUpcoming = ({}) => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <div className="opacity-85">
-              <Image
-                src={noGames}
-                alt="noGames"
-                width={80}
-                height={80}
-                className="h-20"
-              />
+            <div className="opacity-85 h-24 w-24 flex items-center justify-center">
+              <Image src={noGames} alt="noGames" width={76} height={60} />
             </div>
             <p className="font-bold">There are no upcoming match</p>
           </div>

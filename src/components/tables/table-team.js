@@ -143,9 +143,8 @@ const TableTeam = () => {
                               theme === "light" ? SeemoreIcon : SeemoreDarkIcon
                             }
                             alt="SeemoreIcon"
-                            width={12} 
-                            height={12} 
-                            className="h-3"
+                            width={14} 
+                            height={14} 
                             style={{
                               opacity: hoveredRowIndex === rowIndex ? 1 : 0,
                               transition: "opacity 0.3s ease",

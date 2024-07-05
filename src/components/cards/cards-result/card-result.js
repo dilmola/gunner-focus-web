@@ -6,8 +6,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/navigation";
 import { useData } from "../../../context/resultContext";
 import { useTheme } from "../../../context/themeContext";
-import Image from "next/image"; // Import next/image component
-import noGames from "../../../../public/img/NoGames.png"; // Example import of a static image
+import Image from "next/image";
+import NomatchDark from "../../../../public/img/nomatch-dark-img.png";
+import NomatchLight from "../../../../public/img/nomatch-light-img.png";
 
 const CardResult = ({}) => {
   const { data, loading, error } = useData();
@@ -42,6 +43,7 @@ const CardResult = ({}) => {
   const bgColor = theme === "light" ? "#F0F0F0" : "#2D3133";
   const hoverColor = theme === "light" ? "#F6F6F6CC" : "#393E4180";
   const textColor = theme === "light" ? "#393e41" : "#F5F4F1";
+  const noMatch = theme === "light" ? NomatchLight.src : NomatchDark.src;
 
   return (
     <Card
@@ -67,8 +69,8 @@ const CardResult = ({}) => {
                       <Image
                         src={result.homeLogo}
                         alt={result.homeTeam}
-                        width={48} // Specify your preferred width
-                        height={48} // Specify your preferred height
+                        width={48}
+                        height={48}
                       />
                     </div>
                     <h3 className="flex items-center text-center font-semibold">
@@ -91,8 +93,8 @@ const CardResult = ({}) => {
                       <Image
                         src={result.awayLogo}
                         alt={result.awayTeam}
-                        width={48} // Specify your preferred width
-                        height={48} // Specify your preferred height
+                        width={48}
+                        height={48}
                       />
                     </div>
                     <h3 className="flex items-center text-center font-semibold">
@@ -113,14 +115,8 @@ const CardResult = ({}) => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <div className="opacity-85">
-            <Image
-              src={noGames}
-              alt="noGames"
-              width={80}
-              height={80}
-              className="h-20"
-            />
+          <div className="opacity-85 h-24 w-24 flex items-center justify-center">
+            <Image src={noMatch} alt="noMatch" width={76} height={60} />
           </div>
           <p className="font-bold">There are no match results</p>
         </div>

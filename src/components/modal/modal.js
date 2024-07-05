@@ -26,7 +26,6 @@ const Modal = ({ onClose, selectedRowData }) => {
     const playerName = playerData?.player?.name || "unknown-player";
     const slug = slugify(playerName);
 
-    console.log("Navigating to player:", playerId, slug);
     router.push(`/player/${playerId}/${slug}`);
   };
 
