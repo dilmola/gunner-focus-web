@@ -1,8 +1,6 @@
-"use client";
-
 import LightIcon from "../../../../public/icons/light-icon.png";
 import DarkIcon from "../../../../public/icons/dark-icon.png";
-import { useTheme } from "../../../context/themeContext"; // Adjust path as necessary
+import { useTheme } from "../../../context/themeContext";
 
 const ThemeToggle = ({ className, onClick }) => {
   const { theme, toggleTheme } = useTheme();
@@ -10,7 +8,7 @@ const ThemeToggle = ({ className, onClick }) => {
   const handleToggle = (event) => {
     event.preventDefault();
     toggleTheme();
-    onClick && onClick(); // Call parent's onClick if provided
+    onClick && onClick(); 
   };
 
   return (

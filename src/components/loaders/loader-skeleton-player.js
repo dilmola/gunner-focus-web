@@ -1,14 +1,14 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useTheme } from "@/context/themeContext";
 
-const PlayerPageSkeleton = () => {
+const LoaderSkeletonPlayer = () => {
   const { theme } = useTheme();
 
-  const baseColor = theme === "light" ? "#F6F6F61A" : "#393E411A";
-  const highlightColor = theme === "light" ? "#F6F6F61A" : "#393E411A";
+  const baseColor = theme === "light" ? "#F6F6F633" : "#393E4166";
+  const highlightColor = theme === "light" ? "#e0e0e0" : "#444";
 
   return (
-    <SkeletonTheme color={baseColor} highlightColor={highlightColor}>
+    <SkeletonTheme baseColor={baseColor} highlightColor={highlightColor}>
       <div className="space-y-6">
         <Skeleton height={200} />
         <Skeleton height={600} />
@@ -17,4 +17,4 @@ const PlayerPageSkeleton = () => {
   );
 };
 
-export default PlayerPageSkeleton;
+export default LoaderSkeletonPlayer;

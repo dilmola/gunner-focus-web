@@ -1,4 +1,3 @@
-"use client";
 import Welcome from "@/components/welcome/welcome";
 import Match from "@/components/match/match";
 import TableRanked from "@/components/tables/table-ranked";

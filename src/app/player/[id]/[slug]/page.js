@@ -10,7 +10,7 @@ import SectionStatistics from "@/components/sections/section-statistics";
 import NavigationYear from "@/components/navigations/navigation-year";
 import SearchWithList from "@/components/searches/search-with-list";
 import slugify from "@/utils/slugify";
-import PlayerPageSkeleton from "@/components/loaders/loader-skeleton-player";
+import LoaderSkeletonPlayer from "@/components/loaders/loader-skeleton-player";
 
 export default function PlayerPage() {
   const [query, setQuery] = useState("");
@@ -92,9 +92,9 @@ export default function PlayerPage() {
           {error ? (
             <p>Error: {error}</p>
           ) : loading ? (
-            <PlayerPageSkeleton /> 
+            <LoaderSkeletonPlayer /> 
           ) : playerDataExist ? (
-            <Suspense fallback={<PlayerPageSkeleton />}>
+            <Suspense fallback={<LoaderSkeletonPlayer />}>
               <div className="space-y-16">
                 <SectionPlayer playerData={playerData} />
                 <section className="space-y-4 text-mirageOpa50Color dark:text-romanceOpa50Color">

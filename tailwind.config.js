@@ -29,13 +29,13 @@ module.exports = {
       },
       colors: {
         mirageColor: "#282c2d", /* black, text, bgbuttoncolor */
-        mirageOpa50Color: "#393E4166", /* text black, opacity 50%, */
-        mirageOpa01Color: "#393E411A", /* border */
+        mirageOpa50Color: "#282c2d66", /* text black, opacity 50%, */
+        mirageOpa01Color: "#282c2d1A", /* border */
         amaranthColor: "#E63946", /* red, cardcolor */
         romanceColor: "#F6F6F6", /* white, text, search, bgcolor */
         romanceOpa50Color: "#F6F6F633", /* text white, opacity 50% */
         romanceOpa01Color: "#F6F6F61A", /* border */
-        whitesmokeColor: "#F0F0F0", /* whitecardcolor */
+        whitesmokeColor: "#f0efee", /* whitecardcolor */
         gainsboroColor: "#E3E2E2", /* lightdarkabovecardcolor */
         montanaColor: "#363B3D", /* darkmodeabovecardcolor */
         codgreyColor: "#2D3133", /* cardcolor for darkmode */

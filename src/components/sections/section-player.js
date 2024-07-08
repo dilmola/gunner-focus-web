@@ -4,7 +4,7 @@ import React from "react";
 import jerseyNumbers from "@/libs/jerseyNumbers";
 import flags from "@/libs/nationalFlags";
 import preferredFoot from "@/libs/preferredFoot";
-import Image from "next/image"; // Import Image from next/image
+import Image from "next/image";
 
 export default function SectionPlayer({ playerData }) {
   return (
@@ -29,20 +29,20 @@ export default function SectionPlayer({ playerData }) {
             </p>
           </div>
         </article>
-        <article className="flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-montanaColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
-          <div className="flex flex-col space-y-2 sm:space-y-4">
+        <article className="items-stretch flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-montanaColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-medium">
+          <div className="self-center">
             <p>Captain</p>
             <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
               {playerData?.statistics?.[0]?.games?.captain ? "Yes" : "-"}
             </p>
           </div>
-          <div className="flex flex-col space-y-2 sm:space-y-4">
+          <div className="self-center">
             <p>Shirt number</p>
             <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
               #{jerseyNumbers[playerData?.player?.id] ?? "-"}
             </p>
           </div>
-          <div className="flex flex-col space-y-2 sm:space-y-4">
+          <div className="self-center">
             <p>Nationality</p>
             <div className="flex font-semibold text-lg space-x-2 text-mirageColor dark:text-romanceColor">
               <img
@@ -55,52 +55,52 @@ export default function SectionPlayer({ playerData }) {
           </div>
         </article>
       </section>
-      <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-2 md:p-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-bold">
+      <section className="bg-whitesmokeColor dark:bg-codgreyColor rounded-lg p-2 md:p-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm text-mirageOpa50Color dark:text-romanceOpa50Color font-medium">
         <article>
           <h3>First name</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.player?.firstname}
           </p>
         </article>
         <article>
           <h3>Last name</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.player?.lastname}
           </p>
         </article>
         <article>
           <h3>Age</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.player?.age}
           </p>
         </article>
         <article>
           <h3>Weight</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.player?.weight}
           </p>
         </article>
         <article>
           <h3>Height</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.player?.height}
           </p>
         </article>
         <article>
           <h3>Preferred foot</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {preferredFoot[playerData?.player?.id] ?? "-"}
           </p>
         </article>
         <article>
           <h3>Appearances</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.statistics?.[0]?.games?.appearances ?? "-"}
           </p>
         </article>
         <article>
           <h3>Minutes</h3>
-          <p className="text-mirageColor dark:text-romanceColor">
+          <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
             {playerData?.statistics?.[0]?.games?.minutes ?? "-"}
           </p>
         </article>
@@ -109,13 +109,13 @@ export default function SectionPlayer({ playerData }) {
           <div className="grid grid-cols-3">
             <div>
               <h4>Date</h4>
-              <p className="text-mirageColor dark:text-romanceColor">
+              <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
                 {playerData?.player?.birth?.date ?? "-"}
               </p>
             </div>
             <div>
               <h4>Place</h4>
-              <p className="text-mirageColor dark:text-romanceColor">
+              <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
                 {playerData?.player?.birth?.place ?? "-"}
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function SectionPlayer({ playerData }) {
                   alt={playerData?.player?.birth?.country}
                   className="h-6 rounded"
                 />
-                <p className="text-mirageColor dark:text-romanceColor">
+                <p className="text-mirageColor dark:text-romanceColor text-lg font-bold">
                   {playerData?.player?.birth?.country ?? "-"}
                 </p>
               </div>

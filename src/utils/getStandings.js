@@ -3,14 +3,14 @@ import axios from "axios";
 const fetchStandings = async () => {
   const options = {
     method: "GET",
-    url: "https://api-football-v1.p.rapidapi.com/v3/standings",
+    url: `https://${process.env.NEXT_PUBLIC_API_FOOTBALL_HOST}/v3/standings`,
     params: {
       season: "2024",
       league: "39",
     },
     headers: {
-      "X-RapidAPI-Key": "868455a8d0mshf05117d7763056fp1a7547jsn3d555557a5cd",
-      "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.API_FOOTBALL_KEY,
+      "X-RapidAPI-Host": process.env.NEXT_PUBLIC_API_FOOTBALL_HOST,
     },
   };
 
