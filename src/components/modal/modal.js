@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import { usePlayer } from "../../context/playerContext";
-import { useTheme } from "../../context/themeContext"; // Adjust path as necessary
+import { useTheme } from "../../context/themeContext";
 
 import DetailIcon from "../../../public/icons/detail-icon.png";
 import DetailDarkIcon from "../../../public/icons/detail-dark-icon.png";

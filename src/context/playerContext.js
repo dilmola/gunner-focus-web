@@ -36,7 +36,7 @@ export const PlayerProvider = ({ children }) => {
         localStorage.getItem(`playersLastFetch_${playerId}_${seasonYear}`),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {

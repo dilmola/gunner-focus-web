@@ -56,7 +56,7 @@ export const ResultsDataProvider = ({ children }) => {
   useEffect(() => {
     const checkLastFetchTime = () => {
       const lastFetch = parseInt(localStorage.getItem("resultsLastFetch"), 10);
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {

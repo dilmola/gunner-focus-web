@@ -1,7 +1,7 @@
 "use client";
 
 import LoaderAnimation from "@/components/loaders/loader-animation";
-import useLoading from "@/components/loaders/useLoading";
+import useLoading from "@/hook/useLoading";
 import Header from "@/components/header/header";
 import NavigationTop from "@/components/navigations/navigation-top";
 import Footer from "@/components/footer/footer";

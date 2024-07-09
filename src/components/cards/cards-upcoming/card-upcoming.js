@@ -70,7 +70,7 @@ const CardUpcoming = ({}) => {
         localStorage.getItem("upcomingsLastFetch"),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+      const fetchInterval = 12 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
@@ -132,8 +132,8 @@ const CardUpcoming = ({}) => {
                       <Image
                         src={result.awayLogo}
                         alt={result.awayLogo}
-                        width={56} // Set appropriate width
-                        height={56} // Set appropriate height
+                        width={56}
+                        height={56} 
                         className="h-12 lg:h-14 object-contain"
                       />
                     </div>
@@ -145,7 +145,7 @@ const CardUpcoming = ({}) => {
                     <p className="text-center py-1 rounded-lg bg-mirageColor items-center px-2">
                       {(() => {
                         const dateObj = new Date(result.fixtureDate);
-                        return dateObj.toISOString().split("T")[0]; // YYYY-MM-DD format
+                        return dateObj.toISOString().split("T")[0];
                       })()}
                     </p>
                     <p className="text-center py-1">VS</p>
@@ -158,7 +158,7 @@ const CardUpcoming = ({}) => {
                           hour12: true,
                           timeZone: "Asia/Kuala_Lumpur",
                         };
-                        return dateObj.toLocaleTimeString("en-US", optionsTime); // HH:MM AM/PM format
+                        return dateObj.toLocaleTimeString("en-US", optionsTime);
                       })()}
                     </p>
                   </div>
@@ -167,8 +167,8 @@ const CardUpcoming = ({}) => {
                       <Image
                         src={result.homeLogo}
                         alt={result.homeLogo}
-                        width={56} // Set appropriate width
-                        height={56} // Set appropriate height
+                        width={56}
+                        height={56}
                         className="h-12 lg:h-14 object-contain"
                       />
                     </div>

@@ -28,7 +28,7 @@ const ButtonFilter = ({ setFilter, nameMatch }) => {
   };
 
   const handleFilterChange = (filter) => {
-    setFilter(filter.data); // Assuming filter is an object with a 'data' property
+    setFilter(filter.data);
     setShowDropdown(false);
   };
 

@@ -9,10 +9,10 @@ import {
   Legend,
   Cell,
 } from "recharts";
-import { useTheme } from "@/context/themeContext"; // Adjust the import path as per your project structure
+import { useTheme } from "@/context/themeContext";
 
 const ChartDoughnut = ({ contentCardType, contentCardData }) => {
-  const { theme } = useTheme(); // Assuming useTheme provides theme state
+  const { theme } = useTheme();
 
   let dataCard;
 
