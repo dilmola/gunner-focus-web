@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function SectionPlayer({ playerData }) {
   return (
     <section className="space-y-4">
-      <section className="bg-amaranthColor w-full rounded-lg p-2 gap-2 md:p-4 flex flex-col sm:grid sm:grid-cols-2 lg:gap-36 content-center text-romanceColor">
+      <section className="background-card w-full rounded-lg p-2 gap-2 md:p-4 flex flex-col sm:grid sm:grid-cols-2 lg:gap-36 content-center text-romanceColor">
         <article className="flex flex-row gap-2">
           <figure>
             <Image

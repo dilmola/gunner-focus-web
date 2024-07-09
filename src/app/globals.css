@@ -101,3 +101,7 @@ h2 {
 .animate-waving {
   animation: wave 4s infinite;
 }
+
+.background-card {
+  background: linear-gradient(45deg, #e63946 0%, #e9505b 60%, #ec6670 100%);
+}
