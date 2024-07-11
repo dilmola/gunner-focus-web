@@ -30,19 +30,19 @@ export default function SectionPlayer({ playerData }) {
           </div>
         </article>
         <article className="items-stretch flex flex-col sm:grid sm:grid-cols-3 gap-2 p-2 sm:p-6 bg-gainsboroColor dark:bg-montanaColor rounded-md text-sm  text-mirageOpa50Color dark:text-romanceOpa50Color font-medium">
-          <div className="self-center">
+          <div className="self-start sm:self-center">
             <p>Captain</p>
             <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
               {playerData?.statistics?.[0]?.games?.captain ? "Yes" : "-"}
             </p>
           </div>
-          <div className="self-center">
+          <div className="self-start sm:self-center">
             <p>Shirt number</p>
             <p className="font-semibold text-lg text-mirageColor dark:text-romanceColor">
               #{jerseyNumbers[playerData?.player?.id] ?? "-"}
             </p>
           </div>
-          <div className="self-center">
+          <div className="self-start sm:self-center">
             <p>Nationality</p>
             <div className="flex font-semibold text-lg space-x-2 text-mirageColor dark:text-romanceColor">
               <img
