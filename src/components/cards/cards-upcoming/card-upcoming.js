@@ -110,7 +110,6 @@ const CardUpcoming = ({}) => {
 
   return (
     <Card
-      title="Upcoming Match"
       bgColor="#E63946"
       hoverColor="#e84c58"
       textColor="#F5F4F1"
@@ -118,6 +117,9 @@ const CardUpcoming = ({}) => {
       handleClickCondition={true}
       hoverCondition={true}
     >
+      <div className="flex flex-col items-center">
+        <div className="font-bold mb-6">Upcoming Match</div>
+      </div>
       <>
         {data && data.length > 0 ? (
           <div className="grid grid-flow-row gap-3">
@@ -133,7 +135,7 @@ const CardUpcoming = ({}) => {
                         src={result.awayLogo}
                         alt={result.awayLogo}
                         width={56}
-                        height={56} 
+                        height={56}
                         className="h-12 lg:h-14 object-contain"
                       />
                     </div>

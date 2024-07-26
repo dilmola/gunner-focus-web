@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BarChart,
   Bar,
@@ -16,6 +15,11 @@ const ChartStacked = ({
   SubstitutesBenchData,
 }) => {
   const { theme } = useTheme();
+
+  const getColor = (lightColor, darkColor) => {
+    return theme === "light" ? lightColor : darkColor;
+  };
+  const colorMode = getColor("#780000", "#fdf0d5");
 
   const data = [
     {
@@ -93,7 +97,7 @@ const ChartStacked = ({
         <Bar
           dataKey="In"
           stackId="Substitutes"
-          fill="#780000"
+          fill={colorMode}
           radius={[5, 0, 0, 5]}
         />
         <Bar

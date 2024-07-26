@@ -47,7 +47,6 @@ const CardResult = ({}) => {
 
   return (
     <Card
-      title="Match Results"
       bgColor={bgColor}
       hoverColor={hoverColor}
       textColor={textColor}
@@ -55,6 +54,9 @@ const CardResult = ({}) => {
       handleClickCondition={true}
       hoverCondition={true}
     >
+      <div className="flex flex-col items-center">
+        <div className="font-bold mb-6">Match Results</div>
+      </div>
       {data && data.length > 0 ? (
         <div className="grid grid-flow-row gap-3">
           {data.slice(0, 2).map((result, index) => (

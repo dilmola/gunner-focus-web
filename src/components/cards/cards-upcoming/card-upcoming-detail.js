@@ -204,14 +204,13 @@ const CardUpcomingDetail = ({}) => {
                 {results.map((result, index) => (
                   <Card
                     key={index}
-                    title=""
                     bgColor={bgColor}
                     hoverColor={hoverColor}
                     textColor={textColor}
                     handleClickCondition={false}
                     hoverCondition={false}
                   >
-                    <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mt-4">
+                    <div className="grid grid-flow-col gap-2 lg:gap-4 place-items-center items-start mt-8">
                       <div className="w-20">
                         <div className="flex justify-center mb-4">
                           <Image

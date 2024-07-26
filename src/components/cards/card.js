@@ -49,12 +49,7 @@ const Card = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="px-4 py-4 h-[10.5rem] lg:h-[12.5rem]">
-          <div className="flex flex-col items-center">
-            <div className="font-bold mb-8">{title}</div>
-          </div>
-          {children}
-        </div>
+        <div className="px-4 py-4 h-[10.5rem] lg:h-[12.5rem]">{children}</div>
         <div className="absolute px-4 font-semibold" style={seeMoreStyles}>
           <span>See more</span>
         </div>

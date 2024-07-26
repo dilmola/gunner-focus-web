@@ -32,11 +32,15 @@ import ChartDoughnut from "@/components/charts/chart-doughnut";
 export default function SectionStatistics({ playerData }) {
   const { theme } = useTheme();
 
+  const getColor = (lightColor, darkColor) => {
+    return theme === "light" ? lightColor : darkColor;
+  };
+
   const goalsDataGoalKeeper = [
     {
       name: "Conceded",
       value: playerData?.statistics?.[0]?.goals?.conceded ?? 0,
-      color: "#780000",
+      color: getColor("#780000", "#fdf0d5"),
     },
     {
       name: "Saves",
@@ -49,7 +53,7 @@ export default function SectionStatistics({ playerData }) {
     {
       name: "Total",
       value: playerData?.statistics?.[0]?.goals?.total ?? 0,
-      color: "#780000",
+      color: getColor("#780000", "#fdf0d5"),
     },
     {
       name: "Assists",
@@ -62,7 +66,7 @@ export default function SectionStatistics({ playerData }) {
     {
       name: "Won",
       value: playerData?.statistics?.[0]?.duels?.won ?? "-",
-      color: "#780000",
+      color: getColor("#780000", "#fdf0d5"),
     },
     {
       name: "Failed",
@@ -77,7 +81,7 @@ export default function SectionStatistics({ playerData }) {
     {
       name: "Success",
       value: playerData?.statistics?.[0]?.dribbles?.success ?? "-",
-      color: "#780000",
+      color: getColor("#780000", "#fdf0d5"),
     },
     {
       name: "Failed",

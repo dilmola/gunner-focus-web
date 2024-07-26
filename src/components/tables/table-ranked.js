@@ -146,15 +146,17 @@ const TableRanked = () => {
           <div className="rounded-lg overflow-hidden bg-gainsboroColor dark:bg-montanaColor h-20 flex justify-between mb-6 p-2 sm:p-8">
             <div className="flex">
               <div className="flex items-center text-center">
-                <Image
-                  src={Arsenal.src}
-                  alt="Arsenal"
-                  className="object-contain"
-                  width={48}
-                  height={48} 
-                />
+                <div className="relative w-8 h-8 sm:w-8 sm:h-8 lg:w-12 lg:h-12">
+                  <Image
+                    src={Arsenal.src}
+                    alt="Arsenal"
+                    layout="fill" // Makes the image fill the parent div
+                    className="object-contain"
+                  />
+                </div>
               </div>
-              <h3 className="flex items-center text-center px-2 sm:px-12 font-semibold text-lg">
+
+              <h3 className="flex items-center text-center px-2 sm:px-12 font-semibold text-xl md:text-2xl">
                 Arsenal
               </h3>
             </div>
@@ -163,7 +165,7 @@ const TableRanked = () => {
               <h3 className="flex items-center text-center px-2 sm:px-8 font-semibold">
                 Current Ranked
               </h3>
-              <h3 className="flex items-center text-center text-4xl font-semibold">
+              <h3 className="flex items-center text-center text-2xl md:text-4xl font-semibold">
                 #{teamRank ?? "?"}
               </h3>
             </div>
@@ -234,8 +236,8 @@ const TableRanked = () => {
                         <Image
                           src={row.logo}
                           alt={row[col.key]}
-                          width={32} 
-                          height={32} 
+                          width={32}
+                          height={32}
                           className="rounded mr-3"
                         />
                       </div>
