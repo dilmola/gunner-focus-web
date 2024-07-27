@@ -38,9 +38,9 @@ const NavigationSidebar = ({ isOpen, toggleSidebar, handleToggle }) => {
 
   const linkClass = (path, exact = true) => {
     const isActive = exact ? pathname === path : pathname.startsWith(path);
-    return `inline-block p-1 rounded-t-lg cursor-pointer ${
+    return `inline-block p-2 rounded-lg cursor-pointer ${
       isActive
-        ? "font-semibold text-mirageColor border-b-2 border-mirageColor dark:text-romanceColor dark:border-romanceColor"
+        ? "font-semibold text-mirageColor bg-whitesmokeColor  dark:text-romanceColor dark:bg-mirageColor"
         : "text-gray-600 dark:text-gray-300" 
     }`;
   };
