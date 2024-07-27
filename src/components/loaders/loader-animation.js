@@ -8,7 +8,7 @@ const LoaderAnimation = () => {
         <img
           src={FootballLoader.src}
           alt="FootballLoader"
-          className="h-1/2 object-contain"
+          className="h-4/5 object-contain"
         />
       </div>
     </div>
