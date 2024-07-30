@@ -225,8 +225,8 @@ const CardUpcomingDetail = ({}) => {
                           {result.awayTeam}
                         </h3>
                       </div>
-                      <div className="flex flex-col space-y-4 lg:space-y-6">
-                        <p className="text-center items-center px-2 font-bold ">
+                      <div className="flex flex-col space-y-2 lg:space-y-4">
+                        <p className="text-center items-center py-1 rounded-lg font-bold bg-gainsboroColor dark:bg-montanaColor">
                           {result.matchDate}
                         </p>
                         <p className="text-center py-1">VS</p>
@@ -245,6 +245,7 @@ const CardUpcomingDetail = ({}) => {
                             );
                           })()}
                         </p>
+                        <div className="text-center">{result.nameOfMatch}</div>
                       </div>
                       <div className="w-20">
                         <div className="flex justify-center mb-4">

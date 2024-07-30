@@ -150,7 +150,7 @@ const TableRanked = () => {
                   <Image
                     src={Arsenal.src}
                     alt="Arsenal"
-                    layout="fill" // Makes the image fill the parent div
+                    layout="fill" 
                     className="object-contain"
                   />
                 </div>
