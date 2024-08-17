@@ -59,7 +59,7 @@ const TableRanked = () => {
         localStorage.getItem("standingsLastFetch"),
         10
       );
-      const fetchInterval = 12 * 60 * 60 * 1000;
+      const fetchInterval = 6 * 60 * 60 * 1000;
       const currentTime = Date.now();
 
       if (!lastFetch || currentTime - lastFetch > fetchInterval) {
@@ -150,7 +150,7 @@ const TableRanked = () => {
                   <Image
                     src={Arsenal.src}
                     alt="Arsenal"
-                    layout="fill" 
+                    layout="fill"
                     className="object-contain"
                   />
                 </div>
@@ -232,13 +232,12 @@ const TableRanked = () => {
                         })}
                       </div>
                     ) : col.key === "logo" && row.logo ? (
-                      <div className="flex items-center">
+                      <div className="flex relative items-center w-8 h-8">
                         <Image
                           src={row.logo}
                           alt={row[col.key]}
-                          width={32}
-                          height={32}
-                          className="rounded mr-3"
+                          layout="fill"
+                          className="object-contain"
                         />
                       </div>
                     ) : (
