@@ -1,9 +1,9 @@
-import { Nunito } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import LoaderClient from "@/components/loaders/loader-client";
 import { CombinedDataProvider } from "../context/mainContext";
 
-const Nunito_init = Nunito({
+const Nunito_sans_init = Nunito_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "700", "800"],
 });
@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <CombinedDataProvider>
-      <html lang="en" className={Nunito_init.className}>
+      <html lang="en" className={Nunito_sans_init.className}>
         <body className="text-mirageColor bg-romanceColor selection:bg-mirageColor selection:text-romanceColor dark:bg-mirageColor dark:text-romanceColor dark:selection:bg-romanceColor dark:selection:text-mirageColor">
           <LoaderClient>{children}</LoaderClient>
         </body>
